@@ -1,5 +1,6 @@
 NFTicket -- NFT enabled ticketing solution 
 
+Example boilerplate: https://github.com/NomicFoundation/hardhat-boilerplate
 
 Meeting Schedule:
 
