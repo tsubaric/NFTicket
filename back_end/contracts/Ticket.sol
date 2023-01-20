@@ -1,30 +1,26 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
+contract Ticket is ERC1155 {
 
-contract Ticket is ERC721URIStorage {
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;
-
-    constructor() ERC721("TIcket", "NFTCKT") {}
-
-    /*
-        Super basic mint function that stores the URI.
-        URIs should be addresses of CIDs of metadata 
-        stored on IPFS, but not enforced
-    */
-    function mint(string memory tokenURI) public returns (uint256) {
-        _tokenIds.increment();
-
-        uint256 newTokenId  = _tokenIds.current();
-        _mint(msg.sender, newTokenId);
-        _setTokenURI(newTokenId, tokenURI);
-
-        return newTokenId;
+    constructor(string memory metadata_uri) ERC1155(metadata_uri) {
     }
+
+    function createTickets(uint256 _id, uint256 _supply) public {
+        _mint(msg.sender, _id, _supply, "");
+    }
+
+
+    // TODO: function to redeem tickets
+
+    // TODO: add transfer function
+
+    // TODO: royalties
+
+    // TODO: destroy function
 
 
 }
