@@ -15,6 +15,7 @@ contract Ticket is ERC1155 {
 
 
     // TODO: function to redeem tickets
+    
 
     // TODO: add transfer function
 
