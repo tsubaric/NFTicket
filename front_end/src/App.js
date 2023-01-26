@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import "./App.css";
+import Dashboard from "./components/dashboard.js";
 
-function App() {
+const App = () => {
+  const propsData = {
+    dashboard: {
+      dashboard: {
+        search: "search",
+        events: "Events\n",
+        myTickets: "My Tickets\n",
+        connectWallet: "Connect Wallet",
+        createEvent: "Create Event\n\n",
+      },
+    },
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="home">
+      <Dashboard className="dashboard-instance-1" {...propsData.dashboard} />
+      <span className="nf-ticket">NFTicket</span>
+      <span className="create-events-view-a">
+        Create Events, View and Transfer tickets{" "}
+      </span>
+      <div className="rectangle-4">
+        <span className="website-description">website description</span>
+      </div>
     </div>
   );
-}
-
+};
 export default App;
