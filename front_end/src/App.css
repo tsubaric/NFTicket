@@ -1,230 +1,12 @@
- /* .events {
-  color: #000;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  padding-top: 21px;
-  padding-left: 16px;
-  font-family: Inter, Arial;
-  font-size: 1.25rem;
-  font-weight: 500;
-  line-height: 24px;
-  display: flex;
-}
-
-.dashboard-instance-2 {
-  width: 95%;
-  margin-top: 1px;
-  margin-bottom: 70px;
-  margin-left: 1px;
-}
-
-.view-by-category {
-  margin-top: 9px;
-}
-
-.flex-container {
-  width: 85%;
-  flex-direction: row;
-  flex-basis: 19%;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 75px;
-  margin-left: 16px;
-  font-weight: 200;
-  display: flex;
-}
-
-.polygon-1 {
-  width: 50px;
-  height: 56px;
-  object-fit: cover;
-}
-
-.rectangle-44 {
-  height: 100%;
-  background-color: #d9d9d9;
-  flex-direction: row;
-  flex-basis: 20%;
-  justify-content: flex-start;
-  align-items: flex-end;
-  margin-left: 4px;
-  padding-bottom: 13px;
-  padding-left: 15px;
-  display: flex;
-}
-
-.rectangle-45 {
-  height: 100%;
-  background-color: #d9d9d9;
-  flex-direction: row;
-  flex-basis: 20%;
-  justify-content: flex-start;
-  align-items: flex-end;
-  padding-bottom: 13px;
-  padding-left: 14px;
-  display: flex;
-}
-
-.rectangle-47 {
-  height: 100%;
-  background-color: #d9d9d9;
-  flex-direction: row;
-  flex-basis: 20%;
-  justify-content: flex-start;
-  align-items: flex-end;
-  padding-bottom: 9px;
-  padding-left: 12px;
-  display: flex;
-}
-
-.rectangle-46 {
-  height: 100%;
-  background-color: #d9d9d9;
-  flex-direction: row;
-  flex-basis: 20%;
-  justify-content: flex-start;
-  align-items: flex-end;
-  padding-bottom: 13px;
-  padding-left: 12px;
-  display: flex;
-}
-
-.polygon-2 {
-  width: 50px;
-  height: 56px;
-  object-fit: cover;
-  margin-top: 7px;
-  margin-left: 6px;
-  margin-right: -1234px;
-}
-
-.flex-container-1 {
-  width: 55%;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  margin-top: 10px;
-  font-weight: 400;
-  display: flex;
-}
-
-.flex-container-2 {
-  width: 95%;
-  flex-direction: row;
-  flex-basis: 7%;
-  justify-content: space-between;
-  align-items: stretch;
-  margin-left: 1px;
-  display: flex;
-}
-
-.rectangle-5, .rectangle-12 {
-  height: 100%;
-  background-color: #d9d9d9;
-  border: none;
-  border-radius: 100px;
-  flex-direction: row;
-  flex-basis: 47%;
-  justify-content: flex-start;
-  align-items: stretch;
-  display: flex;
-}
-
-.flex-container-3 {
-  width: 95%;
-  flex-direction: row;
-  flex-basis: 7%;
-  justify-content: space-between;
-  align-items: stretch;
-  margin-left: 1px;
-  display: flex;
-}
-
-.rectangle-6, .rectangle-11 {
-  height: 100%;
-  background-color: #d9d9d9;
-  border: none;
-  border-radius: 100px;
-  flex-direction: row;
-  flex-basis: 47%;
-  justify-content: flex-start;
-  align-items: stretch;
-  display: flex;
-}
-
-.flex-container-4 {
-  width: 95%;
-  flex-direction: row;
-  flex-basis: 7%;
-  justify-content: space-between;
-  align-items: stretch;
-  margin-left: 1px;
-  display: flex;
-}
-
-.rectangle-7, .rectangle-10 {
-  height: 100%;
-  background-color: #d9d9d9;
-  border: none;
-  border-radius: 100px;
-  flex-direction: row;
-  flex-basis: 47%;
-  justify-content: flex-start;
-  align-items: stretch;
-  display: flex;
-}
-
-.flex-container-5 {
-  width: 95%;
-  flex-direction: row;
-  flex-basis: 8%;
-  justify-content: space-between;
-  align-items: stretch;
-  margin-bottom: 3px;
-  margin-left: 1px;
-  display: flex;
-}
-
-.rectangle-8 {
-  height: 95%;
-  background-color: #d9d9d9;
-  border: none;
-  border-radius: 100px;
-  flex-direction: row;
-  flex-basis: 47%;
-  justify-content: flex-start;
-  align-items: stretch;
-  display: flex;
-}
-
-.rectangle-9 {
-  height: 95%;
-  background-color: #d9d9d9;
-  border: none;
-  border-radius: 100px;
-  flex-direction: row;
-  flex-basis: 47%;
-  justify-content: flex-start;
-  align-self: flex-end;
-  align-items: stretch;
-  display: flex;
-}  */
-
-.my-tickets {
+.create-event {
   color: #000;
   width: 100%;
   height: 100%;
   background-color: #fff;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: flex-end;
-  padding-top: 15px;
-  padding-left: 16px;
-  padding-right: 13px;
+  align-items: center;
+  padding: 5px 1px 76px 2px;
   font-family: Inter, Arial;
   font-size: 1.5rem;
   font-weight: 400;
@@ -232,166 +14,91 @@
   display: flex;
 }
 
-.dashboard-instance-2 {
+.dashboard-instance-1 {
   width: 95%;
-  margin-top: 1px;
-  margin-bottom: 116px;
-  margin-left: 1px;
+  margin-top: 5px;
+  margin-bottom: 36px;
 }
 
-.rectangle-38 {
-  width: 90%;
+.upload-file {
+  margin-top: 5px;
+}
+
+.rectangle-6 {
+  width: 45%;
   background-color: #d9d9d9;
+  border: none;
+  border-radius: 20px;
   flex-direction: row;
-  flex-basis: 6%;
-  justify-content: space-evenly;
-  align-self: center;
-  align-items: center;
-  margin-top: 20px;
-  padding-bottom: 1px;
-  padding-right: 68px;
+  flex-basis: 12%;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-left: 27px;
   display: flex;
 }
 
-.created {
-  margin-bottom: 1px;
-}
-
-.filter-by {
-  margin-left: 360px;
-}
-
-.polygon-1 {
-  width: 38px;
-  height: 30px;
+.rectangle-12 {
+  width: 665px;
+  height: 41px;
   object-fit: cover;
+  border-radius: 10px;
+  margin-left: 18px;
+}
+
+.rectangle-10 {
+  width: 45%;
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 20px;
+  flex-direction: row;
+  flex-basis: 13%;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-left: 27px;
+  display: flex;
 }
 
 .flex-container {
-  width: 95%;
+  width: 45%;
   flex-direction: row;
-  flex-basis: 54%;
   justify-content: space-between;
   align-items: stretch;
-  margin-bottom: 14px;
-  margin-left: 45px;
+  margin-bottom: 36px;
+  margin-left: 25px;
   display: flex;
 }
 
-.flex-container-1 {
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  display: flex;
-}
-
-.rectangle-43, .rectangle-44 {
-  width: 240px;
-  height: 240px;
+.rectangle-9 {
+  width: 321px;
+  height: 41px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
-.flex-container-2 {
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  margin-bottom: 1px;
-  display: flex;
-}
-
-.rectangle-45, .rectangle-46 {
-  width: 240px;
-  height: 240px;
+.rectangle-11 {
+  width: 323px;
+  height: 40px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
-.flex-container-3 {
-  height: 100%;
-  flex-direction: column;
-  flex-basis: 18%;
-  justify-content: space-between;
-  align-items: stretch;
-  margin-bottom: 5px;
-  display: flex;
-}
-
-.rectangle-47 {
-  width: 240px;
-  height: 240px;
-  object-fit: cover;
-}
-
-.rectangle-49 {
-  width: 240px;
-  height: 240px;
-  object-fit: cover;
-  align-self: flex-end;
-}
-
-.flex-container-4 {
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  margin-bottom: 5px;
-  display: flex;
-}
-
-.rectangle-48, .rectangle-50 {
-  width: 240px;
-  height: 240px;
-  object-fit: cover;
-}
-
-.flex-container-5 {
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin-left: 35px;
-  display: flex;
-}
-
-.rectangle-8 {
-  width: 48px;
-  height: 488px;
-  object-fit: cover;
+.rectangle-7 {
+  color: #000;
+  width: 25%;
+  background-color: #d9d9d9;
+  border: none;
   border-radius: 100px;
-}
-
-.polygon-2 {
-  width: 38px;
-  height: 30px;
-  object-fit: cover;
-}
-
-.flex-container-6 {
-  width: 80%;
   flex-direction: row;
-  justify-content: space-between;
-  align-self: center;
-  align-items: flex-end;
+  flex-basis: 6%;
+  justify-content: center;
+  align-items: center;
   margin-top: 3px;
+  margin-bottom: 12px;
+  margin-left: 23px;
+  padding-right: 3px;
+  font-family: Inter, Arial;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 29px;
   display: flex;
-}
-
-.rectangle-51, .rectangle-52 {
-  width: 240px;
-  height: 40px;
-  object-fit: cover;
-}
-
-.rectangle-53 {
-  width: 240px;
-  height: 40px;
-  object-fit: cover;
-  margin-left: 1px;
-}
-
-.rectangle-54 {
-  width: 240px;
-  height: 49px;
-  object-fit: cover;
 }

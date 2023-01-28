@@ -1,8 +1,8 @@
 import * as React from "react";
-import "./page3.css";
+import "./Dashboard.css";
 import logo from "../assets/logo.svg";
-//import Dashboard from "./Dashboard";
-const page3 = (props) => {
+import Dashboard from "./Dashboard";
+const Dashboard = (props) => {
   return (
     <div className={`dashboard ${props.className || ""}`}>
       <img className="logo" {...props.logo} src={logo} />
@@ -10,4 +10,4 @@ const page3 = (props) => {
     </div>
   );
 };
-export default page3;
+export default Dashboard;
