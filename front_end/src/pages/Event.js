@@ -2,8 +2,7 @@ import * as React from "react";
 import "./Event.css";
 import rectangle561 from "./assets/rectangle561.svg";
 import rectangle56 from "./assets/rectangle56.svg";
-//import Dashboard from "./components/Dashboard";
-import page5 from "./components/page5";
+import Dashboard from "./components/dashboard.js";
 const Event = () => {
   const propsData = {
     dashboard: {
@@ -18,7 +17,7 @@ const Event = () => {
   };
   return (
     <div className="event">
-      <page5 className="dashboard-instance-1" {...propsData.dashboard} />
+      <Dashboard className="dashboard-instance-1" {...propsData.dashboard} />
       <div className="flex-container">
         <div className="rectangle-57">
           <span className="event-image">Event Image</span>

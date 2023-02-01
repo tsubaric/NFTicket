@@ -1,44 +1,60 @@
 import * as React from "react";
 import "./App.css";
-import rectangle561 from "./assets/rectangle561.svg";
-import rectangle56 from "./assets/rectangle56.svg";
-//import Dashboard from "./components/Dashboard";
-import page5 from "./components/page5";
-const Event = () => {
+import polygon2 from "./assets/polygon2.svg";
+import rectangle43 from "./assets/rectangle43.svg";
+import rectangle8 from "./assets/rectangle8.svg";
+import polygon1 from "./assets/polygon1.svg";
+import Dashboard from "./components/dashboard.js";
+const myTickets = () => {
   const propsData = {
     dashboard: {
       dashboard: {
+        events: "Events\n",
+        connectWallet: "Connect Wallet",
         myTickets: "My Tickets\n",
         createEvent: "Create Event\n\n",
         search: "search",
-        events: "Events\n",
-        connectWallet: "Connect Wallet",
       },
     },
   };
   return (
-    <div className="event">
-      <page5 className="dashboard-instance-1" {...propsData.dashboard} />
+    <div className="my-tickets">
+      <Dashboard className="dashboard-instance-2" {...propsData.dashboard} />
+      <div className="rectangle-38">
+        <span>Owned</span>
+        <span className="created">Created</span>
+        <span className="filter-by">Filter by</span>
+      </div>
+      <img className="polygon-1" src={polygon1} />
       <div className="flex-container">
-        <div className="rectangle-57">
-          <span className="event-image">Event Image</span>
+        <div className="flex-container-1">
+          <img className="rectangle-43" src={rectangle43} />
+          <img className="rectangle-44" src={rectangle43} />
         </div>
-        <span className="lolla-pallooza-2026">Lollapallooza 2026</span>
+        <div className="flex-container-2">
+          <img className="rectangle-45" src={rectangle43} />
+          <img className="rectangle-46" src={rectangle43} />
+        </div>
+        <div className="flex-container-3">
+          <img className="rectangle-47" src={rectangle43} />
+          <img className="rectangle-49" src={rectangle43} />
+        </div>
+        <div className="flex-container-4">
+          <img className="rectangle-48" src={rectangle43} />
+          <img className="rectangle-50" src={rectangle43} />
+        </div>
+        <div className="flex-container-5">
+          <img className="rectangle-8" src={rectangle8} />
+          <img className="polygon-2" src={polygon2} />
+        </div>
       </div>
-      <img className="rectangle-56" src={rectangle56} />
-      <div className="flex-container-1">
-        <img className="rectangle-56-1" src={rectangle561} />
-        <img className="rectangle-62" src={rectangle561} />
-        <img className="rectangle-58" src={rectangle561} />
-        <img className="rectangle-57-1" src={rectangle561} />
-      </div>
-      <div className="flex-container-2">
-        <img className="rectangle-63" src={rectangle561} />
-        <img className="rectangle-59" src={rectangle561} />
-        <img className="rectangle-61" src={rectangle561} />
-        <img className="rectangle-60" src={rectangle561} />
+      <div className="flex-container-6">
+        <img className="rectangle-51" src={rectangle43} />
+        <img className="rectangle-52" src={rectangle43} />
+        <img className="rectangle-53" src={rectangle43} />
+        <img className="rectangle-54" src={rectangle43} />
       </div>
     </div>
   );
 };
-export default Event;
+export default myTickets;
