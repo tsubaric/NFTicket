@@ -4,8 +4,7 @@ import polygon2 from "./assets/polygon2.svg";
 import rectangle43 from "./assets/rectangle43.svg";
 import rectangle8 from "./assets/rectangle8.svg";
 import polygon1 from "./assets/polygon1.svg";
-//import Dashboard from "./components/Dashboard";
-import page4 from "./components/page4";
+import Dashboard from "./components/dashboard.js";
 const myTickets = () => {
   const propsData = {
     dashboard: {

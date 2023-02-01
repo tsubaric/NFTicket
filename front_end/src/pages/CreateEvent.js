@@ -1,11 +1,10 @@
 import * as React from "react";
-import "./App.css";
+import "./CreateEvent.css";
 import rectangle9 from "./assets/rectangle9.svg";
 import rectangle12 from "./assets/rectangle12.svg";
 import rectangle11 from "./assets/rectangle11.svg";
-//import Dashboard from "./components/Dashboard";
-import page3 from "./components/page3";
-const App = () => {
+import Dashboard from "./components/dashboard.js";
+const CreateEvent = () => {
   const propsData = {
     dashboard: {
       dashboard: {
@@ -19,7 +18,7 @@ const App = () => {
   };
   return (
     <div className="create-event">
-      <page3 className="dashboard-instance-1" {...propsData.dashboard} />
+      <Dashboard className="dashboard-instance-1" {...propsData.dashboard} />
       <span className="upload-file">Upload File</span>
       <input className="rectangle-6" type="text" />
       <span>Event Name</span>
@@ -35,4 +34,4 @@ const App = () => {
     </div>
   );
 };
-export default App;
+export default CreateEvent;

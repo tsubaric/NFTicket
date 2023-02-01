@@ -1,7 +1,6 @@
 import * as React from "react";
 import "./Home.css";
 import Dashboard from "./components/dashboard.js";
-
 const Home = () => {
   const propsData = {
     dashboard: {
