@@ -1,11 +1,11 @@
 import * as React from "react";
-import "./CreateEvent.css";
+import "./App.css";
 import rectangle9 from "./assets/rectangle9.svg";
 import rectangle12 from "./assets/rectangle12.svg";
 import rectangle11 from "./assets/rectangle11.svg";
 //import Dashboard from "./components/Dashboard";
 import page3 from "./components/page3";
-const CreateEvent = () => {
+const App = () => {
   const propsData = {
     dashboard: {
       dashboard: {
@@ -35,4 +35,4 @@ const CreateEvent = () => {
     </div>
   );
 };
-export default CreateEvent;
+export default App;

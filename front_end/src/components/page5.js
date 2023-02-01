@@ -1,7 +1,7 @@
 import * as React from "react";
-import "./Dashboard.css";
+import "./dashboard.css";
 import logo from "../assets/logo.svg";
-import Dashboard from "./Dashboard";
+//import Dashboard from "./Dashboard";
 const Dashboard = (props) => {
   return (
     <div className={`dashboard ${props.className || ""}`}>

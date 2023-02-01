@@ -1,54 +1,44 @@
 import * as React from "react";
-import "./Events.css";
-import polygon1 from "./assets/polygon1.svg";
-import polygon2 from "./assets/polygon2.svg";
-// import Dashboard from "./components/Dashboard";
-import page2 from "./components/page2";
-const Events = () => {
+import "./App.css";
+import rectangle561 from "./assets/rectangle561.svg";
+import rectangle56 from "./assets/rectangle56.svg";
+//import Dashboard from "./components/Dashboard";
+import page5 from "./components/page5";
+const Event = () => {
   const propsData = {
     dashboard: {
       dashboard: {
-        search: "search",
-        createEvent: "Create Event\n\n",
-        connectWallet: "Connect Wallet",
         myTickets: "My Tickets\n",
+        createEvent: "Create Event\n\n",
+        search: "search",
         events: "Events\n",
+        connectWallet: "Connect Wallet",
       },
     },
   };
   return (
-    <div className="events">
-      <page2 className="dashboard-instance-2" {...propsData.dashboard} />
-      <span className="view-by-category">View by Category</span>
+    <div className="event">
+      <page5 className="dashboard-instance-1" {...propsData.dashboard} />
       <div className="flex-container">
-        <img className="polygon-1" src={polygon1} />
-        <div className="rectangle-44">Restaurants</div>
-        <div className="rectangle-45">Festivals</div>
-        <div className="rectangle-47">Sports</div>
-        <div className="rectangle-46">Travel</div>
-        <img className="polygon-2" src={polygon2} />
+        <div className="rectangle-57">
+          <span className="event-image">Event Image</span>
+        </div>
+        <span className="lolla-pallooza-2026">Lollapallooza 2026</span>
       </div>
+      <img className="rectangle-56" src={rectangle56} />
       <div className="flex-container-1">
-        <span>TOP</span>
-        <span>TRENDING</span>
+        <img className="rectangle-56-1" src={rectangle561} />
+        <img className="rectangle-62" src={rectangle561} />
+        <img className="rectangle-58" src={rectangle561} />
+        <img className="rectangle-57-1" src={rectangle561} />
       </div>
       <div className="flex-container-2">
-        <input className="rectangle-5" type="text" />
-        <input className="rectangle-12" type="text" />
-      </div>
-      <div className="flex-container-3">
-        <input className="rectangle-6" type="text" />
-        <input className="rectangle-11" type="text" />
-      </div>
-      <div className="flex-container-4">
-        <input className="rectangle-7" type="text" />
-        <input className="rectangle-10" type="text" />
-      </div>
-      <div className="flex-container-5">
-        <input className="rectangle-8" type="text" />
-        <input className="rectangle-9" type="text" />
+        <img className="rectangle-63" src={rectangle561} />
+        <img className="rectangle-59" src={rectangle561} />
+        <img className="rectangle-61" src={rectangle561} />
+        <img className="rectangle-60" src={rectangle561} />
       </div>
     </div>
   );
 };
-export default Events;
+export default Event;

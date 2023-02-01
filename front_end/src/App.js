@@ -1,38 +1,44 @@
 import * as React from "react";
 import "./App.css";
-import rectangle9 from "./assets/rectangle9.svg";
-import rectangle12 from "./assets/rectangle12.svg";
-import rectangle11 from "./assets/rectangle11.svg";
+import rectangle561 from "./assets/rectangle561.svg";
+import rectangle56 from "./assets/rectangle56.svg";
 //import Dashboard from "./components/Dashboard";
-import page3 from "./components/page3";
-const App = () => {
+import page5 from "./components/page5";
+const Event = () => {
   const propsData = {
     dashboard: {
       dashboard: {
-        connectWallet: "Connect Wallet",
-        search: "search",
         myTickets: "My Tickets\n",
         createEvent: "Create Event\n\n",
+        search: "search",
         events: "Events\n",
+        connectWallet: "Connect Wallet",
       },
     },
   };
   return (
-    <div className="create-event">
-      <page3 className="dashboard-instance-1" {...propsData.dashboard} />
-      <span className="upload-file">Upload File</span>
-      <input className="rectangle-6" type="text" />
-      <span>Event Name</span>
-      <img className="rectangle-12" src={rectangle12} />
-      <span>Description</span>
-      <input className="rectangle-10" type="text" />
-      <span>Properties</span>
+    <div className="event">
+      <page5 className="dashboard-instance-1" {...propsData.dashboard} />
       <div className="flex-container">
-        <img className="rectangle-9" src={rectangle9} />
-        <img className="rectangle-11" src={rectangle11} />
+        <div className="rectangle-57">
+          <span className="event-image">Event Image</span>
+        </div>
+        <span className="lolla-pallooza-2026">Lollapallooza 2026</span>
       </div>
-      <button className="rectangle-7">Create</button>
+      <img className="rectangle-56" src={rectangle56} />
+      <div className="flex-container-1">
+        <img className="rectangle-56-1" src={rectangle561} />
+        <img className="rectangle-62" src={rectangle561} />
+        <img className="rectangle-58" src={rectangle561} />
+        <img className="rectangle-57-1" src={rectangle561} />
+      </div>
+      <div className="flex-container-2">
+        <img className="rectangle-63" src={rectangle561} />
+        <img className="rectangle-59" src={rectangle561} />
+        <img className="rectangle-61" src={rectangle561} />
+        <img className="rectangle-60" src={rectangle561} />
+      </div>
     </div>
   );
 };
-export default App;
+export default Event;
