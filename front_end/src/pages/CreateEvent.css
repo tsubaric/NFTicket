@@ -25,35 +25,35 @@
 }
 
 .rectangle-6 {
-  width: 45%;
+  width: 40%;
   background-color: #d9d9d9;
   border: none;
   border-radius: 20px;
   flex-direction: row;
   flex-basis: 12%;
   justify-content: flex-start;
-  align-items: stretch;
+  align-items: center;
   margin-left: 27px;
   display: flex;
 }
 
 .rectangle-12 {
-  width: 665px;
-  height: 41px;
+  width: 430px;
+  height: 35px;
   object-fit: cover;
   border-radius: 10px;
   margin-left: 18px;
 }
 
 .rectangle-10 {
-  width: 45%;
+  width: 40%;
   background-color: #d9d9d9;
   border: none;
   border-radius: 20px;
   flex-direction: row;
   flex-basis: 13%;
   justify-content: flex-start;
-  align-items: stretch;
+  align-items: center;
   margin-left: 27px;
   display: flex;
 }
@@ -62,22 +62,22 @@
   width: 45%;
   flex-direction: row;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
   margin-bottom: 36px;
   margin-left: 25px;
   display: flex;
 }
 
 .rectangle-9 {
-  width: 321px;
-  height: 41px;
+  width: 250px;
+  height: 35px;
   object-fit: cover;
   border-radius: 10px;
 }
 
 .rectangle-11 {
-  width: 323px;
-  height: 40px;
+  width: 250px;
+  height: 35px;
   object-fit: cover;
   border-radius: 10px;
 }
