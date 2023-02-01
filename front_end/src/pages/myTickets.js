@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./App.css";
+import "./myTickets.css";
 import polygon2 from "./assets/polygon2.svg";
 import rectangle43 from "./assets/rectangle43.svg";
 import rectangle8 from "./assets/rectangle8.svg";
@@ -19,7 +19,7 @@ const myTickets = () => {
   };
   return (
     <div className="my-tickets">
-      <Dashboard className="dashboard-instance-2" {...propsData.dashboard} />
+      <page4 className="dashboard-instance-2" {...propsData.dashboard} />
       <div className="rectangle-38">
         <span>Owned</span>
         <span className="created">Created</span>

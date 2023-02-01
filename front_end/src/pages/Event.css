@@ -1,0 +1,131 @@
+.event {
+  color: #000;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 15px;
+  padding-left: 39px;
+  padding-right: 2px;
+  font-family: Inter, Arial;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 17px;
+  display: flex;
+}
+
+.dashboard-instance-1 {
+  width: 95%;
+  margin-bottom: 62px;
+}
+
+.flex-container {
+  width: 35%;
+  flex-direction: row;
+  flex-basis: 11%;
+  justify-content: space-between;
+  align-self: flex-start;
+  align-items: center;
+  margin-top: 11px;
+  margin-left: 140px;
+  display: flex;
+}
+
+.rectangle-57 {
+  height: 100%;
+  background-color: #d9d9d9;
+  flex-direction: row;
+  flex-basis: 23%;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4px;
+  padding-right: 13px;
+  display: flex;
+}
+
+.event-image {
+  margin-bottom: 2px;
+}
+
+.lolla-pallooza-2026 {
+  margin-bottom: 1px;
+  font-size: 2.25rem;
+  line-height: 44px;
+}
+
+.rectangle-56 {
+  width: 1720px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.flex-container-1 {
+  width: 75%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-top: 13px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.rectangle-56-1, .rectangle-62 {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+}
+
+.rectangle-58 {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  margin-left: 5px;
+}
+
+.rectangle-57-1 {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+}
+
+.flex-container-2 {
+  width: 75%;
+  flex-direction: row;
+  flex-basis: 25%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 14px;
+  display: flex;
+}
+
+.rectangle-63 {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  align-self: flex-end;
+}
+
+.rectangle-59 {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  margin-top: 1px;
+}
+
+.rectangle-61 {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  align-self: flex-start;
+  margin-left: 6px;
+}
+
+.rectangle-60 {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  align-self: flex-start;
+}
