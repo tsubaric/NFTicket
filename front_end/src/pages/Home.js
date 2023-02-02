@@ -14,6 +14,9 @@ const Home = () => {
   };
   return (
     <div className="home">
+      <br />
+      <br />
+
       <span className="nf-ticket">NFTicket</span>
       <span className="create-events-view-a">
         Create Events, View and Transfer tickets{" "}
