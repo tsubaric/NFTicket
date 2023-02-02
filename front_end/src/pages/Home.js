@@ -1,6 +1,5 @@
 import * as React from "react";
 import "./Home.css";
-import Dashboard from "./components/dashboard.js";
 const Home = () => {
   const propsData = {
     dashboard: {
@@ -15,7 +14,6 @@ const Home = () => {
   };
   return (
     <div className="home">
-      <Dashboard className="dashboard-instance-1" {...propsData.dashboard} />
       <span className="nf-ticket">NFTicket</span>
       <span className="create-events-view-a">
         Create Events, View and Transfer tickets{" "}
