@@ -1,8 +1,8 @@
 import * as React from "react";
 import "./Events.css";
-import polygon1 from "./assets/polygon1.svg";
-import polygon2 from "./assets/polygon2.svg";
-import Dashboard from "./components/dashboard";
+import polygon1 from "../assets/polygon1.svg";
+import polygon2 from "../assets/polygon2.svg";
+// import Dashboard from "./components/dashboard";
 const Events = () => {
   const propsData = {
     dashboard: {
@@ -17,7 +17,7 @@ const Events = () => {
   };
   return (
     <div className="events">
-      <Dashboard className="dashboard-instance-2" {...propsData.dashboard} />
+      {/* <Dashboard className="dashboard-instance-2" {...propsData.dashboard} /> */}
       <span className="view-by-category">View by Category</span>
       <div className="flex-container">
         <img className="polygon-1" src={polygon1} />

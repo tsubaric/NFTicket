@@ -1,8 +1,8 @@
 import * as React from "react";
 import "./Event.css";
-import rectangle561 from "./assets/rectangle561.svg";
-import rectangle56 from "./assets/rectangle56.svg";
-import Dashboard from "./components/dashboard.js";
+import rectangle561 from "../assets/rectangle561.svg";
+import rectangle56 from "../assets/rectangle56.svg";
+// import Dashboard from "./components/dashboard.js";
 const Event = () => {
   const propsData = {
     dashboard: {
@@ -17,25 +17,25 @@ const Event = () => {
   };
   return (
     <div className="event">
-      <Dashboard className="dashboard-instance-1" {...propsData.dashboard} />
+      {/* <Dashboard className="dashboard-instance-1" {...propsData.dashboard} /> */}
       <div className="flex-container">
         <div className="rectangle-57">
           <span className="event-image">Event Image</span>
         </div>
         <span className="lolla-pallooza-2026">LollaPallooza 2026</span>
       </div>
-      <img className="rectangle-56" src={rectangle56} />
+      <img alt="" className="rectangle-56" src={rectangle56} />
       <div className="flex-container-1">
-        <img className="rectangle-56-1" src={rectangle561} />
-        <img className="rectangle-62" src={rectangle561} />
-        <img className="rectangle-58" src={rectangle561} />
-        <img className="rectangle-57-1" src={rectangle561} />
+        <img alt="" className="rectangle-56-1" src={rectangle561} />
+        <img alt="" className="rectangle-62" src={rectangle561} />
+        <img alt="" className="rectangle-58" src={rectangle561} />
+        <img alt="" className="rectangle-57-1" src={rectangle561} />
       </div>
       <div className="flex-container-2">
-        <img className="rectangle-63" src={rectangle561} />
-        <img className="rectangle-59" src={rectangle561} />
-        <img className="rectangle-61" src={rectangle561} />
-        <img className="rectangle-60" src={rectangle561} />
+        <img alt="" className="rectangle-63" src={rectangle561} />
+        <img alt="" className="rectangle-59" src={rectangle561} />
+        <img alt="" className="rectangle-61" src={rectangle561} />
+        <img alt="" className="rectangle-60" src={rectangle561} />
       </div>
     </div>
   );
