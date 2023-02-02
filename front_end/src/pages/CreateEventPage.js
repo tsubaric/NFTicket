@@ -1,13 +1,18 @@
 import * as React from "react";
-import "./CreateEvent.css";
-import { CreateEventForm } from "../components/CreateEventForm"
+import CreateEventForm from "../components/CreateEventForm"
 
-const CreateEventPage = () => {
+export function CreateEventPage () {
   return (
-    <div className="create-event">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
       <h2>Create Event</h2>
       <CreateEventForm />
     </div>
   );
 };
-export default CreateEventPage;

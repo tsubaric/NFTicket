@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import CreateEvent from "./pages/CreateEventPage";
+import { CreateEventPage } from "./pages/CreateEventPage";
 import Events from "./pages/Events";
 import myTickets from "./pages/myTickets";
 
@@ -15,7 +15,7 @@ function App() {
         <Dashboard />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/create" exact component={CreateEvent} />
+          <Route path="/create" exact component={CreateEventPage} />
           <Route path="/events" exact component={Events} />
           <Route path="/tickets" exact component={myTickets} />
         </Switch>
