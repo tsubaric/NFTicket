@@ -5,7 +5,7 @@ import { CreateEventForm } from "../components/CreateEventForm"
 const CreateEventPage = () => {
   return (
     <div className="create-event">
-      <h1>Create Event</h1>
+      <h2>Create Event</h2>
       <CreateEventForm />
     </div>
   );

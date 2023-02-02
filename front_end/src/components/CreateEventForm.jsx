@@ -14,7 +14,21 @@ export function CreateEventForm () {
       autoComplete="off"
     >
       <div>
-        <TextField id="standard-basic" label="Event Name" variant="standard" />
+        <TextField 
+          required 
+          id="event-name-input" 
+          label="Event Name" 
+          variant="filled" 
+        />
+        <TextField 
+          required 
+          multiline 
+          minRows={3} 
+          maxRows={10}
+          id="event-description-input" 
+          label="Description" 
+          variant="filled" 
+        />
       </div>
       <Button variant="contained">Create Event</Button>
     </Box>
