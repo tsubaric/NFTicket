@@ -1,7 +1,7 @@
 import * as React from "react";
 import CreateEventForm from "../components/CreateEventForm"
 
-export function CreateEventPage () {
+export default function CreateEventPage () {
   return (
     <div
       style={{
