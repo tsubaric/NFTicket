@@ -25,8 +25,12 @@ contract Ticket is ERC1155 {
     }
 
     // TODO: function to redeem tickets
+    //https://docs.mintbase.xyz/ethereum/ethereum/minter-ui/redeeming-tickets-nfts
     
+
+
     // TODO: add transfer function
+    
 
     // TODO: royalties -- percentage of resell profit to be paid to original creator
 
