@@ -8,7 +8,9 @@ export default class CreateEventForm extends React.Component {
         super(props);
         this.state = {
           eventName: '',
-          eventDescription: ''
+          eventDescription: '',
+          numGATickets: '',
+          gaTicketPrice: '',
         };
 
         this.handleCreate = this.handleCreate.bind(this);
@@ -18,6 +20,8 @@ export default class CreateEventForm extends React.Component {
     handleCreate(event) {
         alert('Creating Event: ' + this.state.eventName);
         event.preventDefault();
+
+        // TODO: redirect to confirmation page
     }
 
     handleChange(event) {
@@ -28,9 +32,6 @@ export default class CreateEventForm extends React.Component {
         this.setState({
           [name]: value
         });
-
-        console.log(this.state.eventName);
-        console.log(this.state.eventDescription);
     }
 
 
@@ -106,6 +107,7 @@ export default class CreateEventForm extends React.Component {
                   marginBottom: '20px'
                 }}
                 variant="contained"
+                onClick={this.handleCreate}
               >
                 Create Event
               </Button>
