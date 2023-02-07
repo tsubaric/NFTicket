@@ -22,9 +22,7 @@
     margin-left: 1px;
   }
   
-  .view-by-category {
-    margin-top: 9px;
-  }
+  
   
   .flex-container {
     width: 85%;
@@ -213,4 +211,38 @@
     align-items: stretch;
     display: flex;
   }
+
+  .categoryLabel {
+    
+    padding-top:25px;
+    padding-bottom: 5px;
+    font-family: Garamond, serif;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 10px;
+    display: flex;
+  }
+
+  .view-by-category {
+    padding-top:40px;
+    font-family: Garamond, serif;
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 24px;
+    display: flex;
+  }
+
+  .nftGrid {
+    grid-template-columns: repeat(4, 1fr);
+    padding-top: 25px;
+    visibility: hidden;
+
+  }
+
+  #nftItems{
+height: 200px;
+  }
+
+
+  
   

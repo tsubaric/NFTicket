@@ -21,9 +21,8 @@ contract Ticket is ERC1155 {
         require(GA_MINTED < GA_SUPPLY, "General Admission sold out");
         require(GA_MINTED + _amount < GA_SUPPLY, "Insufficient tickets remaining");
         _mint(msg.sender, GA, _amount, "");
-        GA_MINTED = GA_MINTED + 1;
+        GA_MINTED = GA_MINTED + _amount;
     }
-
 
     // TODO: function to redeem tickets
     //https://docs.mintbase.xyz/ethereum/ethereum/minter-ui/redeeming-tickets-nfts

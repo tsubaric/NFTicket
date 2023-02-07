@@ -14,6 +14,6 @@ describe("Ticket", function () {
         // mint a ticket 
         await ticket.mintGeneralAdmission(1, {'value': ethers.utils.parseEther("0.1")});
         expect(ticket.balanceOf(owner, 0)).to.be >= 1;
-
     });
+
 });
