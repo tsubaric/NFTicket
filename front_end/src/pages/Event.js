@@ -1,3 +1,4 @@
+/*
 import * as React from "react";
 import "./Event.css";
 import rectangle561 from "../assets/rectangle561.svg";
@@ -17,7 +18,8 @@ const Event = () => {
   };
   return (
     <div className="event">
-      {/* <Dashboard className="dashboard-instance-1" {...propsData.dashboard} /> */}
+      {/* <Dashboard className="dashboard-instance-1" {...propsData.dashboard} /> */
+    /*}
       <div className="flex-container">
         <div className="rectangle-57">
           <span className="event-image">Event Image</span>
@@ -41,3 +43,24 @@ const Event = () => {
   );
 };
 export default Event;
+*/
+
+import * as React from "react";
+import EventCard from "../components/EventCard"
+
+export default function Event () {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
+      <h2>Event Card</h2>
+      <EventCard />
+    </div>
+  );
+};
+
