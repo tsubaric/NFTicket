@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import CreateEvent from "./pages/CreateEvent";
 import Events from "./pages/Events";
 import MyTicketsPage from "./pages/MyTicketsPage";
-import Event from "./pages/Event";
 import CreateEventConfirmation from "./pages/CreateEventConfirmation";
 
 import { createBrowserHistory as history } from "history";
