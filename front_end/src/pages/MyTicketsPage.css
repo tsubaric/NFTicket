@@ -1,0 +1,40 @@
+
+
+
+.ownedNFTS{
+        grid-template-columns: repeat(4, 1fr);
+        padding-top: 25px;
+        padding-bottom: 25px;
+        padding-left: 25px;
+        padding-right: 25px;
+    
+      
+}
+
+.createdNFTS{
+    grid-template-columns: repeat(4, 1fr);
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+
+  
+}
+
+.tabs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#nftItems2{
+    height: 350px;
+    width: 350px;
+}
+
+#nftItems{
+    height: 350px;
+    width: 350px;
+}
