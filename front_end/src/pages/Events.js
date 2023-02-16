@@ -102,8 +102,8 @@ const Events = () => {
   
   return (
     <div className="events">
-      {/* <Dashboard className="dashboard-instance-2" {...propsData.dashboard} /> */}
-      <span className="view-by-category">Events by Category</span>
+      {/* <Dashboard className="dashboard-instance-2" {...propsData.dashboard} /> 
+      <span className="view-by-category">Events by Category</span> */}
       
 
       <ImageList sx={{ gridAutoFlow: "column", gridAutoColumns: "minmax(400px, 1fr)", width: 1400, height: 320 }}cols={3} >

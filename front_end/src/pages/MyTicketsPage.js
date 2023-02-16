@@ -30,20 +30,15 @@ export default function MyTicketsPage() {
 
   return (
     <div clasName="main-container">
-      <div className="userInfo">
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+        
 
-      </div>
       <div className="tabs">
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <TabList onChange={handleChange} aria-label="lab API tabs example">
-                <Tab icon={<PersonIcon />}label="OWNED" value="1" />
-                <Tab icon={<BrushIcon />}label="CREATED" value="2" />
+                <Tab id="tab1" icon={<PersonIcon />}label="OWNED" value="1" />
+                <Tab id="tab2" icon={<BrushIcon />}label="CREATED" value="2" />
               </TabList>
             </Box>
             <TabPanel value="1">

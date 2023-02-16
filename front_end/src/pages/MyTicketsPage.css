@@ -21,13 +21,7 @@
   
 }
 
-.tabs{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+
 
 #nftItems2{
     height: 350px;
@@ -37,4 +31,37 @@
 #nftItems{
     height: 350px;
     width: 350px;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #BFD4DB;
+}
+
+.tabs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #fff;
+    color: #fff;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.tab1{
+    border-bottom: 2px solid #fff;
 }
