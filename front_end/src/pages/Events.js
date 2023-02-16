@@ -143,7 +143,7 @@ const Events = () => {
     <Box sx={{ flexGrow: 1 }} >
       <Grid container spacing={{ xs: 4, md: 6 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {Array.from(Array(12)).map((_, index) => (
-          <Grid item xs={4} sm={6} md={6} key={index}>
+          <Grid item xs={4} sm={6} md={3} key={index}>
             <Item id="nftItems">NFT</Item>
           </Grid>
         ))}
