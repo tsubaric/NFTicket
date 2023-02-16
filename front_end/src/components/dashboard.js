@@ -5,11 +5,17 @@ import { Link } from "react-router-dom";
 const Dashboard = (props) => {
   return (
     <nav className={`dashboard-1 ${props.className || ""}`}>
-      <div className="rectangle-3">{props.search || "Search"}</div>
+      {/*<div className="rectangle-3">{props.search || "Search"}</div>  */}
+      
+      <p >NFTicket</p>
+      <button className="rectangle-3">  </button>
+
       <Link to="/">Home</Link>
       <Link to="/events">Events</Link>
       <Link to="/tickets">My Tickets</Link>
       <Link to="/create">Create Event</Link>
+       
+
       {/* <span className="events">{props.events || "Events\n"}</span>
       <span className="my-tickets">{props.myTickets || "My Tickets\n"}</span>
       <span className="create-event">
