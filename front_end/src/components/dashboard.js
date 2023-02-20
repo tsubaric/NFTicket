@@ -11,11 +11,17 @@ const Dashboard = (props) => {
       <p >NFTicket</p>
       {/*<button className="rectangle-3">  </button> */}
       <input type="text" placeholder="Search" className="rectangle-3" />
-
+{/*
       <Link to="/">Home</Link>
       <Link to="/events">Events</Link>
       <Link to="/tickets">My Tickets</Link>
       <Link to="/create">Create Event</Link>
+*/}
+      <a href="/" class="button">Home</a>
+      <a href="/events" class="button">Events</a>
+      <a href="/tickets" class="button">My Tickets</a>
+      <a href="/create" class="button">Create</a>
+
       
        
 
