@@ -9,12 +9,14 @@ const Dashboard = (props) => {
       {/*<div className="rectangle-3">{props.search || "Search"}</div>  */}
       
       <p >NFTicket</p>
-      <button className="rectangle-3">  </button>
+      {/*<button className="rectangle-3">  </button> */}
+      <input type="text" placeholder="Search" className="rectangle-3" />
 
       <Link to="/">Home</Link>
       <Link to="/events">Events</Link>
       <Link to="/tickets">My Tickets</Link>
       <Link to="/create">Create Event</Link>
+      
        
 
       {/* <span className="events">{props.events || "Events\n"}</span>
