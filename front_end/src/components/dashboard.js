@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./dashboard.css";
 import { Link } from "react-router-dom";
+import ConnectWalletButton from './ConnectWalletButton'
 
 const Dashboard = (props) => {
   return (
@@ -21,11 +22,7 @@ const Dashboard = (props) => {
       <span className="create-event">
         {props.createEvent || "Create Event\n\n"}
       </span> */}
-      <button className="rectangle-2">
-        <span className="connect-wallet">
-          {props.connectWallet || "Connect Wallet"}
-        </span>
-      </button>
+      <ConnectWalletButton />
     </nav>
   );
 };
