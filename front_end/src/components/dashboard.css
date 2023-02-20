@@ -16,7 +16,9 @@
 
 
 .rectangle-3 {
-  color: #00000080;
+  color: #fff;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 1rem;
   height: 100%;
   border-radius: 25px;
   flex-direction: row;
@@ -25,10 +27,13 @@
   align-self: flex-end;
   align-items: center;
   margin-top: 2px;
-  padding-bottom: 1px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   padding-left: 31px;
   display: flex;
   background-color: #000;
+  border: 1px solid #fff
 
 }
 
