@@ -22,214 +22,27 @@
     margin-left: 1px;
   }
   
-  
-  
-  .flex-container {
-    width: 85%;
-    flex-direction: row;
-    flex-basis: 19%;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 75px;
-    margin-left: 16px;
-    font-weight: 200;
-    display: flex;
-  }
-  
-  .polygon-1 {
-    width: 50px;
-    height: 56px;
-    object-fit: cover;
-  }
-  
-  .rectangle-44 {
-    height: 100%;
-    background-color: #d9d9d9;
-    flex-direction: row;
-    flex-basis: 20%;
-    justify-content: flex-start;
-    align-items: flex-end;
-    margin-left: 4px;
-    padding-bottom: 13px;
-    padding-left: 15px;
-    display: flex;
-  }
-  
-  .rectangle-45 {
-    height: 100%;
-    background-color: #d9d9d9;
-    flex-direction: row;
-    flex-basis: 20%;
-    justify-content: flex-start;
-    align-items: flex-end;
-    padding-bottom: 13px;
-    padding-left: 14px;
-    display: flex;
-  }
-  
-  .rectangle-47 {
-    height: 100%;
-    background-color: #d9d9d9;
-    flex-direction: row;
-    flex-basis: 20%;
-    justify-content: flex-start;
-    align-items: flex-end;
-    padding-bottom: 9px;
-    padding-left: 12px;
-    display: flex;
-  }
-  
-  .rectangle-46 {
-    height: 100%;
-    background-color: #d9d9d9;
-    flex-direction: row;
-    flex-basis: 20%;
-    justify-content: flex-start;
-    align-items: flex-end;
-    padding-bottom: 13px;
-    padding-left: 12px;
-    display: flex;
-  }
-  
-  .polygon-2 {
-    width: 50px;
-    height: 56px;
-    object-fit: cover;
-    margin-top: 7px;
-    margin-left: 6px;
-    margin-right: -1234px;
-  }
-  
-  .flex-container-1 {
-    width: 55%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
-    margin-top: 10px;
-    font-weight: 400;
-    display: flex;
-  }
-  
-  .flex-container-2 {
-    width: 95%;
-    flex-direction: row;
-    flex-basis: 7%;
-    justify-content: space-between;
-    align-items: stretch;
-    margin-left: 1px;
-    display: flex;
-  }
-  
-  .rectangle-5, .rectangle-12 {
-    height: 100%;
-    background-color: #d9d9d9;
-    border: none;
-    border-radius: 100px;
-    flex-direction: row;
-    flex-basis: 47%;
-    justify-content: flex-start;
-    align-items: stretch;
-    display: flex;
-  }
-  
-  .flex-container-3 {
-    width: 95%;
-    flex-direction: row;
-    flex-basis: 7%;
-    justify-content: space-between;
-    align-items: stretch;
-    margin-left: 1px;
-    display: flex;
-  }
-  
-  .rectangle-6, .rectangle-11 {
-    height: 100%;
-    background-color: #d9d9d9;
-    border: none;
-    border-radius: 100px;
-    flex-direction: row;
-    flex-basis: 47%;
-    justify-content: flex-start;
-    align-items: stretch;
-    display: flex;
-  }
-  
-  .flex-container-4 {
-    width: 95%;
-    flex-direction: row;
-    flex-basis: 7%;
-    justify-content: space-between;
-    align-items: stretch;
-    margin-left: 1px;
-    display: flex;
-  }
-  
-  .rectangle-7, .rectangle-10 {
-    height: 100%;
-    background-color: #d9d9d9;
-    border: none;
-    border-radius: 100px;
-    flex-direction: row;
-    flex-basis: 47%;
-    justify-content: flex-start;
-    align-items: stretch;
-    display: flex;
-  }
-  
-  .flex-container-5 {
-    width: 95%;
-    flex-direction: row;
-    flex-basis: 8%;
-    justify-content: space-between;
-    align-items: stretch;
-    margin-bottom: 3px;
-    margin-left: 1px;
-    display: flex;
-  }
-  
-  .rectangle-8 {
-    height: 95%;
-    background-color: #d9d9d9;
-    border: none;
-    border-radius: 100px;
-    flex-direction: row;
-    flex-basis: 47%;
-    justify-content: flex-start;
-    align-items: stretch;
-    display: flex;
-  }
-  
-  .rectangle-9 {
-    height: 95%;
-    background-color: #d9d9d9;
-    border: none;
-    border-radius: 100px;
-    flex-direction: row;
-    flex-basis: 47%;
-    justify-content: flex-start;
-    align-self: flex-end;
-    align-items: stretch;
-    display: flex;
-  }
 
   .categoryLabel {
     
     padding-top:25px;
     padding-bottom: 5px;
-    font-family: Garamond, serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 2rem;
     font-weight: 500;
     line-height: 10px;
     display: flex;
+    color:#fff;
   }
 
   .view-by-category {
     padding-top:40px;
-    font-family: Garamond, serif;
     font-size: 3rem;
     font-weight: 500;
     line-height: 24px;
     display: flex;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color:#fff;
   }
 
   .nftGrid {

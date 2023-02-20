@@ -102,8 +102,8 @@ const Events = () => {
   
   return (
     <div className="events">
-      {/* <Dashboard className="dashboard-instance-2" {...propsData.dashboard} /> */}
-      <span className="view-by-category">Events by Category</span>
+      {/* <Dashboard className="dashboard-instance-2" {...propsData.dashboard} /> 
+      <span className="view-by-category">Events by Category</span> */}
       
 
       <ImageList sx={{ gridAutoFlow: "column", gridAutoColumns: "minmax(400px, 1fr)", width: 1400, height: 320 }}cols={3} >
@@ -143,7 +143,7 @@ const Events = () => {
     <Box sx={{ flexGrow: 1 }} >
       <Grid container spacing={{ xs: 4, md: 6 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {Array.from(Array(12)).map((_, index) => (
-          <Grid item xs={4} sm={6} md={6} key={index}>
+          <Grid item xs={4} sm={6} md={3} key={index}>
             <Item id="nftItems">NFT</Item>
           </Grid>
         ))}
