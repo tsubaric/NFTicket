@@ -2,6 +2,7 @@
   "name": "front_end",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@mui/icons-material": "^5.11.0",
     "@testing-library/jest-dom": "^5.16.5",
