@@ -1,7 +1,7 @@
 // defining the event table properties here
 
 module.exports = (sequelize, Sequelize) => {
-    const Tutorial = sequelize.define("tutorial", {
+    const Event = sequelize.define("event", {
       title: {
         type: Sequelize.STRING
       },
@@ -10,6 +10,6 @@ module.exports = (sequelize, Sequelize) => {
       },
     });
   
-    return Tutorial;
+    return Event;
   };
   
