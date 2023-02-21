@@ -1,7 +1,7 @@
 module.exports = app => {
   const events = require("../controllers/event.controller.js");
 
-  var router = require("express").Router();
+  app.get("/delete-me", events.deleteMe);
 
-  app.get("/create", events.deleteMe);
+  app.get("/create", events.create);
 };

@@ -1,3 +1,4 @@
+// TODO: load from users .env file
 module.exports = {
   HOST: "localhost",
   USER: "root",
