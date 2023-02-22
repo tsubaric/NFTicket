@@ -2,6 +2,8 @@ import * as React from "react";
 import "./dashboard.css";
 import { Link } from "react-router-dom";
 import ConnectWalletButton from './ConnectWalletButton'
+import Button from '@mui/material/Button';
+
 
 const Dashboard = (props) => {
   return (
@@ -16,13 +18,23 @@ const Dashboard = (props) => {
       <Link to="/events">Events</Link>
       <Link to="/tickets">My Tickets</Link>
       <Link to="/create">Create Event</Link>
-*/}
+
       <a href="/" class="button">Home</a>
       <a href="/events" class="button">Events</a>
       <a href="/tickets" class="button">My Tickets</a>
       <a href="/create" class="button">Create</a>
-
+      */}
       
+      <Button variant="contained" class="button" href="/">Home
+        </Button>
+        <Button variant="contained" class="button" href="/events">Events
+        </Button>
+        <Button variant="contained" class="button" href="/tickets">My Tickets
+        </Button>
+
+      <Button variant="contained" class="button" href="/create">Create
+        </Button>      
+
        
 
       {/* <span className="events">{props.events || "Events\n"}</span>
