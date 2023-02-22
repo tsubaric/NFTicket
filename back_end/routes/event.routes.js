@@ -3,5 +3,5 @@ module.exports = app => {
 
   app.get("/delete-me", events.deleteMe);
 
-  app.get("/create", events.create);
+  app.post("/create", events.create);
 };

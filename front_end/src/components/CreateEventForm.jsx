@@ -27,9 +27,11 @@ export default class CreateEventForm extends React.Component {
 
 
         // call server method to upload metadata and generate new URI
-        axios.get("http://localhost:4000/create", { crossdomain: true })
+        axios.post("http://localhost:4000/create", this.state)
         .then(response => {
             console.log(response);
+        }, (error) => {
+            console.log(error)
         });
 
     }

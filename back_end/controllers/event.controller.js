@@ -13,6 +13,7 @@ exports.deleteMe = (req, res) => {
 exports.create = (req, res) => {
     // TODO: upload new event metadata, return new cid to front end
     console.log("in create")
+    console.log(req['body'])
 
 
 

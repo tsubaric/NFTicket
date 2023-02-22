@@ -1,18 +1,19 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "http://localhost:3000" // this means only this url can talk to our server
 };
 
 app.use(cors(corsOptions));
 
 // parse requests of content-type -- application/json
-app.use(express.json());
+app.use(bodyParser.json());
 
 // parse requests of content-type -- application/x-www-form-urlencoded
-app.use(express.urlencoded({extended: true }));
+app.use(bodyParser.urlencoded({extended: false }));
 
 
 // TODO: sync with db
