@@ -24,14 +24,20 @@ db.sequelize.sync({force: true}).then(() => {
 
 */
 
-// simple route
-app.get("/x", (req, res) => {
-  console.log("server lives")
-  res.json({ message: "server lives" });
-})
 
-// include the routes 
-require("./app/routes/event.routes")(app);
+
+// simple route to ping server
+app.get(
+    "/",
+    (req, res) => {
+        console.log("server lives")
+        res.json({
+            test: "passed"
+    })
+});
+
+// include the routes
+require("./routes/event.routes")(app);
 
 const PORT = process.env.PORT || 4000; // backend routing port
 app.listen(PORT, () => {
