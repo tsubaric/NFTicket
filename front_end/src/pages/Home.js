@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import "./Home.css";
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
@@ -8,17 +8,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 
 const Home = () => {
-  const propsData = {
-    dashboard: {
-      dashboard: {
-        search: "search",
-        events: "Events\n",
-        myTickets: "My Tickets\n",
-        connectWallet: "Connect Wallet",
-        createEvent: "Create Event\n\n",
-      },
-    },
-  };
+
   return (
     <div className="home" style={{ backgroundImage: "url(https://www.billboard.com/wp-content/uploads/2022/03/UMF2022_0327_190211-9411_ALIVECOVERAGE.jpg?w=1024)" }}>
 
@@ -28,12 +18,6 @@ const Home = () => {
       <div className="nf-ticket">NFTicket</div>
       <br />
 
-
-       {/*
-      <div className="createViewTxt">
-      <p>Create - View - Transfer</p>
-      </div>
-      */}
 
 
       <div className="rectangle-4">

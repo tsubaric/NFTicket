@@ -2,6 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button'
+import axios from 'axios';
+
 
 export default class CreateEventForm extends React.Component {
     constructor(props) {
@@ -22,6 +24,16 @@ export default class CreateEventForm extends React.Component {
         event.preventDefault();
 
         // TODO: redirect to confirmation page
+
+
+        // call server method to upload metadata and generate new URI
+        axios.post("http://localhost:4000/create", this.state)
+        .then(response => {
+            console.log(response);
+        }, (error) => {
+            console.log(error)
+        });
+
     }
 
     handleChange(event) {

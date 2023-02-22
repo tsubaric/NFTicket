@@ -9,11 +9,11 @@ const hre = require("hardhat");
 async function main() {
 
   // deploy Ticket contract
-  const Ticket = await hre.ethers.getContractFactory("Ticket");
-  const ticket = await Ticket.deploy();
-  await ticket.deployed();
+  const NFTicket = await hre.ethers.getContractFactory("NFTicket");
+  const nfticket = await NFTicket.deploy();
+  await nfticket.deployed();
   console.log(
-    `Ticket contract deployed to ${ticket.address}`
+    `Ticket contract deployed to ${nfticket.address}`
   );
 }
 
