@@ -11,16 +11,19 @@ contract NFTicket is ERC1155 {
     uint256[] private ALL_GA_TICKETS_PRICE;
 
     constructor() ERC1155("https://ipfs.io/ipfs/QmZHERTYLSB3EaTzmwCMXYkdSNvwfZm6ZLctoP7JrsDHma?filename={id}.json") {
-        
+
     }
 
-    // create a new event 
+    // create a new event
     function createEvent (string memory eventURI, uint256 ga_ticket_amount, uint256 ga_ticket_price) public returns (uint256) {
         uint256 eventId = generateId();
-        _setURI(eventURI);
         ALL_GA_TICKETS_AVAILABLE[eventId] = ga_ticket_amount;
         ALL_GA_TICKETS_PRICE[eventId] = ga_ticket_price;
         return eventId;
+    }
+
+    function setEventUri (string memory eventURI) public {
+        _setURI(eventURI)
     }
 
     function mintGATickets (uint256 eventId, uint256 amount) public payable {
