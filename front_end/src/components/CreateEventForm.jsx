@@ -31,22 +31,26 @@ export default class CreateEventForm extends React.Component {
     const signer = await provider.getSigner()
     const NFTicketAbi = require("../NFTicket.json").abi
 
-    const NFTicketContract = new ethers.Contract("0x153188a244e4f7badc2050184A9c39f885632296", NFTicketAbi, signer)
-    const response = await NFTicketContract.createEvent(10, 10000, {gasLimit: 3000000}) // price, amount
+    const NFTicketContract = new ethers.Contract("0xAe07D479744B6C39d6F3421D1D534B18eDCd44F6", NFTicketAbi, signer)
+    const response = await NFTicketContract.createEvent(10, 10000) // price, amount
     console.log(response)
+    const eventId = await NFTicketContract.getLastEventId()
+    console.log("eventId: ", Number(eventId))
+    this.setState({["eventId"]: Number(eventId)}, () => {
+        // call server method to upload metadata and generate new URI
+        axios.post("http://localhost:4000/create", this.state).then(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    });
 
 
 
 
-    // call server method to upload metadata and generate new URI
-    axios.post("http://localhost:4000/create", this.state).then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
   }
 
   handleChange(event) {
