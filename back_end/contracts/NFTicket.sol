@@ -15,7 +15,7 @@ contract NFTicket is ERC1155 {
     }
 
     // create a new event
-    function createEvent (string memory eventURI, uint256 ga_ticket_amount, uint256 ga_ticket_price) public returns (uint256) {
+    function createEvent (uint256 ga_ticket_amount, uint256 ga_ticket_price) public returns (uint256) {
         uint256 eventId = generateId();
         ALL_GA_TICKETS_AVAILABLE[eventId] = ga_ticket_amount;
         ALL_GA_TICKETS_PRICE[eventId] = ga_ticket_price;
@@ -23,7 +23,7 @@ contract NFTicket is ERC1155 {
     }
 
     function setEventUri (string memory eventURI) public {
-        _setURI(eventURI)
+        _setURI(eventURI);
     }
 
     function mintGATickets (uint256 eventId, uint256 amount) public payable {
