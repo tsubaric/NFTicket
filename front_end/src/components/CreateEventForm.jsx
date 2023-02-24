@@ -48,7 +48,6 @@ export default class CreateEventForm extends React.Component {
         );
     });
 
-
   }
 
   handleChange(event) {
@@ -61,83 +60,90 @@ export default class CreateEventForm extends React.Component {
     });
   }
 
-  render() {
-    return (
-      <Box
-        stlye={{ justifyContent: "center", alignItems: "center" }}
-        component="form"
-        sx={{
-          "& > :not(style)": { m: 1, width: "50ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <TextField
-            style={{
-              marginTop: "20px",
-              marginBottom: "20px",
+
+    render() {
+        return (
+          <Box
+            stlye={{justifyContent:'center', alignItems:'center'}}
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '50ch' },
             }}
-            required
-            label="Event Name"
-            variant="filled"
-            name="eventName"
-            onChange={this.handleChange}
-          />
-          <TextField
-            style={{
-              marginTop: "20px",
-              marginBottom: "20px",
-            }}
-            required
-            multiline
-            minRows={3}
-            maxRows={10}
-            label="Description"
-            variant="filled"
-            name="eventDescription"
-            onChange={this.handleChange}
-          />
-          <TextField
-            style={{
-              marginTop: "20px",
-              marginBottom: "20px",
-            }}
-            required
-            label="Number of GA Tickets"
-            variant="filled"
-            name="numGATickets"
-            onChange={this.handleChange}
-          />
-          <TextField
-            style={{
-              marginTop: "20px",
-              marginBottom: "20px",
-            }}
-            required
-            label="GA Ticket Price"
-            variant="filled"
-            name="gaTicketPrice"
-            onChange={this.handleChange}
-          />
-          <Button
-            style={{
-              marginTop: "20px",
-              marginBottom: "20px",
-            }}
-            variant="contained"
-            onClick={this.handleCreate}
+            noValidate
+            autoComplete="off"
           >
-            Create Event
-          </Button>
-        </div>
-      </Box>
-    );
-  }
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems:'center',
+
+              }}
+            >
+              <TextField id="eventName"
+                style={{
+                  marginTop: '25px',
+                  marginBottom: '25px',
+                  width: '50ch',
+                }}
+                required
+                label="Event Name"
+                variant="filled"
+                name="eventName"
+                onChange={this.handleChange}
+              />
+              <TextField id="eventDescription"
+                style={{
+                  marginTop: '25px',
+                  marginBottom: '25px',
+                  width: '50ch'
+                }}
+                required
+                multiline
+                minRows={3}
+                maxRows={10}
+                label="Description"
+                variant="filled"
+                name='eventDescription'
+                onChange={this.handleChange}
+              />
+              <TextField id="numGATickets"
+                style={{
+                  marginTop: '25px',
+                  marginBottom: '25px',
+                  width: '50ch'
+                }}
+                required
+                label="Number of GA Tickets"
+                variant="filled"
+                name='numGATickets'
+                onChange={this.handleChange}
+              />
+              <TextField id="gaTicketPrice"
+                style={{
+                  marginTop: '25px',
+                  marginBottom: '25px',
+                  width: '50ch'
+                }}
+                required
+                label="GA Ticket Price"
+                variant="filled"
+                name='gaTicketPrice'
+                onChange={this.handleChange}
+              />
+              <Button id="createEventButton"
+                style={{
+                  marginTop: '25px',
+                  marginBottom: '25px',
+                  width: '50ch'
+                }}
+                variant="contained"
+                onClick={this.handleCreate}
+              >
+                Create
+              </Button>
+            </div>
+          </Box>
+
+        )}
 }
