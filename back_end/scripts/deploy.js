@@ -11,9 +11,10 @@ async function main() {
   // deploy Ticket contract
   const NFTicket = await hre.ethers.getContractFactory("NFTicket");
   const nfticket = await NFTicket.deploy();
+  //console.log(nfticket)
   await nfticket.deployed();
   console.log(
-    `Ticket contract deployed to ${nfticket.address}`
+    `NFTicket contract deployed to ${nfticket.address}`
   );
 }
 
