@@ -19,6 +19,10 @@ module.exports = {
         goerli: {
             url: `https://goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
             accounts: [process.env.DEV_PRIVATE_KEY]
+        },
+        mumbai: {
+            url: `https://polygon-mumbai.infura.io/v3/${process.env.INFURA_API_KEY}`,
+            accounts: [process.env.DEV_PRIVATE_KEY]
         }
     }
 };

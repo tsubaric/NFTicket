@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol"; // NFT token standar
 contract NFTicket is ERC1155 {
 
     uint256 private LAST_EVENT_ID = 0;
-    uint256 constant MAX_EVENT_ID = 9999;
+    uint256 constant MAX_EVENT_ID = 999;
     uint256[] private ALL_GA_TICKETS_AVAILABLE = new uint256[](MAX_EVENT_ID);
     uint256[] private ALL_GA_TICKETS_PRICE = new uint256[](MAX_EVENT_ID);
 
