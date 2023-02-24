@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
+
 
 export default class CreateEventForm extends React.Component {
     constructor(props) {
@@ -54,10 +55,11 @@ export default class CreateEventForm extends React.Component {
 
               }}
             >
-              <TextField
+              <TextField id="eventName"
                 style={{
-                  marginTop: '20px',
-                  marginBottom: '20px',
+                  marginTop: '25px',
+                  marginBottom: '25px',
+                  width: '50ch',
                 }}
                 required
                 label="Event Name"
@@ -65,10 +67,11 @@ export default class CreateEventForm extends React.Component {
                 name="eventName"
                 onChange={this.handleChange}
               />
-              <TextField
+              <TextField id="eventDescription"
                 style={{
-                  marginTop: '20px',
-                  marginBottom: '20px'
+                  marginTop: '25px',
+                  marginBottom: '25px',
+                  width: '50ch'
                 }}
                 required
                 multiline
@@ -79,10 +82,11 @@ export default class CreateEventForm extends React.Component {
                 name='eventDescription'
                 onChange={this.handleChange}
               />
-              <TextField
+              <TextField id="numGATickets"
                 style={{
-                  marginTop: '20px',
-                  marginBottom: '20px'
+                  marginTop: '25px',
+                  marginBottom: '25px',
+                  width: '50ch'
                 }}
                 required
                 label="Number of GA Tickets"
@@ -90,10 +94,11 @@ export default class CreateEventForm extends React.Component {
                 name='numGATickets'
                 onChange={this.handleChange}
               />
-              <TextField
+              <TextField id="gaTicketPrice"
                 style={{
-                  marginTop: '20px',
-                  marginBottom: '20px'
+                  marginTop: '25px',
+                  marginBottom: '25px',
+                  width: '50ch'
                 }}
                 required
                 label="GA Ticket Price"
@@ -101,15 +106,16 @@ export default class CreateEventForm extends React.Component {
                 name='gaTicketPrice'
                 onChange={this.handleChange}
               />
-              <Button
+              <Button id="createEventButton"
                 style={{
-                  marginTop: '20px',
-                  marginBottom: '20px'
+                  marginTop: '25px',
+                  marginBottom: '25px',
+                  width: '50ch'
                 }}
                 variant="contained"
                 onClick={this.handleCreate}
               >
-                Create Event
+                Create
               </Button>
             </div>
           </Box>

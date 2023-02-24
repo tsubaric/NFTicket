@@ -1,5 +1,7 @@
 import * as React from "react";
 import CreateEventForm from "../components/CreateEventForm"
+import "./CreateEvent.css";
+
 
 export default function CreateEvent () {
   return (
@@ -11,7 +13,7 @@ export default function CreateEvent () {
         justifyContent: 'center'
       }}
     >
-      <h2>Create Event</h2>
+      <div className="createeventLabel">Create Event</div>
       <CreateEventForm />
     </div>
   );
