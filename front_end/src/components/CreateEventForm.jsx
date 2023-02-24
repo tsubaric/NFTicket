@@ -49,8 +49,6 @@ export default class CreateEventForm extends React.Component {
     });
 
 
-
-
   }
 
   handleChange(event) {
