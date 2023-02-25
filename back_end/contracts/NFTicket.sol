@@ -7,8 +7,9 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol"; // NFT token standar
 contract NFTicket is ERC1155 {
 
     uint256 private LAST_EVENT_ID = 0;
-    uint256[] private ALL_GA_TICKETS_AVAILABLE;
-    uint256[] private ALL_GA_TICKETS_PRICE;
+    uint256 constant MAX_EVENT_ID = 999;
+    uint256[] private ALL_GA_TICKETS_AVAILABLE = new uint256[](MAX_EVENT_ID);
+    uint256[] private ALL_GA_TICKETS_PRICE = new uint256[](MAX_EVENT_ID);
 
     constructor() ERC1155("https://ipfs.io/ipfs/QmZHERTYLSB3EaTzmwCMXYkdSNvwfZm6ZLctoP7JrsDHma?filename={id}.json") {
 
@@ -42,5 +43,8 @@ contract NFTicket is ERC1155 {
         return newId;
     }
 
+    function getLastEventId () public view returns (uint256) {
+        return LAST_EVENT_ID;
+    }
 
 }
