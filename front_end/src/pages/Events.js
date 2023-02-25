@@ -10,10 +10,12 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import TicketCard from '../components/TicketCard'
 
 import "./Events.css";
 import polygon1 from "../assets/polygon1.svg";
 import polygon2 from "../assets/polygon2.svg";
+import OwnedCard from "../components/OwnedCard";
 // import Dashboard from "./components/dashboard";
 const Events = () => {
   const propsData = {
@@ -104,8 +106,6 @@ const Events = () => {
     <div className="events">
       {/* <Dashboard className="dashboard-instance-2" {...propsData.dashboard} /> 
       <span className="view-by-category">Events by Category</span> */}
-      
-
       <ImageList sx={{ gridAutoFlow: "column", gridAutoColumns: "minmax(400px, 1fr)", width: 1400, height: 320 }}cols={3} >
       <ImageListItem key="Subheader" cols={3}>
       </ImageListItem>
@@ -144,7 +144,7 @@ const Events = () => {
       <Grid container spacing={{ xs: 4, md: 6 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {Array.from(Array(12)).map((_, index) => (
           <Grid item xs={4} sm={6} md={3} key={index}>
-            <Item id="nftItems">NFT</Item>
+            <TicketCard/>
           </Grid>
         ))}
       </Grid>
