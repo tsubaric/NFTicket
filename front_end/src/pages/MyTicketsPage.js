@@ -11,6 +11,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import PersonIcon from '@mui/icons-material/Person';
 import BrushIcon from '@mui/icons-material/Brush';
+import TicketCard from "../components/TicketCard";
 
 export default function MyTicketsPage() {
 
@@ -30,8 +31,6 @@ export default function MyTicketsPage() {
 
   return (
     <div clasName="main-container">
-        
-
       <div className="tabs">
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={value}>
@@ -42,7 +41,6 @@ export default function MyTicketsPage() {
               </TabList>
             </Box>
             <TabPanel value="1">
-
               <div className="ownedNFTS">
                 <Box sx={{ flexGrow: 1 }}>
                   <br></br>
@@ -50,18 +48,16 @@ export default function MyTicketsPage() {
                   <Grid container spacing={{ xs: 4, md: 6 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {Array.from(Array(12)).map((_, index) => (
                       <Grid item xs={4} sm={6} md={3} key={index}>
-                        <Item id="nftItems">OWNED NFTS</Item>
+                        <TicketCard/>
                       </Grid>
                     ))}
                   </Grid>
                 </Box>
-
               </div>
 
             </TabPanel>
 
             <TabPanel value="2">
-
               <div className="createdNFTS">
                 <Box sx={{ flexGrow: 1 }}>
                   <br></br>
@@ -69,20 +65,16 @@ export default function MyTicketsPage() {
                   <Grid container spacing={{ xs: 4, md: 6 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {Array.from(Array(12)).map((_, index) => (
                       <Grid item xs={4} sm={6} md={3} key={index}>
-                        <Item id="nftItems2">CREATED NFTS</Item>
+                        <TicketCard/>
                       </Grid>
                     ))}
                   </Grid>
                 </Box>
-
               </div>
             </TabPanel>
-
           </TabContext>
         </Box>
       </div>
-
-
     </div>
   );
 };
