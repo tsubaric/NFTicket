@@ -43,7 +43,7 @@ export default function OwnedCard() {
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
+        image="/image/src/PatrickMahomes.jpeg"
         alt="NFT name"
       />
       <CardContent>
