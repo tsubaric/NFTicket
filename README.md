@@ -1,14 +1,18 @@
-NFTicket -- NFT enabled ticketing solution 
+# Sample Hardhat Project
 
-Example boilerplate: https://github.com/NomicFoundation/hardhat-boilerplate
+npm install
+npx hardhat compile 
 
-git cheatsheet: https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet
+hardhat course: https://www.youtube.com/watch?v=gyMwXuJrbJQ
 
-NFT metadata standard: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md
+This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
 
-Meeting Schedule:
+Try running some of the following tasks:
 
-Monday: 2:30 - 3:00pm
-Tuesday: 2:50 - 3:20pm
-Thursday: 2:50 - 3:20pm
-
+```shell
+npx hardhat help
+npx hardhat test
+REPORT_GAS=true npx hardhat test
+npx hardhat node
+npx hardhat run scripts/deploy.js
+```
