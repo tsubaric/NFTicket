@@ -1,38 +1,37 @@
 import * as React from "react";
 import "./MyTicketsPage.css";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 import { ButtonGroup } from "@mui/material";
-import { experimentalStyled as styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import PersonIcon from '@mui/icons-material/Person';
-import BrushIcon from '@mui/icons-material/Brush';
+import { experimentalStyled as styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+import PersonIcon from "@mui/icons-material/Person";
+import BrushIcon from "@mui/icons-material/Brush";
+import Button from "@mui/material/Button";
 
 export default function Page() {
-
-  const [value, setValue] = React.useState('1');
+  const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
   }));
 
   return (
     <div clasName="main-container">
-        
-
-      <div className="tabs">
+      <Button>Mint Ticket</Button>
+      {/* <div className="tabs">
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -78,7 +77,7 @@ export default function Page() {
             </TabPanel>
           </TabContext>
         </Box>
-      </div>
+      </div> */}
     </div>
   );
-};
+}
