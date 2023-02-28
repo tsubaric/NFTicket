@@ -48,18 +48,34 @@ export default function TicketCard(props) {
         alt="NFT name"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {props.data.description}
-        </Typography>
-        <Typography>
-          <b>Ticket ID: {props.data.ticketID}</b>
-        </Typography>
-        <Typography>
-          <b>Stock Price: {props.data.stockPrice}</b>
-        </Typography>
-        <Typography>
-          <b>Ticket Avaliable: {props.data.numTickets}</b>
-        </Typography>
+        {props.data.description ? (
+          <Typography variant="body2" color="text.secondary">
+            {props.data.description}
+          </Typography>
+        ) : (
+          ""
+        )}
+        {props.data.ticketID ? (
+          <Typography variant="body2" color="text.secondary">
+            <b>Ticket ID: {props.data.ticketID}</b>
+          </Typography>
+        ) : (
+          ""
+        )}
+        {props.data.stockPrice ? (
+          <Typography variant="body2" color="text.secondary">
+            <b>Ticket ID: {props.data.stockPrice}</b>
+          </Typography>
+        ) : (
+          ""
+        )}
+        {props.data.numTickets ? (
+          <Typography variant="body2" color="text.secondary">
+            <b>Ticket ID: {props.data.numTickets}</b>
+          </Typography>
+        ) : (
+          ""
+        )}
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to cart">
