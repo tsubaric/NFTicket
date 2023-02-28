@@ -5,7 +5,7 @@ import CreateEvent from "./pages/CreateEvent";
 import Events from "./pages/Events";
 import MyTicketsPage from "./pages/MyTicketsPage";
 import CreateEventConfirmation from "./pages/CreateEventConfirmation";
-
+import Event from "./pages/Event";
 import { createBrowserHistory as history } from "history";
 import Dashboard from "./components/dashboard";
 
@@ -19,7 +19,12 @@ function App() {
           <Route path="/create" exact component={CreateEvent} />
           <Route path="/events" exact component={Events} />
           <Route path="/tickets" exact component={MyTicketsPage} />
-          <Route path="create/confirmation" exact component={CreateEventConfirmation} />
+          <Route
+            path="create/confirmation"
+            exact
+            component={CreateEventConfirmation}
+          />
+          <Route path="/event" exact component={Event} />
         </Switch>
       </div>
     </Router>

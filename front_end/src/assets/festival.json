@@ -1,5 +1,6 @@
 [
   {
+    "parentEvent": "Lollapalooza 2023",
     "category": "Festivals",
     "user": "Chicago C3",
     "nameVal": "Lollapalooza 2023",
@@ -10,6 +11,7 @@
     "numTickets": 20000
   },
   {
+    "parentEvent": "Lollapalooza 2023",
     "category": "Festivals",
     "user": "Chicago C3",
     "nameVal": "Lollapalooza 2023",
@@ -20,6 +22,7 @@
     "numTickets": 20000
   },
   {
+    "parentEvent": "Lollapalooza 2023",
     "category": "Festivals",
     "user": "Chicago C3",
     "nameVal": "Lollapalooza 2023",
@@ -30,6 +33,7 @@
     "numTickets": 20000
   },
   {
+    "parentEvent": "Lollapalooza 2023",
     "category": "Festivals",
     "user": "Chicago C3",
     "nameVal": "Lollapalooza 2023",
@@ -40,6 +44,7 @@
     "numTickets": 20000
   },
   {
+    "parentEvent": "Lollapalooza 2023",
     "category": "Festivals",
     "user": "Chicago C3",
     "nameVal": "Lollapalooza 2023",
@@ -50,6 +55,7 @@
     "numTickets": 250000
   },
   {
+    "parentEvent": "Lollapalooza 2023",
     "category": "Festivals",
     "user": "Chicago C3",
     "nameVal": "Lollapalooza 2023",
@@ -60,6 +66,7 @@
     "numTickets": 5000
   },
   {
+    "parentEvent": "Roka Akor",
     "category": "Resturants",
     "user": "Chicago C3",
     "nameVal": "Roka Akor",
@@ -70,6 +77,7 @@
     "numTickets": 20000
   },
   {
+    "parentEvent": "Bulls Game",
     "category": "Sports",
     "user": "Chicago C3",
     "nameVal": "Bulls Game",

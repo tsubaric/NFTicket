@@ -1,5 +1,6 @@
 //import * as React from "react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
@@ -12,6 +13,7 @@ import Grid from "@mui/material/Grid";
 import TicketCard from "../components/TicketCard";
 import "./Events.css";
 import events from "../assets/festival.json";
+import actualEvents from "../assets/events.json";
 
 const Events = () => {
   const propsData = {
@@ -141,6 +143,7 @@ const Events = () => {
         ))}
       </ImageList>
       <label className="categoryLabel"></label>
+      {/* <Link to={{ pathname: "/event" }}> */}
       <Box sx={{ width: "100%", typography: "body1" }}>
         <div className="nftGrid">
           <Box sx={{ flexGrow: 1 }}>
@@ -149,42 +152,30 @@ const Events = () => {
               spacing={{ xs: 4, md: 6 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
-              {events &&
-                events.map(
-                  ({
-                    category,
-                    user,
-                    nameVal,
-                    date,
-                    ticketID,
-                    stockPrice,
-                    description,
-                    numTickets,
-                  }) => {
-                    if (category === eventsShown) {
-                      return (
-                        <Grid item xs={4} sm={6} md={3} key={ticketID}>
+              {actualEvents &&
+                actualEvents.map(({ category, user, nameVal, date }) => {
+                  if (category === eventsShown) {
+                    return (
+                      <Grid item xs={4} sm={6} md={3}>
+                        <Link to={{ pathname: "/event", state: { nameVal } }}>
                           <TicketCard
                             data={{
                               category,
                               user,
                               nameVal,
                               date,
-                              ticketID,
-                              stockPrice,
-                              description,
-                              numTickets,
                             }}
                           />
-                        </Grid>
-                      );
-                    }
+                        </Link>
+                      </Grid>
+                    );
                   }
-                )}
+                })}
             </Grid>
           </Box>
         </div>
       </Box>
+      {/* </Link> */}
     </div>
   );
 };
