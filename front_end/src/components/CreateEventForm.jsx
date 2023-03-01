@@ -2,9 +2,11 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { ethers } from "ethers";
 import { database } from "../firebase.js";
 import { ref, set } from "firebase/database";
+import { ethers } from "ethers";
+import ContractData from "../NFTicket.json"
+console.log(ContractData)
 
 export default class CreateEventForm extends React.Component {
   constructor(props) {
@@ -27,11 +29,12 @@ export default class CreateEventForm extends React.Component {
 
     // TODO: redirect to confirmation page
     // determine event id and create event
+
     const provider = new ethers.BrowserProvider(window.ethereum)
     const signer = await provider.getSigner()
-    const NFTicketAbi = require("../NFTicket.json").abi
-
-    const NFTicketContract = new ethers.Contract("0xAe07D479744B6C39d6F3421D1D534B18eDCd44F6", NFTicketAbi, signer)
+    const NFTicketAbi = ContractData.abi;
+    const NFTicketAddress = ContractData.address;
+    const NFTicketContract = new ethers.Contract(NFTicketAddress, NFTicketAbi, signer)
     const response = await NFTicketContract.createEvent(10, 10000) // price, amount
     console.log(response)
     const eventId = await NFTicketContract.getLastEventId()

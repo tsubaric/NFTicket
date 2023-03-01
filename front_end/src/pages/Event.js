@@ -14,6 +14,7 @@ import BrushIcon from "@mui/icons-material/Brush";
 import Button from "@mui/material/Button";
 import TicketCard from "../components/TicketCard";
 import events from "../assets/festival.json";
+import MintButton from "../components/MintButton";
 
 export default function Page(props) {
   const [value, setValue] = React.useState("1");
@@ -33,7 +34,7 @@ export default function Page(props) {
   console.log(props);
   return (
     <div clasName="main-container">
-      <Button>Mint Ticket</Button>
+      <MintButton />
       <Box sx={{ width: "100%", typography: "body1" }}>
         <div className="subTicket">
           <Box sx={{ flexGrow: 1 }}>

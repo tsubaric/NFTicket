@@ -28,10 +28,13 @@ contract NFTicket is ERC1155 {
     }
 
     function mintGATickets (uint256 eventId, uint256 amount) public payable {
-        require(msg.value == ALL_GA_TICKETS_PRICE[eventId] * amount, "Incorrect Amount of ETH");
+        // TODO: make this actually charge for the tickets
+        //require(msg.value == ALL_GA_TICKETS_PRICE[eventId] * amount, "Incorrect Amount of ETH");
         require(ALL_GA_TICKETS_AVAILABLE[eventId] >= amount, "Insufficient tickets remaining");
+        require(amount > 0, "Must mint at least 1 ticket");
 
         // mint ticket and update amount available
+        // NOTE: each GA ticket is more like a fungile token than an NFT
         _mint(msg.sender, eventId, amount, "");
         ALL_GA_TICKETS_AVAILABLE[eventId] = ALL_GA_TICKETS_AVAILABLE[eventId] - amount;
     }
@@ -45,6 +48,14 @@ contract NFTicket is ERC1155 {
 
     function getLastEventId () public view returns (uint256) {
         return LAST_EVENT_ID;
+    }
+
+    function getGATicketsAvailable (uint256 eventId) public view returns (uint256) {
+        return ALL_GA_TICKETS_AVAILABLE[eventId];
+    }
+
+    function getGATicketsPrice (uint256 eventId) public view returns (uint256) {
+        return ALL_GA_TICKETS_PRICE[eventId];
     }
 
 }
