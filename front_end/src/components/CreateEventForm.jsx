@@ -6,7 +6,6 @@ import { database } from "../firebase.js";
 import { ref, set } from "firebase/database";
 import { ethers } from "ethers";
 import ContractData from "../NFTicket.json"
-console.log(ContractData)
 
 export default class CreateEventForm extends React.Component {
   constructor(props) {
@@ -35,11 +34,15 @@ export default class CreateEventForm extends React.Component {
     const NFTicketAbi = ContractData.abi;
     const NFTicketAddress = ContractData.address;
     const NFTicketContract = new ethers.Contract(NFTicketAddress, NFTicketAbi, signer)
-    const response = await NFTicketContract.createEvent(10, 10000) // price, amount
+    const response = await NFTicketContract.createEvent(this.state.gaTicketPrice, this.state.numGATickets) // price, amount
     console.log(response)
-    const eventId = await NFTicketContract.getLastEventId()
-    console.log("eventId: ", Number(eventId))
-    this.setState({["eventId"]: Number(eventId)}, () => {
+    const eventId = Number(await NFTicketContract.getLastEventId())
+    console.log("eventId: ", eventId)
+    console.log("numGATickets: ", Number(await NFTicketContract.getGATicketsAvailable(eventId)))
+    console.log("gaTicketPrice: ", Number(await NFTicketContract.getGATicketsPrice(eventId)))
+
+    // write to database
+    this.setState({["eventId"]: eventId}, () => {
         console.log(`adding to events/${eventId} wtih state: ${JSON.stringify(this.state)}`);
         set(ref(database, "events/" + this.state.eventId), this.state);
     });
@@ -112,7 +115,8 @@ export default class CreateEventForm extends React.Component {
                 required
                 label="Number of GA Tickets"
                 variant="filled"
-                name='numGATickets'
+                name="numGATickets"
+                type="number"
                 onChange={this.handleChange}
               />
               <TextField id="gaTicketPrice"
@@ -124,7 +128,8 @@ export default class CreateEventForm extends React.Component {
                 required
                 label="GA Ticket Price"
                 variant="filled"
-                name='gaTicketPrice'
+                name="gaTicketPrice"
+                type="number"
                 onChange={this.handleChange}
               />
               <Button id="createEventButton"

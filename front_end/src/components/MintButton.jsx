@@ -42,7 +42,7 @@ export default function MintButton(props) {
             value={amount}
             onChange={handleChange}
         />
-        <Button variant="contained" onClick={() => mintTicket(0, amount)}>
+        <Button variant="contained" onClick={() => mintTicket(4, amount)}>
             Mint
         </Button>
         </div>
