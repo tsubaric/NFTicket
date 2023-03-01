@@ -29,7 +29,7 @@ async function main() {
         if (err) {
             return console.log(err);
         }
-        console.log("The file was saved!");
+        console.log("contract information saved to front_end/src/NFTicket.json");
     });
 
 

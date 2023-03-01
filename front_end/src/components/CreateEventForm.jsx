@@ -3,9 +3,10 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { database } from "../firebase.js";
-import { ref, set } from "firebase/database";
+import { ref, set, get } from "firebase/database";
 import { ethers } from "ethers";
 import ContractData from "../NFTicket.json"
+import { Web3Storage } from 'web3.storage'
 
 export default class CreateEventForm extends React.Component {
   constructor(props) {
@@ -28,25 +29,67 @@ export default class CreateEventForm extends React.Component {
 
     // TODO: redirect to confirmation page
     // determine event id and create event
-
     const provider = new ethers.BrowserProvider(window.ethereum)
     const signer = await provider.getSigner()
     const NFTicketAbi = ContractData.abi;
     const NFTicketAddress = ContractData.address;
     const NFTicketContract = new ethers.Contract(NFTicketAddress, NFTicketAbi, signer)
-    const response = await NFTicketContract.createEvent(this.state.gaTicketPrice, this.state.numGATickets) // price, amount
+    var response = await NFTicketContract.createEvent(this.state.gaTicketPrice, this.state.numGATickets) // price, amount
     console.log(response)
     const eventId = Number(await NFTicketContract.getLastEventId())
-    console.log("eventId: ", eventId)
-    console.log("numGATickets: ", Number(await NFTicketContract.getGATicketsAvailable(eventId)))
-    console.log("gaTicketPrice: ", Number(await NFTicketContract.getGATicketsPrice(eventId)))
+    console.log("eventId: ", eventId)  // verifying correct event id
+    console.log("numGATickets: ", Number(await NFTicketContract.getGATicketsAvailable(eventId))) // verifying correct number of tickets
+    console.log("gaTicketPrice: ", Number(await NFTicketContract.getGATicketsPrice(eventId))) // verifying correct ticket price
+
+    // write metadata to ipfs and set ipfs uri in contract
+    const metadata = {
+        "name": this.state.eventName,
+        "description": this.state.eventDescription,
+        "image": null, // TODO: upload image to ipfs put link here,
+        "properties": {
+            "ticketType": "GA",
+        }
+    }
+    console.log(metadata)
+    const blob = new Blob([JSON.stringify(metadata)], { type: 'application/json' })
+    const metadata_file = new File([blob], `${eventId}.json`)
+
+    const accessToken = process.env.REACT_APP_WEB3STORAGE_TOKEN
+    const client = new Web3Storage({ token: accessToken })
+
+    // get current uris
+    const current_cid = (await get(ref(database, "metadata/live_cid"))).val().cid
+    console.log(`current cid: ${current_cid}`)
+    response = await client.get(current_cid)
+    console.log(`Got a response! [${response.status}] ${response.statusText}`)
+    if (!response.ok) {
+        throw new Error(`failed to get ${cid} - [${response.status}] ${response.statusText}`)
+    }
+    const files = await response.files()
+
+
+    // add new file and upload
+    files.push(metadata_file)
+    const cid = await client.put(files)
+    console.log(cid)
+
+
+    // TODO: set ipfs uri in contract
+    response = await NFTicketContract.setEventUri(`https://${cid}.ipfs.w3s.link/{id}.json`)
+
 
     // write to database
     this.setState({["eventId"]: eventId}, () => {
+        // update events
         console.log(`adding to events/${eventId} wtih state: ${JSON.stringify(this.state)}`);
         set(ref(database, "events/" + this.state.eventId), this.state);
+
+        // update metadata cid
+        console.log(`updating metadata/live_cid with ${cid}`);
+        set(ref(database, "metadata/live_cid"), {cid: cid});
     });
 
+    alert("Event Created" + this.state.eventName);
   }
 
   handleChange(event) {
