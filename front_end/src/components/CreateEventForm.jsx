@@ -23,6 +23,7 @@ export default class CreateEventForm extends React.Component {
       gaTicketPrice: "",
       eventId: 0,
       selectedImage: null,
+      eventCategory: "",
     };
 
     this.handleCreate = this.handleCreate.bind(this);
@@ -125,6 +126,8 @@ export default class CreateEventForm extends React.Component {
     this.setState({
       [name]: value,
     });
+
+    console.log(this.state);
   }
 
   render() {
@@ -211,12 +214,13 @@ export default class CreateEventForm extends React.Component {
                 marginBottom: "25px",
                 width: "90ch",
                 alignItems: "center",
-                
+
               }}
               required
               value={this.state.category}
               label="category"
-              onChange={this.changeCategory}
+              name="eventCategory"
+              onChange={this.handleChange}
             >
               <MenuItem value={"Restaurants"}>Restaurants</MenuItem>
               <MenuItem value={"Festivals"}>Festivals</MenuItem>
