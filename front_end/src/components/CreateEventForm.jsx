@@ -30,6 +30,8 @@ export default class CreateEventForm extends React.Component {
 
     this.handleCreate = this.handleCreate.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.setEventImage = this.setEventImage.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   async handleCreate(event) {
