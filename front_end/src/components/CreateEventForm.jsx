@@ -143,6 +143,11 @@ export default class CreateEventForm extends React.Component {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "25px",
+            backgroundColor: "#f5f5f5",
+            padding: "25px",
+            width: "100%",
           }}
         >
           <TextField
@@ -150,11 +155,10 @@ export default class CreateEventForm extends React.Component {
             style={{
               marginTop: "25px",
               marginBottom: "25px",
-              width: "50ch",
+              width: "90ch",
             }}
             required
             label="Event Name"
-            variant="filled"
             name="eventName"
             onChange={this.handleChange}
           />
@@ -163,14 +167,13 @@ export default class CreateEventForm extends React.Component {
             style={{
               marginTop: "25px",
               marginBottom: "25px",
-              width: "50ch",
+              width: "90ch",
             }}
             required
             multiline
             minRows={3}
             maxRows={10}
             label="Description"
-            variant="filled"
             name="eventDescription"
             onChange={this.handleChange}
           />
@@ -179,11 +182,10 @@ export default class CreateEventForm extends React.Component {
             style={{
               marginTop: "25px",
               marginBottom: "25px",
-              width: "50ch",
+              width: "90ch",
             }}
             required
             label="Number of GA Tickets"
-            variant="filled"
             name="numGATickets"
             type="number"
             onChange={this.handleChange}
@@ -193,11 +195,10 @@ export default class CreateEventForm extends React.Component {
             style={{
               marginTop: "25px",
               marginBottom: "25px",
-              width: "50ch",
+              width: "90ch",
             }}
             required
             label="GA Ticket Price"
-            variant="filled"
             name="gaTicketPrice"
             type="number"
             onChange={this.handleChange}
@@ -208,6 +209,9 @@ export default class CreateEventForm extends React.Component {
               style={{
                 marginTop: "25px",
                 marginBottom: "25px",
+                width: "90ch",
+                alignItems: "center",
+                
               }}
               required
               value={this.state.category}
