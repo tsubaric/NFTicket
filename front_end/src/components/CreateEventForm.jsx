@@ -13,6 +13,8 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
+import { storage } from "../firebase.js";
+import { uploadBytes } from "firebase/storage";
 export default class CreateEventForm extends React.Component {
   constructor(props) {
     super(props);
@@ -33,6 +35,7 @@ export default class CreateEventForm extends React.Component {
   async handleCreate(event) {
     alert("Creating Event: " + this.state.eventName);
     event.preventDefault();
+
 
     // TODO: redirect to confirmation page
     // determine event id and create event
@@ -116,6 +119,7 @@ export default class CreateEventForm extends React.Component {
     });
 
     alert("Event Created" + this.state.eventName);
+
   }
 
   handleChange(event) {
@@ -129,6 +133,19 @@ export default class CreateEventForm extends React.Component {
 
     console.log(this.state);
   }
+
+  //setting image for event cover
+  async setEventImage(eventId, file) {
+    const storageRef = ref(storage, `events/${eventId}/image.jpg`);
+    await uploadBytes(storageRef, file);
+  }
+
+  //handle image upload for event cover
+  async handleImageUpload(event) {
+    const eventImage = event.target.files[0];
+    await setEventImage(this.state.eventId, eventImage);
+  }
+
 
   render() {
     return (
@@ -259,8 +276,9 @@ export default class CreateEventForm extends React.Component {
                 accept="image/*"
                 hidden
                 onChange={(e) => {
-                  console.log(e.target.files[0]);
+                  //console.log(e.target.files[0]);
                   this.setState({ selectedImage: e.target.files[0] });
+                  uploadImage(e.target.files[0]);
                 }}
               />
               <AttachFileIcon fontSize="medium" /> Upload Image
@@ -275,6 +293,7 @@ export default class CreateEventForm extends React.Component {
             }}
             variant="contained"
             onClick={this.handleCreate}
+
           >
             Create
           </Button>
