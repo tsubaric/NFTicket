@@ -30,7 +30,7 @@ export default function MintButton(props) {
     }
 
     return (
-        <div style={{ paddingTop: 25 }}>
+        <div style={{ display: "flex" }}>
             <TextField
                 id="outlined-number"
                 label="Amount"
@@ -42,8 +42,7 @@ export default function MintButton(props) {
                 value={amount}
                 onChange={handleChange}
             />
-            <br />
-            <Button variant="contained" onClick={() => mintTicket(4, amount)}>
+            <Button style={{ marginLeft: "10px" }} variant="contained" onClick={() => mintTicket(4, amount)}>
                 Mint
             </Button>
         </div>

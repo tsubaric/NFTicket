@@ -45,12 +45,17 @@ export default function Page(props) {
 
   console.log(props);
   return (
-    <div clasName="main-container" style={{ paddingTop: 50 }} >
-      <div style={{ display: "flex" }}>
-        <img alt="" src={Lollapng} width={100} height={100}></img>
-        <h1 style={{ paddingTop: "0px" }}>{props.location.state.nameVal}</h1>
+    <div className="main-contain"  >
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <img alt="" src={Lollapng} width={200} height={200}></img>
+        <div>
+          <h1 style={{ paddingTop: "20px", fontWeight: "normal" }}>{props.location.state.nameVal}</h1>
+          <div >
+            <MintButton />
+          </div>
+        </div>
       </div>
-      <MintButton />
+
       <br />
       <Box
         sx={{
