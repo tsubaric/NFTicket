@@ -30,21 +30,22 @@ export default function MintButton(props) {
     }
 
     return (
-        <div>
-        <TextField
-            id="outlined-number"
-            label="Amount"
-            type="number"
-            InputLabelProps={{
-            shrink: true,
-            }}
-            variant="outlined"
-            value={amount}
-            onChange={handleChange}
-        />
-        <Button variant="contained" onClick={() => mintTicket(4, amount)}>
-            Mint
-        </Button>
+        <div style={{ paddingTop: 25 }}>
+            <TextField
+                id="outlined-number"
+                label="Amount"
+                type="number"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                variant="outlined"
+                value={amount}
+                onChange={handleChange}
+            />
+            <br />
+            <Button variant="contained" onClick={() => mintTicket(4, amount)}>
+                Mint
+            </Button>
         </div>
     );
 
