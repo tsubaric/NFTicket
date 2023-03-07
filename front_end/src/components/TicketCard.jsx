@@ -28,10 +28,8 @@ export default function TicketCard(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  console.log(props);
   return (
     <Card sx={{ maxWidth: 345 }}>
-      {console.log("here")}
       <CardHeader
         // avatar={
         //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">

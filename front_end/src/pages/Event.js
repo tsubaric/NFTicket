@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import "./MyTicketsPage.css";
 import Box from "@mui/material/Box";
 import { ButtonGroup } from "@mui/material";
@@ -15,6 +15,9 @@ import Button from "@mui/material/Button";
 import TicketCard from "../components/TicketCard";
 import events from "../assets/festival.json";
 import MintButton from "../components/MintButton";
+import { getDatabase, ref, child, get, onValue } from "firebase/database";
+import { getAuth } from "firebase/auth";
+import Lollapng from "../assets/lolla.png"
 
 export default function Page(props) {
   const [value, setValue] = React.useState("1");
@@ -22,6 +25,15 @@ export default function Page(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    const db = getDatabase();
+    const dbEventsRef = ref(db, 'events/');
+    onValue(dbEventsRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log(data)
+    });
+  }, [])
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -33,11 +45,29 @@ export default function Page(props) {
 
   console.log(props);
   return (
-    <div clasName="main-container">
-      <MintButton />
+    <div className="main-contain"  >
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <img alt="" src={Lollapng} width={200} height={200}></img>
+        <div>
+          <h1 style={{ paddingTop: "20px", fontWeight: "normal" }}>{props.location.state.nameVal}</h1>
+          <div >
+            <MintButton />
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <Box
+        sx={{
+          width: "100%",
+          height: 5,
+          backgroundColor: 'black',
+        }}
+      />
+      <br />
       <Box sx={{ width: "100%", typography: "body1" }}>
         <div className="subTicket">
-          <Box sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1 }} style={{ overflow: 'auto', height: "50ch" }}>
             <Grid
               container
               spacing={{ xs: 4, md: 6 }}
