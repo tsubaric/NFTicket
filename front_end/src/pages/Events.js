@@ -154,7 +154,7 @@ const Events = () => {
             <Grid
               container
               spacing={{ xs: 4, md: 6 }}
-              columns={{ xs: 4, sm: 8, md: 11 }}
+              columns={{ xs: 4, sm: 8, md: 10 }}
               alignItems="center"
               justifyContent="center"
             >
