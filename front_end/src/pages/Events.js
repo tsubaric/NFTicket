@@ -10,7 +10,7 @@ import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import TicketCard from "../components/TicketCard";
+import EventCard from "../components/EventCard";
 import "./Events.css";
 import events from "../assets/festival.json";
 import actualEvents from "../assets/events.json";
@@ -64,10 +64,14 @@ const Events = () => {
     {
       img: "./rollingloud.jpeg",
       title: "Festivals",
+      rows: 2,
+      cols: 2,
     },
     {
       img: "./PatrickMahomes.jpeg",
       title: "Sports",
+      rows: 2,
+      cols: 2,
     },
     {
       img: "./plane.png",
@@ -144,26 +148,29 @@ const Events = () => {
       </ImageList>
       <label className="categoryLabel"></label>
       {/* <Link to={{ pathname: "/event" }}> */}
-      <Box sx={{ width: "100%", typography: "body1" }}>
+      <Box sx={{ width: "100%", typography: "body1"}}>
         <div className="nftGrid">
           <Box sx={{ flexGrow: 1 }}>
             <Grid
               container
               spacing={{ xs: 4, md: 6 }}
-              columns={{ xs: 4, sm: 8, md: 12 }}
+              columns={{ xs: 4, sm: 8, md: 11 }}
+              alignItems="center"
+              justifyContent="center"
             >
               {actualEvents &&
-                actualEvents.map(({ category, user, nameVal, date }) => {
+                actualEvents.map(({ category, user, nameVal, date, event_description }) => {
                   if (category === eventsShown) {
                     return (
-                      <Grid item xs={4} sm={6} md={3}>
+                      <Grid item xs={4} sm={6} md={4}>
                         <Link to={{ pathname: "/event", state: { nameVal } }}>
-                          <TicketCard
+                          <EventCard
                             data={{
                               category,
                               user,
                               nameVal,
                               date,
+                              event_description,
                             }}
                           />
                         </Link>
