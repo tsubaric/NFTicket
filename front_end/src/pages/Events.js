@@ -150,13 +150,13 @@ const Events = () => {
             <Grid
               container
               spacing={{ xs: 4, md: 6 }}
-              columns={{ xs: 4, sm: 8, md: 12 }}
+              columns={{ xs: 4, sm: 8, md: 11 }}
             >
               {actualEvents &&
-                actualEvents.map(({ category, user, nameVal, date }) => {
+                actualEvents.map(({ category, user, nameVal, date, event_description }) => {
                   if (category === eventsShown) {
                     return (
-                      <Grid item xs={4} sm={6} md={3}>
+                      <Grid item xs={4} sm={6} md={4}>
                         <Link to={{ pathname: "/event", state: { nameVal } }}>
                           <EventCard
                             data={{
@@ -164,6 +164,7 @@ const Events = () => {
                               user,
                               nameVal,
                               date,
+                              event_description,
                             }}
                           />
                         </Link>

@@ -3,18 +3,35 @@
     "category": "Festivals",
     "user": "Chicago C3",
     "nameVal": "Lollapalooza 2023",
+    "event_description": "Lollapalooza is a 4-day music festival held annually at Grant Park in Chicago, Illinois, USA. It has evolved into one of the largest and most famous music festivals in the world.",
     "date": "8-5-2023"
   },
   {
     "category": "Resturants",
     "user": "Chicago C3",
     "nameVal": "Roka Akor",
+    "event_description": "Roka Akor is a Japanese restaurant located in Chicago, Illinois. It is owned by Chef Akira Back and Chef Rocky Maselli. The restaurant is known for its sushi and robata grill.",
     "date": "8-4-2023"
   },
   {
     "category": "Sports",
     "user": "Chicago C3",
     "nameVal": "Bulls Game",
+    "event_description": "The Chicago Bulls are an American professional basketball team based in Chicago. The Bulls compete in the National Basketball Association (NBA) as a member of the league's Eastern Conference.",
     "date": "8-4-2023"
+  },
+  {
+    "category": "Festivals",
+    "user": "LA C4",
+    "nameVal": "Coachella 2023",
+    "event_description": "Coachella is an annual music and arts festival held at the Empire Polo Club in Indio, California, located in the Inland Empire's Coachella Valley in the Colorado Desert.",
+    "date": "4-14-2023"
+  },
+  {
+    "category": "Festivals",
+    "user": "Miami C5",
+    "nameVal": "Rolling Loud 2023",
+    "event_description": "Coachella is an annual music and arts festival held at the Empire Polo Club in Indio, California, located in the Inland Empire's Coachella Valley in the Colorado Desert.",
+    "date": "4-14-2023"
   }
 ]

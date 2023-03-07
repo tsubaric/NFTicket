@@ -4,30 +4,25 @@ import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import CardHeader from '@mui/material/CardHeader';
+import { createTheme } from '@mui/material/styles';
 
 export default function EventCard(props) {
-  const theme = useTheme();
 
   return (
-    <Card sx={{ display: 'flex'}}>
+    <Card sx={{ display: 'flex', width: 600 }}>
       <CardMedia
         component="img"
-        sx={{ width: 151 }}
+        sx={{ width: 250 }}
         image={require("../assets/lolla.png")}
         alt="NFT name"
       />
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent sx={{ flex: '1 0 auto' }}>
-        {props.data.nameVal}
-        <br></br>
-        {props.data.description ? (
-          <Typography variant="body2" color="text.secondary">
-            {props.data.description}
-          </Typography>
-        ) : (
-          "Description Test"
-        )}
+      <Box sx={{ display: 'flex', flexDirection: 'column', width: 400 }}>
+        <CardHeader
+          title={props.data.nameVal}
+        />
+        <CardContent sx={{ width: 300 }}>
+        {props.data.event_description}
         </CardContent>
       </Box>
     </Card>
