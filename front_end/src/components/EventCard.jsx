@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
-import { createTheme } from '@mui/material/styles';
+import { blue } from '@mui/material/colors';
 
 export default function EventCard(props) {
 
@@ -17,7 +17,7 @@ export default function EventCard(props) {
         image={require("../assets/lolla.png")}
         alt="NFT name"
       />
-      <Box sx={{ display: 'flex', flexDirection: 'column', width: 400 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', width: 400, bgcolor: blue[500] }}>
         <CardHeader
           title={props.data.nameVal}
         />

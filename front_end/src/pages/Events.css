@@ -24,7 +24,6 @@
   
 
   .categoryLabel {
-    
     padding-top:25px;
     padding-bottom: 5px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -46,12 +45,14 @@
   }
 
   .nftGrid {
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
     padding-top: 25px;
     visibility: hidden;
-
   }
 
   #nftItems{
-height: 200px;
+    height: 200px;
   }

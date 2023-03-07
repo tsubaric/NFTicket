@@ -14,10 +14,24 @@
     "date": "8-4-2023"
   },
   {
+    "category": "Resturants",
+    "user": "Chicago C3",
+    "nameVal": "Chick Fil A",
+    "event_description": "Chick-fil-A is an American fast food restaurant chain headquartered in the city of College Park, Georgia, specializing in chicken sandwiches.",
+    "date": "8-4-2023"
+  },
+  {
     "category": "Sports",
     "user": "Chicago C3",
     "nameVal": "Bulls Game",
     "event_description": "The Chicago Bulls are an American professional basketball team based in Chicago. The Bulls compete in the National Basketball Association (NBA) as a member of the league's Eastern Conference.",
+    "date": "8-4-2023"
+  },
+  {
+    "category": "Sports",
+    "user": "Chicago C3",
+    "nameVal": "Bears Game",
+    "event_description": "The Chicago Bears are a professional American football team based in Chicago. The Bears compete NFL as a member club of the league's National Football Conference North division.",
     "date": "8-4-2023"
   },
   {
@@ -33,5 +47,12 @@
     "nameVal": "Rolling Loud 2023",
     "event_description": "Coachella is an annual music and arts festival held at the Empire Polo Club in Indio, California, located in the Inland Empire's Coachella Valley in the Colorado Desert.",
     "date": "4-14-2023"
+  },
+  {
+    "category": "Festivals",
+    "user": "Wisconsin",
+    "nameVal": "Country Thunder 2023",
+    "event_description": "Country Thunder is an annual country music festival held in Wisconsin. The festival is held at the Country Thunder USA grounds in Twin Lakes, Wisconsin.",
+    "date": "7-24-2023"
   }
 ]

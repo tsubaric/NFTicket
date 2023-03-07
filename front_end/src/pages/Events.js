@@ -64,10 +64,14 @@ const Events = () => {
     {
       img: "./rollingloud.jpeg",
       title: "Festivals",
+      rows: 2,
+      cols: 2,
     },
     {
       img: "./PatrickMahomes.jpeg",
       title: "Sports",
+      rows: 2,
+      cols: 2,
     },
     {
       img: "./plane.png",
@@ -144,13 +148,15 @@ const Events = () => {
       </ImageList>
       <label className="categoryLabel"></label>
       {/* <Link to={{ pathname: "/event" }}> */}
-      <Box sx={{ width: "100%", typography: "body1" }}>
+      <Box sx={{ width: "100%", typography: "body1"}}>
         <div className="nftGrid">
           <Box sx={{ flexGrow: 1 }}>
             <Grid
               container
               spacing={{ xs: 4, md: 6 }}
               columns={{ xs: 4, sm: 8, md: 11 }}
+              alignItems="center"
+              justifyContent="center"
             >
               {actualEvents &&
                 actualEvents.map(({ category, user, nameVal, date, event_description }) => {
