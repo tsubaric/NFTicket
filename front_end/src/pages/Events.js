@@ -1,4 +1,3 @@
-//import * as React from "react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ImageList from "@mui/material/ImageList";
@@ -6,52 +5,21 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
-import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import EventCard from "../components/EventCard";
 import "./Events.css";
-import events from "../assets/festival.json";
 import actualEvents from "../assets/events.json";
 
 const Events = () => {
-  const propsData = {
-    dashboard: {
-      dashboard: {
-        createEvent: "Create Event\n\n",
-        search: "search",
-        myTickets: "My Tickets\n",
-        connectWallet: "Connect Wallet",
-        events: "Events\n",
-      },
-    },
-  };
-  const [imageSrc, setimageSrc] = useState("");
   const [eventsShown, setEventsShown] = useState();
 
   //event handling for category clicks
   const handleClick = (e) => {
-    //console.log(e.target.alt);
     setEventsShown(e.target.alt);
     document.getElementsByClassName("nftGrid")[0].style.visibility = "visible";
-    // if (e.target.alt === "Resturants") {
-    //   console.log("Resturants");
-    //   document.getElementsByClassName("categoryLabel")[0].innerHTML =
-    //     "Resturants";
-    //   document.getElementsByClassName("nftGrid")[0].style.visibility =
-    //     "visible";
-    // }
-    // if (e.target.alt === "Festivals") {
-    //   console.log("Festivals");
-    //   document.getElementsByClassName("categoryLabel")[0].innerHTML =
-    //     "Festivals";
-    // }
-    // if (e.target.alt === "Sports") {
-    //   console.log("Sports");
-    //   document.getElementsByClassName("categoryLabel")[0].innerHTML = "Sports";
-    // }
   };
+
   const itemData = [
     {
       img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
@@ -95,18 +63,9 @@ const Events = () => {
       title: "Health & Wellness",
     },
   ];
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
 
   return (
     <div className="events">
-      {/* <Dashboard className="dashboard-instance-2" {...propsData.dashboard} /> 
-      <span className="view-by-category">Events by Category</span> */}
       <ImageList
         sx={{
           gridAutoFlow: "column",
@@ -147,7 +106,6 @@ const Events = () => {
         ))}
       </ImageList>
       <label className="categoryLabel"></label>
-      {/* <Link to={{ pathname: "/event" }}> */}
       <Box sx={{ width: "100%", typography: "body1"}}>
         <div className="nftGrid">
           <Box sx={{ flexGrow: 1 }}>
@@ -182,7 +140,6 @@ const Events = () => {
           </Box>
         </div>
       </Box>
-      {/* </Link> */}
     </div>
   );
 };

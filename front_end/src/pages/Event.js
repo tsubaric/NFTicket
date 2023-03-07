@@ -1,31 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./MyTicketsPage.css";
 import Box from "@mui/material/Box";
-import { ButtonGroup } from "@mui/material";
-import { experimentalStyled as styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import PersonIcon from "@mui/icons-material/Person";
-import BrushIcon from "@mui/icons-material/Brush";
-import Button from "@mui/material/Button";
 import TicketCard from "../components/TicketCard";
 import events from "../assets/festival.json";
 import MintButton from "../components/MintButton";
-import { getDatabase, ref, child, get, onValue } from "firebase/database";
-import { getAuth } from "firebase/auth";
+import { getDatabase, ref, onValue } from "firebase/database";
 import Lollapng from "../assets/lolla.png"
 
 export default function Page(props) {
-  const [value, setValue] = React.useState("1");
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
   useEffect(() => {
     const db = getDatabase();
     const dbEventsRef = ref(db, 'events/');
@@ -34,14 +17,6 @@ export default function Page(props) {
       console.log(data)
     });
   }, [])
-
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
 
   console.log(props);
   return (
