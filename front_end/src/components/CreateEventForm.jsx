@@ -14,7 +14,9 @@ import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { storage } from "../firebase.js";
-import { uploadBytes } from "firebase/storage";
+import { uploadBytes, ref as sRef } from "firebase/storage";
+
+
 export default class CreateEventForm extends React.Component {
   constructor(props) {
     super(props);
@@ -30,8 +32,7 @@ export default class CreateEventForm extends React.Component {
 
     this.handleCreate = this.handleCreate.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.setEventImage = this.setEventImage.bind(this);
-    this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
   }
 
   async handleCreate(event) {
@@ -85,14 +86,14 @@ export default class CreateEventForm extends React.Component {
     const client = new Web3Storage({ token: accessToken });
 
     // get current uris
-    const current_cid = (await get(ref(database, "metadata/live_cid"))).val()
-      .cid;
+    /*
+    const current_cid = (await get(ref(database, "metadata/live_cid"))).val().cid;
     console.log(`current cid: ${current_cid}`);
     response = await client.get(current_cid);
     console.log(`Got a response! [${response.status}] ${response.statusText}`);
     if (!response.ok) {
       throw new Error(
-        `failed to get ${cid} - [${response.status}] ${response.statusText}`
+        `failed to get ${current_cid} - [${response.status}] ${response.statusText}`
       );
     }
     const files = await response.files();
@@ -107,17 +108,25 @@ export default class CreateEventForm extends React.Component {
       `https://${cid}.ipfs.w3s.link/{id}.json`
     );
 
+    */
+
     // write to database
-    this.setState({ ["eventId"]: eventId }, () => {
+    this.setState({ ["eventId"]: eventId }, async () => {
+      // upload image
+      console.log("uploading image...")
+      console.log(eventId);
+      console.log(this.state.selectedImage);
+      await this.uploadImage(eventId, this.state.selectedImage);
+
       // update events
       console.log(
         `adding to events/${eventId} wtih state: ${JSON.stringify(this.state)}`
       );
-      set(ref(database, "events/" + this.state.eventId), this.state);
+      set(ref(database, "events/" + eventId), this.state);
 
       // update metadata cid
-      console.log(`updating metadata/live_cid with ${cid}`);
-      set(ref(database, "metadata/live_cid"), { cid: cid });
+      //console.log(`updating metadata/live_cid with ${cid}`);
+      //set(ref(database, "metadata/live_cid"), { cid: cid });
     });
 
     alert("Event Created" + this.state.eventName);
@@ -137,15 +146,10 @@ export default class CreateEventForm extends React.Component {
   }
 
   //setting image for event cover
-  async setEventImage(eventId, file) {
-    const storageRef = ref(storage, `events/${eventId}/image.jpg`);
+  async uploadImage(eventId, file) {
+    const storageRef = sRef(storage, `events/${eventId}/image.jpg`);
     await uploadBytes(storageRef, file);
-  }
-
-  //handle image upload for event cover
-  async handleImageUpload(event) {
-    const eventImage = event.target.files[0];
-    await setEventImage(this.state.eventId, eventImage);
+    console.log("uploaded image");
   }
 
 
@@ -236,7 +240,6 @@ export default class CreateEventForm extends React.Component {
 
               }}
               required
-              value={this.state.category}
               label="category"
               name="eventCategory"
               onChange={this.handleChange}
@@ -278,9 +281,8 @@ export default class CreateEventForm extends React.Component {
                 accept="image/*"
                 hidden
                 onChange={(e) => {
-                  //console.log(e.target.files[0]);
+                  console.log(e.target.files[0]);
                   this.setState({ selectedImage: e.target.files[0] });
-                  uploadImage(e.target.files[0]);
                 }}
               />
               <AttachFileIcon fontSize="medium" /> Upload Image
