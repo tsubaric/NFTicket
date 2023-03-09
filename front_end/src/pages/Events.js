@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import EventCard from "../components/EventCard";
 import "./Events.css";
 //import EventsCategorySlider from "../components/EventsCategorySlider";
@@ -28,6 +27,7 @@ const Events = () => {
   const getEvents = async () => {
     const cur_events = []
     const lastEventId = await getLastEventId()
+    console.log("last event id: " + lastEventId)
     for(let i = 0; i < lastEventId; i++) {
       const eventRef = ref(database, "events/" + i);
       onValue(eventRef, (snapshot) => {
@@ -49,6 +49,7 @@ const Events = () => {
 
         {events.map((event) => (
             <EventCard
+                key={event.eventId}
                 name={event.eventName}
                 description={event.eventDescription}
             />
