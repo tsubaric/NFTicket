@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import EventCard from "../components/EventCard";
-import Grid from "@mui/material/Grid";
 import "./Events.css";
 //import EventsCategorySlider from "../components/EventsCategorySlider";
 import { ethers } from "ethers";
@@ -25,6 +24,7 @@ const Events = () => {
     return eventId
   }
 
+  // TODO: get this logic working from interface
   const getEvents = async () => {
     const cur_events = []
     const lastEventId = await getLastEventId()
@@ -35,12 +35,12 @@ const Events = () => {
             if (snapshot.exists()) {
                 console.log(snapshot.val());
                 cur_events.push(snapshot.val())
+                setEvents(cur_events)
             } else {
                 console.log("No data available");
             }
         })
     }
-    setEvents(cur_events)
   }
 
   window.onload = async () => {
