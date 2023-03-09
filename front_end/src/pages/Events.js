@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import EventCard from "../components/EventCard";
+import Grid from "@mui/material/Grid";
 import "./Events.css";
 //import EventsCategorySlider from "../components/EventsCategorySlider";
 import { ethers } from "ethers";
 import ContractData from "../NFTicket.json";
-import { ref, onValue } from "firebase/database";
+import { ref, child, get } from "firebase/database";
 import { database } from "../firebase";
 
 const Events = () => {
@@ -29,31 +30,38 @@ const Events = () => {
     const lastEventId = await getLastEventId()
     console.log("last event id: " + lastEventId)
     for(let i = 0; i < lastEventId; i++) {
-      const eventRef = ref(database, "events/" + i);
-      onValue(eventRef, (snapshot) => {
-        const data = snapshot.val();
-        cur_events.push(data)
-      });
+        const dbRef = ref(database);
+        get(child(dbRef, `events/${i}`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+                cur_events.push(snapshot.val())
+            } else {
+                console.log("No data available");
+            }
+        })
     }
     setEvents(cur_events)
   }
 
   window.onload = async () => {
       await getEvents()
-      console.log(events)
   }
 
   return (
     <div className="events">
       <Box sx={{ width: "100%", typography: "body1"}}>
+        <div className="eventsDisplay">
+          <Box sx={{ flexGrow: 1 }}>
+            {events.map((event) => (
+                <EventCard
+                    key={event.eventId}
+                    name={event.eventName}
+                    description={event.eventDescription}
+                />
+            ))}
+          </Box>
+        </div>
 
-        {events.map((event) => (
-            <EventCard
-                key={event.eventId}
-                name={event.eventName}
-                description={event.eventDescription}
-            />
-        ))}
 
 
       </Box>
