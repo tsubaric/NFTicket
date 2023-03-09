@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import EventCard from "../components/EventCard";
 import "./Events.css";
 //import EventsCategorySlider from "../components/EventsCategorySlider";
 import { ethers } from "ethers";
 import ContractData from "../NFTicket.json";
-
+import { ref, onValue } from "firebase/database";
+import { database } from "../firebase";
 
 const Events = () => {
+  const [events, setEvents] = useState([]);
 
   // TODO: get this logic working from interface
   const getLastEventId = async () => {
@@ -15,33 +18,43 @@ const Events = () => {
     const signer = await provider.getSigner()
     const NFTicketAbi = ContractData.abi;
     const NFTicketAddress = ContractData.address;
+    console.log("using contract: " + NFTicketAddress)
     const NFTicketContract = new ethers.Contract(NFTicketAddress, NFTicketAbi, signer)
 
     const eventId = Number(await NFTicketContract.getLastEventId())
-    console.log(eventId)
     return eventId
   }
 
-  getLastEventId()
+  const getEvents = async () => {
+    const cur_events = []
+    const lastEventId = await getLastEventId()
+    for(let i = 0; i < lastEventId; i++) {
+      const eventRef = ref(database, "events/" + i);
+      onValue(eventRef, (snapshot) => {
+        const data = snapshot.val();
+        cur_events.push(data)
+      });
+    }
+    setEvents(cur_events)
+  }
 
+  window.onload = async () => {
+      await getEvents()
+      console.log(events)
+  }
 
   return (
     <div className="events">
       <Box sx={{ width: "100%", typography: "body1"}}>
-        <div className="nftGrid">
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid
-              container
-              spacing={{ xs: 4, md: 6 }}
-              columns={{ xs: 4, sm: 8, md: 10 }}
-              alignItems="center"
-              justifyContent="center"
-            >
+
+        {events.map((event) => (
+            <EventCard
+                name={event.eventName}
+                description={event.eventDescription}
+            />
+        ))}
 
 
-            </Grid>
-          </Box>
-        </div>
       </Box>
     </div>
   );
