@@ -14,7 +14,7 @@ export default function EventCard(props) {
         component="img"
         sx={{ width: 250 }}
         image={require("../assets/lolla.png")}
-        alt="NFT name"
+        alt="Event name"
       />
       <Box sx={{ display: 'flex', flexDirection: 'column', width: 1400, bgcolor: blue[500] }}>
         <CardHeader

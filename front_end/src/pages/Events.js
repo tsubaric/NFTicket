@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import EventCard from "../components/EventCard";
+import Link from "@mui/material/Link";
 import "./Events.css";
-//import EventsCategorySlider from "../components/EventsCategorySlider";
+import EventsCategorySlider from "../components/EventsCategorySlider";
 import { ethers } from "ethers";
 import ContractData from "../NFTicket.json";
 import { ref, child, get } from "firebase/database";
@@ -49,15 +50,33 @@ const Events = () => {
 
   return (
     <div className="events">
+      <EventsCategorySlider />
       <Box sx={{ width: "100%", typography: "body1"}}>
         <div className="eventsDisplay">
-          <Box sx={{ flexGrow: 1 }}>
+          <Box style={{
+              flexGrow: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+              flexWrap: "wrap",
+          }}>
             {events.map((event) => (
-                <EventCard
+                <div
                     key={event.eventId}
-                    name={event.eventName}
-                    description={event.eventDescription}
-                />
+                    style={{
+                        display: "flex",
+                        margin: "20px",
+
+                    }}
+                >
+                    <Link to={{ pathname: "/event", state: event.eventId }}>
+                        <EventCard
+                            key={event.eventId}
+                            name={event.eventName}
+                            description={event.eventDescription}
+                        />
+                    </Link>
+                </div>
             ))}
           </Box>
         </div>
