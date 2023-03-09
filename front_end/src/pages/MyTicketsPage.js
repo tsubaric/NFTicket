@@ -21,13 +21,6 @@ export default function MyTicketsPage() {
     setValue(newValue);
   };
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
 
   return (
     <div className="main-container">
@@ -44,45 +37,14 @@ export default function MyTicketsPage() {
               </TabList>
             </Box>
             <TabPanel value="1">
+
               <div className="ownedNFTS">
                 <Box sx={{ flexGrow: 1 }}>
-                  <br></br>
-                  <br></br>
                   <Grid
                     container
                     spacing={{ xs: 4, md: 6 }}
                     columns={{ xs: 4, sm: 8, md: 12 }}
                   >
-                    {events &&
-                      events.map(
-                        ({
-                          category,
-                          user,
-                          nameVal,
-                          date,
-                          ticketID,
-                          stockPrice,
-                          description,
-                          numTickets,
-                        }) => {
-                          return (
-                            <Grid item xs={4} sm={6} md={3} key={ticketID}>
-                              <TicketCard
-                                data={{
-                                  category,
-                                  user,
-                                  nameVal,
-                                  date,
-                                  ticketID,
-                                  stockPrice,
-                                  description,
-                                  numTickets,
-                                }}
-                              />
-                            </Grid>
-                          );
-                        }
-                      )}
                   </Grid>
                 </Box>
               </div>
@@ -90,51 +52,6 @@ export default function MyTicketsPage() {
 
             <TabPanel value="2">
               <div className="createdNFTS">
-                <Box sx={{ flexGrow: 1 }}>
-                  <br></br>
-                  <br></br>
-                  <Grid
-                    container
-                    spacing={{ xs: 4, md: 6 }}
-                    columns={{ xs: 4, sm: 8, md: 12 }}
-                  >
-                    {events &&
-                      events.map(
-                        ({
-                          category,
-                          user,
-                          nameVal,
-                          date,
-                          ticketID,
-                          stockPrice,
-                          description,
-                          numTickets,
-                        }) => {
-                          return (
-                            <Grid item xs={4} sm={6} md={3} key={ticketID}>
-                              <TicketCard
-                                data={{
-                                  category,
-                                  user,
-                                  nameVal,
-                                  date,
-                                  ticketID,
-                                  stockPrice,
-                                  description,
-                                  numTickets,
-                                }}
-                              />
-                            </Grid>
-                          );
-                        }
-                      )}
-                    {/* {Array.from(Array(12)).map((_, index) => (
-                      <Grid item xs={4} sm={6} md={3} key={index}>
-                        <TicketCard/>
-                      </Grid>
-                    ))} */}
-                  </Grid>
-                </Box>
               </div>
             </TabPanel>
           </TabContext>
