@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Home.css";
+import "../styles/Home.css";
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -42,7 +42,7 @@ const Home = () => {
         </IconButton>
       </Stack>
     </div>
-     
+
 
     </div>
   );

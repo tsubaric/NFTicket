@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./MyTicketsPage.css";
+import "../styles/MyTicketsPage.css";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TicketCard from "../components/TicketCard";

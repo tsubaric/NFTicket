@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import CreateEvent from "./pages/CreateEvent";

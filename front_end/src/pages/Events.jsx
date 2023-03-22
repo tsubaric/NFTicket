@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import EventCard from "../components/EventCard";
-import Link from "@mui/material/Link";
-import "./Events.css";
+import "../styles/Events.css";
 import EventsCategorySlider from "../components/EventsCategorySlider";
 import { ethers } from "ethers";
 import ContractData from "../NFTicket.json";
@@ -69,13 +68,11 @@ const Events = () => {
 
                     }}
                 >
-                    <Link to={{ pathname: "/event", state: event.eventId }}>
-                        <EventCard
-                            key={event.eventId}
-                            name={event.eventName}
-                            description={event.eventDescription}
-                        />
-                    </Link>
+                    <EventCard
+                        key={event.eventId}
+                        name={event.eventName}
+                        description={event.eventDescription}
+                    />
                 </div>
             ))}
           </Box>
