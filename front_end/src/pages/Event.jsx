@@ -5,23 +5,25 @@ import MintButton from "../components/MintButton";
 import Lollapng from "../assets/lolla.png";
 import { useParams } from "react-router-dom";
 import { getEventInfo } from "../interfaces/firebase_interface";
+import EventCard from "../components/EventCard";
 
 export default function Event() {
   const { eventId } = useParams();
   const [eventInfo, setEventInfo] = React.useState({
     name: "",
+    description: "",
   });
   const [isLoading, setIsLoading] = React.useState(true);
 
   const updateEventInfo = async () => {
     getEventInfo(eventId).then((eventInfo) => {
-        console.log("eventInfo: ", eventInfo);
-        setEventInfo({
-            name: eventInfo.eventName,
-        });
+      console.log("eventInfo: ", eventInfo);
+      setEventInfo({
+        name: eventInfo.eventName,
+        description: eventInfo.eventDescription,
+      });
     });
   };
-
 
   useEffect(() => {
     updateEventInfo();
@@ -41,7 +43,9 @@ export default function Event() {
               <h1>{eventInfo.name}</h1>
             </div>
           }
-          <h1 style={{ paddingTop: "20px", fontWeight: "normal" }}>{eventInfo.eventName}</h1>
+          <h1 style={{ paddingTop: "20px", fontWeight: "normal" }}>
+            {eventInfo.eventName}
+          </h1>
           <div>
             <MintButton eventId={eventId} />
           </div>
@@ -56,6 +60,7 @@ export default function Event() {
           backgroundColor: "black",
         }}
       />
+      <EventCard name={eventInfo.name} description={eventInfo.description} />
       <br />
       <Box sx={{ width: "100%", typography: "body1" }}></Box>
     </div>

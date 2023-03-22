@@ -7,9 +7,8 @@ import CardHeader from "@mui/material/CardHeader";
 import { blue } from "@mui/material/colors";
 
 export default function EventCard(props) {
-
   const routeEvent = async () => {
-    console.log("props: ", props)
+    console.log("props: ", props);
     window.location.href = `/event/${props.eventId}`;
   };
 

@@ -17,19 +17,21 @@ export const getEvents = async (lastEventId) => {
   return cur_events;
 };
 
-
 export const getEventInfo = async (eventId) => {
   const dbRef = ref(database);
-  get(child(dbRef, `events/${eventId}`)).then((snapshot) => {
-    if (snapshot.exists()) {
-      const data = snapshot.val();
-      console.log("data: ", data);
-    } else {
-      console.log("No data available");
-    }
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-
+  //will need a similar fix above
+  //need to return the get otherwise the other file doesn't get the data from this function
+  return get(child(dbRef, `events/${eventId}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        console.log("data: ", data);
+        return data;
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };
