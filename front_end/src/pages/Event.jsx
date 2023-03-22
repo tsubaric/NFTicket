@@ -19,7 +19,7 @@ export default function Event(props) {
             Event
           </h1>
           <div>
-            <MintButton />
+            <MintButton eventId={eventId}/>
           </div>
         </div>
       </div>

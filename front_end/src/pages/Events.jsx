@@ -1,88 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import EventCard from "../components/EventCard";
 import "../styles/Events.css";
-import EventsCategorySlider from "../components/EventsCategorySlider";
-import { ethers } from "ethers";
-import ContractData from "../NFTicket.json";
-import { ref, child, get } from "firebase/database";
+//import EventsCategorySlider from "../components/EventsCategorySlider";
+import { getEvents } from "../interfaces/firebase_interface";
+import { getLastEventId } from "../interfaces/NFTicket_interface";
+import { ref, get, child } from "firebase/database";
 import { database } from "../firebase";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // TODO: get this logic working from interface
-  const getLastEventId = async () => {
-    const provider = new ethers.BrowserProvider(window.ethereum)
-    const signer = await provider.getSigner()
-    const NFTicketAbi = ContractData.abi;
-    const NFTicketAddress = ContractData.address;
-    console.log("using contract: " + NFTicketAddress)
-    const NFTicketContract = new ethers.Contract(NFTicketAddress, NFTicketAbi, signer)
-
-    const eventId = Number(await NFTicketContract.getLastEventId())
-    return eventId
-  }
-
-  // TODO: get this logic working from interface
-  const getEvents = async () => {
-    const cur_events = []
-    const lastEventId = await getLastEventId()
-    console.log("last event id: " + lastEventId)
-    for(let i = 0; i < lastEventId; i++) {
-        const dbRef = ref(database);
-        get(child(dbRef, `events/${i}`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log(snapshot.val());
-                cur_events.push(snapshot.val())
-                console.log("cur_events: ", cur_events)
-                setEvents(cur_events)
-            } else {
-                console.log("No data available");
-            }
-        })
+  const updateEvents = async () => {
+    const cur_events = [];
+    const lastEventId = await getLastEventId();
+    console.log("last event id: " + lastEventId);
+    for (let i = 0; i < lastEventId; i++) {
+      const dbRef = ref(database);
+      await get(child(dbRef, `events/${i}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+          cur_events.push(snapshot.val());
+          setEvents(cur_events);
+        } else {
+          console.log("No data available");
+        }
+      });
     }
-  }
+    setIsLoading(false);
+  };
 
-  window.onload = async () => {
-      await getEvents()
-      console.log("events: ", events)
-  }
+  useEffect(() => {
+    updateEvents();
+  }, []);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="events">
-      <EventsCategorySlider />
-      <Box sx={{ width: "100%", typography: "body1"}}>
-        <div className="eventsDisplay">
-          <Box style={{
+      {/*<EventsCategorySlider /> */}
+      <Box sx={{ width: "100%", typography: "body1" }}>
+        <div className="eventsDisplay" key="eventsDisplay">
+          <Box
+            style={{
               flexGrow: 1,
               justifyContent: "center",
               alignItems: "center",
               display: "flex",
               flexWrap: "wrap",
-          }}>
-            {events.map((event) => (
+            }}
+            key="eventsBox"
+          >
+            {events.length > 0 &&
+              events.map((event) => (
                 <div
-                    key={event.eventId}
-                    style={{
-                        display: "flex",
-                        margin: "20px",
-
-                    }}
+                  style={{
+                    display: "flex",
+                    margin: "20px",
+                  }}
+                  key={event.eventId}
                 >
-                    <EventCard
-                        eventId={event.eventId}
-                        name={event.eventName}
-                        description={event.eventDescription}
-                    />
-                    <p>{event.eventId}</p>
+                  <EventCard
+                    key={event.eventId}
+                    eventId={event.eventId}
+                    name={event.eventName}
+                    description={event.eventDescription}
+                  />
                 </div>
-            ))}
+              ))}
           </Box>
         </div>
-
-
-
       </Box>
     </div>
   );
