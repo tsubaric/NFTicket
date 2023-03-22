@@ -24,7 +24,7 @@ function App() {
             exact
             component={CreateEventConfirmation}
           />
-          <Route path="/event" exact component={Event} />
+          <Route path="/event/:eventId" exact component={Event} />
         </Switch>
       </div>
     </Router>

@@ -35,6 +35,7 @@ const Events = () => {
             if (snapshot.exists()) {
                 console.log(snapshot.val());
                 cur_events.push(snapshot.val())
+                console.log("cur_events: ", cur_events)
                 setEvents(cur_events)
             } else {
                 console.log("No data available");
@@ -45,6 +46,7 @@ const Events = () => {
 
   window.onload = async () => {
       await getEvents()
+      console.log("events: ", events)
   }
 
   return (
@@ -69,10 +71,11 @@ const Events = () => {
                     }}
                 >
                     <EventCard
-                        key={event.eventId}
+                        eventId={event.eventId}
                         name={event.eventName}
                         description={event.eventDescription}
                     />
+                    <p>{event.eventId}</p>
                 </div>
             ))}
           </Box>

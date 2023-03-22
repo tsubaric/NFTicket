@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import "../styles/MyTicketsPage.css";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import TicketCard from "../components/TicketCard";
-import events from "../assets/festival.json";
 import MintButton from "../components/MintButton";
 import Lollapng from "../assets/lolla.png";
+import { useParams } from "react-router-dom";
 
 export default function Event(props) {
   console.log(props);
+
+  const { eventId } = useParams();
+  console.log("eventId: ", eventId);
   return (
     <div className="main-contain">
       <div style={{ display: "flex", justifyContent: "center" }}>
