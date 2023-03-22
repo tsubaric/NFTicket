@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import EventCard from "../components/EventCard";
 import "../styles/Events.css";
-//import EventsCategorySlider from "../components/EventsCategorySlider";
-import { getEvents } from "../interfaces/firebase_interface";
+import EventsCategorySlider from "../components/EventsCategorySlider";
 import { getLastEventId } from "../interfaces/NFTicket_interface";
 import { ref, get, child } from "firebase/database";
 import { database } from "../firebase";
@@ -39,7 +38,7 @@ const Events = () => {
   }
   return (
     <div className="events">
-      {/*<EventsCategorySlider /> */}
+      <EventsCategorySlider />
       <Box sx={{ width: "100%", typography: "body1" }}>
         <div className="eventsDisplay" key="eventsDisplay">
           <Box
