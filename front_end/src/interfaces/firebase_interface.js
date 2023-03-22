@@ -6,7 +6,7 @@ export const getEvents = async (lastEventId) => {
   console.log("last event id: " + lastEventId);
   for (let i = 0; i < lastEventId; i++) {
     const dbRef = ref(database);
-    get(child(dbRef, `events/${i}`)).then((snapshot) => {
+    return get(child(dbRef, `events/${i}`)).then((snapshot) => {
       if (snapshot.exists()) {
         cur_events.push(snapshot.val());
       } else {
@@ -19,8 +19,6 @@ export const getEvents = async (lastEventId) => {
 
 export const getEventInfo = async (eventId) => {
   const dbRef = ref(database);
-  //will need a similar fix above
-  //need to return the get otherwise the other file doesn't get the data from this function
   return get(child(dbRef, `events/${eventId}`))
     .then((snapshot) => {
       if (snapshot.exists()) {
