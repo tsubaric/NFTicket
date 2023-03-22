@@ -5,7 +5,6 @@ import MintButton from "../components/MintButton";
 import Lollapng from "../assets/lolla.png";
 import { useParams } from "react-router-dom";
 import { getEventInfo } from "../interfaces/firebase_interface";
-import EventCard from "../components/EventCard";
 
 export default function Event() {
   const { eventId } = useParams();
@@ -60,9 +59,6 @@ export default function Event() {
           backgroundColor: "black",
         }}
       />
-      <EventCard name={eventInfo.name} description={eventInfo.description} />
-      <br />
-      <Box sx={{ width: "100%", typography: "body1" }}></Box>
     </div>
   );
 }
