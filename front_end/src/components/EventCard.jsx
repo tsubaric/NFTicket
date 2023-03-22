@@ -13,7 +13,7 @@ export default function EventCard(props) {
       <CardMedia
         component="img"
         sx={{ width: 250 }}
-        image={require("../assets/lolla.png")}
+        image={require("../assets/lolla.png")} // TODO: loads this from firebase
         alt="Event name"
       />
       <Box sx={{ display: 'flex', flexDirection: 'column', width: 1400, bgcolor: blue[500] }}>

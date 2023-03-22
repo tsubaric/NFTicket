@@ -7,7 +7,7 @@ import MyTicketsPage from "./pages/MyTicketsPage";
 import CreateEventConfirmation from "./pages/CreateEventConfirmation";
 import Event from "./pages/Event";
 import { createBrowserHistory as history } from "history";
-import Dashboard from "./components/dashboard";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (

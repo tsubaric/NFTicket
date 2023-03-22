@@ -1,6 +1,5 @@
 import * as React from "react";
-import "./dashboard.css";
-import { Link } from "react-router-dom";
+import "../styles/dashboard.css";
 import ConnectWalletButton from './ConnectWalletButton'
 import Button from '@mui/material/Button';
 
