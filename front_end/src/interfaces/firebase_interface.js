@@ -1,4 +1,4 @@
-import { ref, onValue, get, child } from "firebase/database";
+import { ref, get, child } from "firebase/database";
 import { database } from "../firebase";
 
 export const getEvents = async (lastEventId) => {
@@ -19,9 +19,17 @@ export const getEvents = async (lastEventId) => {
 
 
 export const getEventInfo = async (eventId) => {
-  const eventRef = ref(database, "events/" + eventId);
-  onValue(eventRef, (snapshot) => {
-    const data = snapshot.val();
-    console.log(data);
+  const dbRef = ref(database);
+  get(child(dbRef, `events/${eventId}`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      console.log("data: ", data);
+    } else {
+      console.log("No data available");
+    }
+  })
+  .catch((error) => {
+    console.error(error);
   });
+
 };
