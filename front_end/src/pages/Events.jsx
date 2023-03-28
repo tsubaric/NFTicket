@@ -6,6 +6,10 @@ import EventsCategorySlider from "../components/EventsCategorySlider";
 import { getLastEventId } from "../interfaces/NFTicket_interface";
 import { ref, get, child } from "firebase/database";
 import { database } from "../firebase";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import EventsCategoryCar from "../components/EventsCategoryCar";
+
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -38,7 +42,9 @@ const Events = () => {
   }
   return (
     <div className="events">
-      <EventsCategorySlider />
+      <EventsCategoryCar />
+      
+      {/* <EventsCategorySlider /> */}
       <Box sx={{ width: "100%", typography: "body1" }}>
         <div className="eventsDisplay" key="eventsDisplay">
           <Box

@@ -4,7 +4,9 @@ import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
-import { blue } from "@mui/material/colors";
+import { blue, red, green } from "@mui/material/colors";
+import Typography from '@mui/material/Typography';
+import { fontFamily } from "@mui/system";
 
 export default function EventCard(props) {
   const routeEvent = async () => {
@@ -13,7 +15,7 @@ export default function EventCard(props) {
   };
 
   return (
-    <Card sx={{ display: "flex", width: 1400 }} onClick={routeEvent}>
+    <Card sx={{ display: "flex", width: 1400, borderRadius: 25 }} onClick={routeEvent}>
       <CardMedia
         component="img"
         sx={{ width: 250 }}
@@ -25,12 +27,41 @@ export default function EventCard(props) {
           display: "flex",
           flexDirection: "column",
           width: 1400,
-          bgcolor: blue[500],
+          bgcolor: blue[100],
+
+
+
         }}
       >
-        <CardHeader title={props.name} />
-        <CardContent sx={{ width: 400 }}>{props.description}</CardContent>
+
+        <CardContent >
+
+          <Typography variant='h3' gutterBottom >
+            <div style={{ color: "black", fontFamily: "Roboto" }}>{props.name}</div>
+          </Typography>
+
+          <Typography variant="body1">
+            DATE
+          </Typography>
+
+          <Typography variant='h4' gutterBottom fontStyle="italic" fontFamily={"sans-serif"} >
+            <div style={{ color: "black", fontFamily: "Roboto" }}>{props.description}</div>
+          </Typography>
+
+        </CardContent>
       </Box>
     </Card>
+
+
+
+
+    //sx={{ width: 600, fontSize: 50 }}
+    //<Typography gutterBottom variant="h5" component="div">
+    //{props.name}
+    //</Typography>
+    //<Typography variant="body2" color="text.secondary">
+    //{props.description}
+    //</Typography>
+
   );
 }
