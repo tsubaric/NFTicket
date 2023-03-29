@@ -5,7 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import { blue, red, green } from "@mui/material/colors";
-import Typography from '@mui/material/Typography';
+import Typography from "@mui/material/Typography";
 import { fontFamily } from "@mui/system";
 
 export default function EventCard(props) {
@@ -15,11 +15,14 @@ export default function EventCard(props) {
   };
 
   return (
-    <Card sx={{ display: "flex", width: 1400, borderRadius: 25 }} onClick={routeEvent}>
+    <Card
+      sx={{ display: "flex", width: 1400, borderRadius: 25 }}
+      onClick={routeEvent}
+    >
       <CardMedia
         component="img"
         sx={{ width: 250 }}
-        image={require("../assets/lolla.png")} // TODO: loads this from firebase
+        image={props.thumbnail} // TODO: loads this from firebase
         alt="Event name"
       />
       <Box
@@ -28,32 +31,30 @@ export default function EventCard(props) {
           flexDirection: "column",
           width: 1400,
           bgcolor: blue[100],
-
-
-
         }}
       >
-
-        <CardContent >
-
-          <Typography variant='h3' gutterBottom >
-            <div style={{ color: "black", fontFamily: "Roboto" }}>{props.name}</div>
+        <CardContent>
+          <Typography variant="h3" gutterBottom>
+            <div style={{ color: "black", fontFamily: "Roboto" }}>
+              {props.name}
+            </div>
           </Typography>
 
-          <Typography variant="body1">
-            DATE
-          </Typography>
+          <Typography variant="body1">DATE</Typography>
 
-          <Typography variant='h4' gutterBottom fontStyle="italic" fontFamily={"sans-serif"} >
-            <div style={{ color: "black", fontFamily: "Roboto" }}>{props.description}</div>
+          <Typography
+            variant="h4"
+            gutterBottom
+            fontStyle="italic"
+            fontFamily={"sans-serif"}
+          >
+            <div style={{ color: "black", fontFamily: "Roboto" }}>
+              {props.description}
+            </div>
           </Typography>
-
         </CardContent>
       </Box>
     </Card>
-
-
-
 
     //sx={{ width: 600, fontSize: 50 }}
     //<Typography gutterBottom variant="h5" component="div">
@@ -62,6 +63,5 @@ export default function EventCard(props) {
     //<Typography variant="body2" color="text.secondary">
     //{props.description}
     //</Typography>
-
   );
 }
