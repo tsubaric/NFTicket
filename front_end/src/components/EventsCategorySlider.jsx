@@ -9,7 +9,7 @@ export default function EventsCategorySlider() {
 
   const itemData = [
     {
-      img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
+      img: "./wineDinner.jpg",
       title: "Resturants",
       id: "resturants",
       rows: 2,
@@ -17,24 +17,24 @@ export default function EventsCategorySlider() {
       featured: true,
     },
     {
-      img: "./rollingloud.jpeg",
+      img: "./edm.jpg",
       title: "Festivals",
       rows: 2,
       cols: 2,
     },
     {
-      img: "./PatrickMahomes.jpeg",
+      img: "./sports.jpg",
       title: "Sports",
       rows: 2,
       cols: 2,
     },
     {
-      img: "./plane.png",
+      img: "./travel.jpg",
       title: "Travel",
       cols: 2,
     },
     {
-      img: "https://images.unsplash.com/photo-1533827432537-70133748f5c8",
+      img: "./charity.jpg",
       title: "Charity",
       cols: 2,
     },
@@ -46,55 +46,59 @@ export default function EventsCategorySlider() {
       featured: true,
     },
     {
-      img: "./doc.webp",
+      img: "fitness.jpg",
       title: "Health & Wellness",
     },
   ];
 
   const handleClick = (e) => {
-      console.log(e.target);
+    console.log(e.target);
   }
 
   return (
-      <ImageList
-        sx={{
-          gridAutoFlow: "column",
-          gridAutoColumns: "minmax(400px, 1fr)",
-          width: 1400,
-          height: 320,
-        }}
-        cols={3}
-      >
-        <ImageListItem key="Subheader" cols={3}></ImageListItem>
-        {itemData.map((item) => (
-          <button
-            onClick={(e) => {
-              handleClick(e);
-            }}
-          >
-            <ImageListItem key={item.img}>
-              <img
-                src={`${item.img}?w=248&fit=crop&auto=format`}
-                srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
-                loading="lazy"
-              />
-              <ImageListItemBar
-                title={item.title}
-                subtitle={item.author}
-                actionIcon={
-                  <IconButton
-                    sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-                    aria-label={`info about ${item.title}`}
-                  >
-                    <InfoIcon />
-                  </IconButton>
-                }
-              />
-            </ImageListItem>
-          </button>
-        ))}
-      </ImageList>
+
+    
+
+    <ImageList
+      sx={{
+        gridAutoFlow: "column",
+        gridAutoColumns: "minmax(400px, 1fr)",
+        width: 2300,
+        height: 420,
+
+      }}
+      cols={3}
+    >
+      <ImageListItem key="Subheader" cols={3}></ImageListItem>
+      {itemData.map((item) => (
+        <button
+          onClick={(e) => {
+            handleClick(e);
+          }}
+        >
+          <ImageListItem key={item.img}>
+            <img
+              src={`${item.img}?w=248&fit=crop&auto=format`}
+              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.title}
+              loading="lazy"
+            />
+            <ImageListItemBar
+              title={item.title}
+              subtitle={item.author}
+              actionIcon={
+                <IconButton
+                  sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                  aria-label={`info about ${item.title}`}
+                >
+                  <InfoIcon />
+                </IconButton>
+              }
+            />
+          </ImageListItem>
+        </button>
+      ))}
+    </ImageList>
   );
 
 
