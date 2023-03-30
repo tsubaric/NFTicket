@@ -9,32 +9,19 @@ import { database } from "../firebase";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import EventsCategoryCar from "../components/EventsCategoryCar";
-
+import { updateEvents } from "../interfaces/firebase_interface";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const updateEvents = async () => {
-    const cur_events = [];
-    const lastEventId = await getLastEventId();
-    console.log("last event id: " + lastEventId);
-    for (let i = 0; i < lastEventId; i++) {
-      const dbRef = ref(database);
-      await get(child(dbRef, `events/${i}`)).then((snapshot) => {
-        if (snapshot.exists()) {
-          cur_events.push(snapshot.val());
-          setEvents(cur_events);
-        } else {
-          console.log("No data available");
-        }
-      });
-    }
-    setIsLoading(false);
-  };
-
   useEffect(() => {
-    updateEvents();
+    async function getEvents() {
+      let eventData = await updateEvents();
+      setEvents(eventData);
+      setIsLoading(false);
+    }
+    getEvents();
   }, []);
 
   if (isLoading) {
@@ -43,7 +30,7 @@ const Events = () => {
   return (
     <div className="events">
       <EventsCategoryCar />
-      
+
       {/* <EventsCategorySlider /> */}
       <Box sx={{ width: "100%", typography: "body1" }}>
         <div className="eventsDisplay" key="eventsDisplay">
@@ -71,6 +58,7 @@ const Events = () => {
                     eventId={event.eventId}
                     name={event.eventName}
                     description={event.eventDescription}
+                    thumbnail={event.thumbnail}
                   />
                 </div>
               ))}
