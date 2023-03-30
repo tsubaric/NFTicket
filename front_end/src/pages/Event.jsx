@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 import "../styles/MyTicketsPage.css";
 import Box from "@mui/material/Box";
 import MintButton from "../components/MintButton";
-import Lollapng from "../assets/lolla.png";
 import { useParams } from "react-router-dom";
 import { getEventInfo } from "../interfaces/firebase_interface";
 import { Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
-import { fontFamily } from "@mui/system";
 
 export default function Event() {
   const { eventId } = useParams();
