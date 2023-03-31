@@ -9,6 +9,11 @@ import {
   getTicketBalance,
 } from "../interfaces/NFTicket_interface";
 import { getEventInfo } from "../interfaces/firebase_interface";
+import TabContext from "@mui/lab/TabContext";
+import TabPanel from "@mui/lab/TabPanel";
+import PersonIcon from "@mui/icons-material/Person";
+import Tab from "@mui/material/Tab";
+import TabList from "@mui/lab/TabList";
 
 export default function MyTicketsPage() {
   const [ticketBalance, setTicketBalance] = useState([]);
@@ -70,14 +75,21 @@ export default function MyTicketsPage() {
   return (
     <div className="main-container">
       <div className="ownedNFTS">
-        <Box style={{ display: "flex", justifyContent: "center", margin: "50px" }}>
-          <Grid
-            container
-            spacing={4}
-          >
-            {displayTickets()}
-          </Grid>
-        </Box>
+        <TabContext value="1">
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <TabList>
+                <Tab id="tab1" icon={<PersonIcon />} label="OWNED" value="1" />
+              </TabList>
+            </Box>
+            <Box style={{ display: "flex", justifyContent: "center", margin: "50px" }}>
+              <Grid
+                container
+                spacing={4}
+              >
+                {displayTickets()}
+              </Grid>
+            </Box>
+        </TabContext>
       </div>
     </div>
   );
