@@ -3,36 +3,46 @@ import Box from "@mui/material/Box";
 import EventCard from "../components/EventCard";
 import "../styles/Events.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import EventsCategoryCar from "../components/EventsCategoryCar";
 import { updateEvents } from "../interfaces/firebase_interface";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import Button from "@mui/material/Button";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [state, setState] = useState({
-    query: "",
-    displayList: [],
-  });
-  const handleChange = (e) => {
-    const results = events.filter((post) => {
-      if (e.target.value === "") return events;
-      return post.eventName
-        .toLowerCase()
-        .includes(e.target.value.toLowerCase());
-    });
-    setState({
-      query: e.target.value,
-      displayList: results,
-    });
+  const [category, setCategory] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [displayList, setDisplayList] = useState([]);
+
+  const filterEvents = () => {
+    // apply category filter if category is not "All"
+    let filteredEvents = events;
+    if (category != "All") {
+      filteredEvents = filteredEvents.filter(
+        (event) => event.eventCategory === category
+      );
+    }
+
+    //apply search filter if search term is not empty
+    if (searchTerm != "") {
+      filteredEvents = filteredEvents.filter((event) =>
+        event.eventName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    console.log(filteredEvents);
+
+    setDisplayList(filteredEvents);
   };
+
   useEffect(() => {
     async function getEvents() {
       let eventData = await updateEvents();
       setEvents(eventData);
-      setState({
-        query: "",
-        displayList: eventData,
-      });
+      setDisplayList(eventData);
       setIsLoading(false);
     }
     getEvents();
@@ -43,15 +53,45 @@ const Events = () => {
   }
   return (
     <div className="events">
-      <EventsCategoryCar />
-      <input
-        type="search"
-        value={state.query}
-        onChange={handleChange}
-        placeholder="Search"
-        className="searchBar"
-      />
-      {/* <EventsCategorySlider /> */}
+      <FormControl
+        sx={{
+          minWidth: 120,
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        <input
+          type="search"
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+          placeholder="Search"
+          className="searchBar"
+          style={{ width: "100vh", fontSize: "40px", margin: "20px" }}
+        />
+        <p style={{ fontSize: "40px", marginTop: "40px" }}>Category:</p>
+        <Select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          style={{ fontSize: "30px", margin: "20px" }}
+        >
+          <MenuItem value="Virtual">Virtual</MenuItem>
+          <MenuItem value="Festivals">Festivals</MenuItem>
+          <MenuItem value="Restaraunts">Restaraunts</MenuItem>
+          <MenuItem value="Sports">Sports</MenuItem>
+          <MenuItem value="Travel">Travel</MenuItem>
+          <MenuItem value="Charity">Charity</MenuItem>
+          <MenuItem value="Health">Health & Wellness</MenuItem>
+          <MenuItem value="All">All</MenuItem>
+        </Select>
+        <Button
+          variant="contained"
+          style={{ maxHeight: "40px", marginTop: "35px" }}
+          onClick={filterEvents}
+        >
+          Go
+        </Button>
+      </FormControl>
       <Box sx={{ width: "100%", typography: "body1" }}>
         <div className="eventsDisplay" key="eventsDisplay">
           <Box
@@ -64,9 +104,9 @@ const Events = () => {
             }}
             key="eventsBox"
           >
-            {!state.displayList?.length
+            {!displayList?.length
               ? "Your query did not return any results"
-              : state.displayList.map((event) => {
+              : displayList.map((event) => {
                   return (
                     <div
                       style={{
@@ -81,28 +121,11 @@ const Events = () => {
                         name={event.eventName}
                         description={event.eventDescription}
                         thumbnail={event.thumbnail}
+                        category={event.category}
                       />
                     </div>
                   );
                 })}
-            {/* {events.length > 0 &&
-              events.map((event) => (
-                <div
-                  style={{
-                    display: "flex",
-                    margin: "20px",
-                  }}
-                  key={event.eventId}
-                >
-                  <EventCard
-                    key={event.eventId}
-                    eventId={event.eventId}
-                    name={event.eventName}
-                    description={event.eventDescription}
-                    thumbnail={event.thumbnail}
-                  />
-                </div>
-              ))} */}
           </Box>
         </div>
       </Box>

@@ -1,9 +1,4 @@
 import * as React from 'react';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -15,11 +10,9 @@ export default function EventsCategoryCar() {
 
         <div className="events">
             <Carousel
-
                 showArrows={true}
                 showThumbs={true}
                 thumbWidth={50}
-
                 showStatus={false}
                 infiniteLoop={true}
                 autoPlay={true}
