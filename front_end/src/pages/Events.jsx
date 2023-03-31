@@ -19,14 +19,14 @@ const Events = () => {
   const filterEvents = () => {
     // apply category filter if category is not "All"
     let filteredEvents = events;
-    if (category != "All") {
+    if (category !== "All") {
       filteredEvents = filteredEvents.filter(
         (event) => event.eventCategory === category
       );
     }
 
     //apply search filter if search term is not empty
-    if (searchTerm != "") {
+    if (searchTerm !== "") {
       filteredEvents = filteredEvents.filter((event) =>
         event.eventName.toLowerCase().includes(searchTerm.toLowerCase())
       );
