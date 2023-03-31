@@ -10,7 +10,6 @@ import {
 } from "../interfaces/NFTicket_interface";
 import { getEventInfo } from "../interfaces/firebase_interface";
 import TabContext from "@mui/lab/TabContext";
-import TabPanel from "@mui/lab/TabPanel";
 import PersonIcon from "@mui/icons-material/Person";
 import Tab from "@mui/material/Tab";
 import TabList from "@mui/lab/TabList";
@@ -51,9 +50,8 @@ export default function MyTicketsPage() {
             <Grid item xs={2} sm={2} md={2} lg={2}>
                 <TicketCard
                   key={ticket.eventId + "-" + i} // just so it is unique
-                  data={{
-                    nameVal: ticket.eventInfo.eventName,
-                  }}
+                  eventName={ticket.eventInfo.eventName}
+                  eventImage={ticket.eventInfo.thumbnail}
                 />
             </Grid>
         );
