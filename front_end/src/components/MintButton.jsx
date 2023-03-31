@@ -13,7 +13,7 @@ export default function MintButton(props) {
     setAmount(event.target.value);
   };
 
-  const mintTicket = async (eventId, amount) => {
+  const mintTicket = async (amount) => {
     // TODO: find a way to localize this
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
@@ -30,7 +30,7 @@ export default function MintButton(props) {
     // TODO: get ticket price from Contract -- right now tickets are just free
     // TODO: mint transaction
 
-    const response = await NFTicketContract.mintGATickets(eventId, amount);
+    const response = await NFTicketContract.mintGATickets(props.eventId, amount);
     console.log(response);
   };
 
@@ -50,7 +50,7 @@ export default function MintButton(props) {
       <Button
         style={{ marginLeft: "10px" }}
         variant="contained"
-        onClick={() => mintTicket(1, amount)}
+        onClick={() => mintTicket(amount)}
       >
         Mint
       </Button>
