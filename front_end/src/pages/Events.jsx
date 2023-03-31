@@ -38,6 +38,11 @@ const Events = () => {
     setDisplayList(filteredEvents);
   };
 
+  const handleSearch = (e) => {
+      setSearchTerm(e.target.value);
+      filterEvents();
+  };
+
   useEffect(() => {
     async function getEvents() {
       let eventData = await updateEvents();
@@ -64,7 +69,7 @@ const Events = () => {
         <input
           type="search"
           value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
+          onChange={handleSearch}
           placeholder="Search"
           className="searchBar"
           style={{ width: "100vh", fontSize: "40px", margin: "20px" }}
