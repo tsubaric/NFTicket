@@ -6,7 +6,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { updateEvents } from "../interfaces/firebase_interface";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 
@@ -38,6 +37,11 @@ const Events = () => {
     setDisplayList(filteredEvents);
   };
 
+  const handleSearch = (e) => {
+      setSearchTerm(e.target.value);
+      filterEvents();
+  };
+
   useEffect(() => {
     async function getEvents() {
       let eventData = await updateEvents();
@@ -64,7 +68,7 @@ const Events = () => {
         <input
           type="search"
           value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
+          onChange={handleSearch}
           placeholder="Search"
           className="searchBar"
           style={{ width: "100vh", fontSize: "40px", margin: "20px" }}
@@ -132,4 +136,5 @@ const Events = () => {
     </div>
   );
 };
+
 export default Events;
