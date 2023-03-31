@@ -29,7 +29,7 @@ const Events = () => {
     //apply search filter if search term is not empty
     if (searchTerm != "") {
       filteredEvents = filteredEvents.filter((event) =>
-        event.eventName.includes(searchTerm)
+        event.eventName.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
