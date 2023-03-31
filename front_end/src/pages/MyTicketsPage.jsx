@@ -1,144 +1,93 @@
 import * as React from "react";
 import "../styles/MyTicketsPage.css";
 import Box from "@mui/material/Box";
-import { ButtonGroup } from "@mui/material";
-import { experimentalStyled as styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import PersonIcon from "@mui/icons-material/Person";
-import BrushIcon from "@mui/icons-material/Brush";
 import TicketCard from "../components/TicketCard";
-import events from "../assets/festival.json";
+import { useState, useEffect } from "react";
+import {
+  getLastEventId,
+  getTicketBalance,
+} from "../interfaces/NFTicket_interface";
+import { getEventInfo } from "../interfaces/firebase_interface";
+import TabContext from "@mui/lab/TabContext";
+import PersonIcon from "@mui/icons-material/Person";
+import Tab from "@mui/material/Tab";
+import TabList from "@mui/lab/TabList";
 
 export default function MyTicketsPage() {
-  const [value, setValue] = React.useState("1");
+  const [ticketBalance, setTicketBalance] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+
+  const loadOwnedTickets = async () => {
+    // get address of connected wallet
+    let address = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    address = address[0];
+
+    // grab balance of each event id
+    // NOTE: this is not scalable, but for now it works
+    //
+    const lastEventId = await getLastEventId();
+    const balances = [];
+    for (let i = 0; i <= lastEventId; i++) {
+      const balance = await getTicketBalance(address, i);
+      if (balance > 0) {
+        const info = await getEventInfo(i);
+        balances.push({ eventId: i, balance: balance, eventInfo: info[0] });
+        setTicketBalance(balances);
+      }
+    }
+    setIsLoading(false);
   };
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
+  const displayTickets = () => {
+    const ticketCards = [];
+    ticketBalance.forEach((ticket) => {
+      for (let i = 0; i < ticket.balance; i++) {
+        ticketCards.push(
+            <Grid item xs={2} sm={2} md={2} lg={2}>
+                <TicketCard
+                  key={ticket.eventId + "-" + i} // just so it is unique
+                  eventName={ticket.eventInfo.eventName}
+                  eventImage={ticket.eventInfo.thumbnail}
+                />
+            </Grid>
+        );
+      }
+    });
 
+    return ticketCards;
+  };
+
+  useEffect(() => {
+    console.log("loading owned tickets...");
+    loadOwnedTickets();
+    console.log(ticketBalance);
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="main-container">
-      <div className="tabs">
-        <Box sx={{ width: "100%", typography: "body1" }}>
-          <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <TabList
-                onChange={handleChange}
-                aria-label="lab API tabs example"
-              >
+      <div className="ownedNFTS">
+        <TabContext value="1">
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <TabList>
                 <Tab id="tab1" icon={<PersonIcon />} label="OWNED" value="1" />
-                <Tab id="tab2" icon={<BrushIcon />} label="CREATED" value="2" />
               </TabList>
             </Box>
-            <TabPanel value="1">
-              <div className="ownedNFTS">
-                <Box sx={{ flexGrow: 1 }}>
-                  <br></br>
-                  <br></br>
-                  <Grid
-                    container
-                    spacing={{ xs: 4, md: 6 }}
-                    columns={{ xs: 4, sm: 8, md: 12 }}
-                  >
-                    {events &&
-                      events.map(
-                        ({
-                          category,
-                          user,
-                          nameVal,
-                          date,
-                          ticketID,
-                          stockPrice,
-                          description,
-                          numTickets,
-                        }) => {
-                          return (
-                            <Grid item xs={4} sm={6} md={3} key={ticketID}>
-                              <TicketCard
-                                data={{
-                                  category,
-                                  user,
-                                  nameVal,
-                                  date,
-                                  ticketID,
-                                  stockPrice,
-                                  description,
-                                  numTickets,
-                                }}
-                              />
-                            </Grid>
-                          );
-                        }
-                      )}
-                  </Grid>
-                </Box>
-              </div>
-            </TabPanel>
-
-            <TabPanel value="2">
-              <div className="createdNFTS">
-                <Box sx={{ flexGrow: 1 }}>
-                  <br></br>
-                  <br></br>
-                  <Grid
-                    container
-                    spacing={{ xs: 4, md: 6 }}
-                    columns={{ xs: 4, sm: 8, md: 12 }}
-                  >
-                    {events &&
-                      events.map(
-                        ({
-                          category,
-                          user,
-                          nameVal,
-                          date,
-                          ticketID,
-                          stockPrice,
-                          description,
-                          numTickets,
-                        }) => {
-                          return (
-                            <Grid item xs={4} sm={6} md={3} key={ticketID}>
-                              <TicketCard
-                                data={{
-                                  category,
-                                  user,
-                                  nameVal,
-                                  date,
-                                  ticketID,
-                                  stockPrice,
-                                  description,
-                                  numTickets,
-                                }}
-                              />
-                            </Grid>
-                          );
-                        }
-                      )}
-                    {/* {Array.from(Array(12)).map((_, index) => (
-                      <Grid item xs={4} sm={6} md={3} key={index}>
-                        <TicketCard/>
-                      </Grid>
-                    ))} */}
-                  </Grid>
-                </Box>
-              </div>
-            </TabPanel>
-          </TabContext>
-        </Box>
+            <Box style={{ display: "flex", justifyContent: "center", margin: "50px" }}>
+              <Grid
+                container
+                spacing={4}
+              >
+                {displayTickets()}
+              </Grid>
+            </Box>
+        </TabContext>
       </div>
     </div>
   );

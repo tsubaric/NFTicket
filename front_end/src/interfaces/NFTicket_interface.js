@@ -17,3 +17,9 @@ export const getLastEventId = async () => {
     const contractRef = await getContractRef()
     return Number(await contractRef.getLastEventId())
 }
+
+export const getTicketBalance = async (address, eventId) => {
+    const contractRef = await getContractRef()
+    const balance = await contractRef.balanceOf(address, eventId)
+    return Number(balance)
+}

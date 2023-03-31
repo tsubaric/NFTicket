@@ -39,6 +39,7 @@ export const getEventInfo = async (eventId) => {
     });
   const storage = getStorage();
   const imageRef = storageRef(storage, `events/${eventId}/image.jpg`);
+  // TODO: update to store the image url in the events database so we dont need to do this
   await getDownloadURL(imageRef)
     .then((url) => {
       events[0].thumbnail = url;
