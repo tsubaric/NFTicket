@@ -1,18 +1,8 @@
 import * as React from "react";
 import "../styles/MyTicketsPage.css";
 import Box from "@mui/material/Box";
-import { ButtonGroup } from "@mui/material";
-import { experimentalStyled as styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import PersonIcon from "@mui/icons-material/Person";
-import BrushIcon from "@mui/icons-material/Brush";
 import TicketCard from "../components/TicketCard";
-import events from "../assets/festival.json";
 import { useState, useEffect } from "react";
 import {
   getLastEventId,
@@ -21,29 +11,27 @@ import {
 import { getEventInfo } from "../interfaces/firebase_interface";
 
 export default function MyTicketsPage() {
-  const [value, setValue] = React.useState("1");
   const [ticketBalance, setTicketBalance] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   const loadOwnedTickets = async () => {
     // get address of connected wallet
-    let address = await window.ethereum.request({ method: "eth_requestAccounts" });
+    let address = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
     address = address[0];
 
     // grab balance of each event id
     // NOTE: this is not scalable, but for now it works
-      //
+    //
     const lastEventId = await getLastEventId();
     const balances = [];
     for (let i = 0; i <= lastEventId; i++) {
       const balance = await getTicketBalance(address, i);
       if (balance > 0) {
         const info = await getEventInfo(i);
-        balances.push({ eventId: i, balance: balance, eventInfo: info[0]});
+        balances.push({ eventId: i, balance: balance, eventInfo: info[0] });
         setTicketBalance(balances);
       }
     }
@@ -53,20 +41,22 @@ export default function MyTicketsPage() {
   const displayTickets = () => {
     const ticketCards = [];
     ticketBalance.forEach((ticket) => {
-        for (let i = 0; i < ticket.balance; i++) {
-            ticketCards.push(
+      for (let i = 0; i < ticket.balance; i++) {
+        ticketCards.push(
+            <Grid item xs={2} sm={2} md={2} lg={2}>
                 <TicketCard
-                  key={ticket.eventId}
+                  key={ticket.eventId + "-" + i} // just so it is unique
                   data={{
-                      nameVal: ticket.eventInfo.eventName
+                    nameVal: ticket.eventInfo.eventName,
                   }}
                 />
-            );
-        }
+            </Grid>
+        );
+      }
     });
 
-    return <Grid container>{ticketCards}</Grid>;
-  }
+    return ticketCards;
+  };
 
   useEffect(() => {
     console.log("loading owned tickets...");
@@ -79,30 +69,14 @@ export default function MyTicketsPage() {
   }
   return (
     <div className="main-container">
-      <div className="tabs">
-        <Box sx={{ width: "100%", typography: "body1" }}>
-          <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <TabList
-                onChange={handleChange}
-                aria-label="lab API tabs example"
-              >
-                <Tab id="tab1" icon={<PersonIcon />} label="OWNED" value="1" />
-                <Tab id="tab2" icon={<BrushIcon />} label="CREATED" value="2" />
-              </TabList>
-            </Box>
-            <TabPanel value="1">
-              <div className="ownedNFTS">
-                <Box sx={{ flexGrow: 1 }}>
-                    {displayTickets()}
-                </Box>
-              </div>
-            </TabPanel>
-
-            <TabPanel value="2">
-              <div className="createdNFTS"></div>
-            </TabPanel>
-          </TabContext>
+      <div className="ownedNFTS">
+        <Box style={{ display: "flex", justifyContent: "center", margin: "50px" }}>
+          <Grid
+            container
+            spacing={4}
+          >
+            {displayTickets()}
+          </Grid>
         </Box>
       </div>
     </div>
