@@ -7,6 +7,8 @@ import ContractData from "../NFTicket.json";
 export default function MintButton(props) {
   const [amount, setAmount] = React.useState(0);
 
+  console.log("props: ", props);
+
   const handleChange = (event) => {
     setAmount(event.target.value);
   };

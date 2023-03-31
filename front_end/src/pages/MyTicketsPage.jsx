@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./MyTicketsPage.css";
+import "../styles/MyTicketsPage.css";
 import Box from "@mui/material/Box";
 import { ButtonGroup } from "@mui/material";
 import { experimentalStyled as styled } from "@mui/material/styles";
