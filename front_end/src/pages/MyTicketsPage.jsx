@@ -13,15 +13,70 @@ import PersonIcon from "@mui/icons-material/Person";
 import BrushIcon from "@mui/icons-material/Brush";
 import TicketCard from "../components/TicketCard";
 import events from "../assets/festival.json";
+import { useState, useEffect } from "react";
+import {
+  getLastEventId,
+  getTicketBalance,
+} from "../interfaces/NFTicket_interface";
+import { getEventInfo } from "../interfaces/firebase_interface";
 
 export default function MyTicketsPage() {
   const [value, setValue] = React.useState("1");
+  const [ticketBalance, setTicketBalance] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const loadOwnedTickets = async () => {
+    // get address of connected wallet
+    let address = await window.ethereum.request({ method: "eth_requestAccounts" });
+    address = address[0];
 
+    // grab balance of each event id
+    // NOTE: this is not scalable, but for now it works
+      //
+    const lastEventId = await getLastEventId();
+    const balances = [];
+    for (let i = 0; i <= lastEventId; i++) {
+      const balance = await getTicketBalance(address, i);
+      if (balance > 0) {
+        const info = await getEventInfo(i);
+        balances.push({ eventId: i, balance: balance, eventInfo: info[0]});
+        setTicketBalance(balances);
+      }
+    }
+    setIsLoading(false);
+  };
+
+  const displayTickets = () => {
+    const ticketCards = [];
+    ticketBalance.forEach((ticket) => {
+        for (let i = 0; i < ticket.balance; i++) {
+            ticketCards.push(
+                <TicketCard
+                  key={ticket.eventId}
+                  data={{
+                      nameVal: ticket.eventInfo.eventName
+                  }}
+                />
+            );
+        }
+    });
+
+    return <Grid container>{ticketCards}</Grid>;
+  }
+
+  useEffect(() => {
+    console.log("loading owned tickets...");
+    loadOwnedTickets();
+    console.log(ticketBalance);
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="main-container">
       <div className="tabs">
@@ -37,22 +92,15 @@ export default function MyTicketsPage() {
               </TabList>
             </Box>
             <TabPanel value="1">
-
               <div className="ownedNFTS">
                 <Box sx={{ flexGrow: 1 }}>
-                  <Grid
-                    container
-                    spacing={{ xs: 4, md: 6 }}
-                    columns={{ xs: 4, sm: 8, md: 12 }}
-                  >
-                  </Grid>
+                    {displayTickets()}
                 </Box>
               </div>
             </TabPanel>
 
             <TabPanel value="2">
-              <div className="createdNFTS">
-              </div>
+              <div className="createdNFTS"></div>
             </TabPanel>
           </TabContext>
         </Box>
