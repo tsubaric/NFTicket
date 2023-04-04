@@ -21,6 +21,8 @@
     "concurrently": "^7.6.0",
     "dotenv": "^16.0.3",
     "firebase": "^9.17.1",
+    "react-is": "^16.13.1",
+    "react-responsive-carousel": "^3.2.23",
     "web3.storage": "^4.5.4"
   }
 }

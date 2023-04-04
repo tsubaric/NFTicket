@@ -13,6 +13,8 @@ export default function Event() {
     name: "",
     description: "",
     thumbnail: "",
+    price: 0,
+    avaliableTickets: 0,
   });
   const [isLoading, setIsLoading] = React.useState(true);
 
@@ -23,6 +25,8 @@ export default function Event() {
         name: eventInfo[0].eventName,
         description: eventInfo[0].eventDescription,
         thumbnail: eventInfo[0].thumbnail,
+        price: Number((eventInfo[0].gaTicketPrice * 0.0005361).toFixed(5)),
+        avaliableTickets: eventInfo[0].numGATickets,
       });
     });
   };
@@ -42,7 +46,7 @@ export default function Event() {
           width: "90%",
           marginLeft: "5%",
           marginRight: "5%",
-          height: 350,
+          height: 410,
           backgroundColor: blue[100],
           display: "flex",
           justifyContent: "center",
@@ -60,7 +64,7 @@ export default function Event() {
             justifyContent="left"
           />
           <div>
-            <div>
+            <div style={{ marginLeft: 70 }}>
               <Typography variant="h1" component="div" gutterBottom>
                 <div style={{ color: "black", fontFamily: "Roboto" }}>
                   {eventInfo.name}
@@ -68,6 +72,8 @@ export default function Event() {
               </Typography>
               <Typography variant="body1" gutterBottom>
                 <div>DATE</div>
+                <div>Ticket Price: {eventInfo.price} ETH</div>
+                <div>Avaliable Tickets: {eventInfo.avaliableTickets}</div>
               </Typography>
               <Typography variant="h3" gutterBottom fontStyle="italic">
                 <div style={{ color: "black", fontFamily: "Roberto" }}>
