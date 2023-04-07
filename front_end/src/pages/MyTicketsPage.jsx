@@ -17,7 +17,7 @@ import TabList from "@mui/lab/TabList";
 export default function MyTicketsPage() {
   const [ticketBalance, setTicketBalance] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [address, setAddress] = useState("");
 
   const loadOwnedTickets = async () => {
     // get address of connected wallet
@@ -25,6 +25,7 @@ export default function MyTicketsPage() {
       method: "eth_requestAccounts",
     });
     address = address[0];
+    setAddress(address);
 
     // grab balance of each event id
     // NOTE: this is not scalable, but for now it works
@@ -47,13 +48,16 @@ export default function MyTicketsPage() {
     ticketBalance.forEach((ticket) => {
       for (let i = 0; i < ticket.balance; i++) {
         ticketCards.push(
-            <Grid item xs={2} sm={2} md={2} lg={2}>
-                <TicketCard
-                  key={ticket.eventId + "-" + i} // just so it is unique
-                  eventName={ticket.eventInfo.eventName}
-                  eventImage={ticket.eventInfo.thumbnail}
-                />
-            </Grid>
+          <Grid item xs={2} sm={2} md={2} lg={2}>
+            <TicketCard
+              key={ticket.eventId + "-" + i} // just so it is unique
+              eventId={ticket.eventId}
+              eventName={ticket.eventInfo.eventName}
+              eventImage={ticket.eventInfo.thumbnail}
+              owned={true}
+              address={address}
+            />
+          </Grid>
         );
       }
     });
@@ -75,18 +79,21 @@ export default function MyTicketsPage() {
       <div className="ownedNFTS">
         <TabContext value="1">
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <TabList>
-                <Tab id="tab1" icon={<PersonIcon />} label="OWNED" value="1" />
-              </TabList>
-            </Box>
-            <Box style={{ display: "flex", justifyContent: "center", margin: "50px" }}>
-              <Grid
-                container
-                spacing={4}
-              >
-                {displayTickets()}
-              </Grid>
-            </Box>
+            <TabList>
+              <Tab id="tab1" icon={<PersonIcon />} label="OWNED" value="1" />
+            </TabList>
+          </Box>
+          <Box
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "50px",
+            }}
+          >
+            <Grid container spacing={4}>
+              {displayTickets()}
+            </Grid>
+          </Box>
         </TabContext>
       </div>
     </div>
