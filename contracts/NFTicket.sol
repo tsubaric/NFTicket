@@ -77,7 +77,7 @@ contract NFTicket is ERC1155 {
     // increment the event id each time a new event is created
     function generateTicketId (uint256 eventId, uint256 ticketNumber) internal pure returns (uint256) {
         require(eventId <= 999, "Event ID must be less than 1000");
-        require(ticketNumber <= 999999, "Ticket number must be less than 99999999");
+        require(ticketNumber <= 999999, "Ticket number must be less than 999999");
 
         return eventId * 1000000 + ticketNumber;
     }
