@@ -21,6 +21,7 @@ contract NFTicket is ERC1155 {
     struct Ticket {
         uint256 ticketId; // ticketId is the eventId concatenated with the ticket number
         bool redeemed;
+        address owner;
     }
 
     mapping (uint256 => Event) private allEventsMap; // event id -> Event struct
@@ -67,8 +68,9 @@ contract NFTicket is ERC1155 {
         // doing this after minting in case mint fails
         for (uint i = 0; i < amount; i++){
             ticketCounters[eventId].increment(); // increment ticket counter
-            allTicketsMap[ids[i]] = Ticket(ids[i], false);  // update ticket information
+            allTicketsMap[ids[i]] = Ticket(ids[i], false, msg.sender);  // update ticket information
             ownedTicketsMap[msg.sender].push(ids[i]);  // add ticket to owner mapping
+            allEventsMap[eventId].ticketsAvailable--;  // update available tickets
         }
     }
 
@@ -80,18 +82,15 @@ contract NFTicket is ERC1155 {
         return eventId * 1000000 + ticketNumber;
     }
 
+    function redeemTicket (uint256 ticketId) public {
+        require(allTicketsMap[ticketId].owner == msg.sender, "Only the ticket owner can redeem a ticket");
+        allTicketsMap[ticketId].redeemed = true;
+    }
+
     // ------------------------
     // getters defined below
     function getLastEventId () public view returns (uint256) {
         return eventCounter.current() - 1;
-    }
-
-    function getTicketsAvailable (uint256 eventId) public view returns (uint256) {
-        return allEventsMap[eventId].ticketsAvailable;
-    }
-
-    function getTicketPrice (uint256 eventId) public view returns (uint256) {
-        return allEventsMap[eventId].ticketPrice;
     }
 
     function getEventInfo (uint256 eventId) public view returns (Event memory) {
@@ -100,6 +99,10 @@ contract NFTicket is ERC1155 {
 
     function getAllOwnedTickets () public view returns (uint256[] memory ticketIds) {
         return ownedTicketsMap[msg.sender];
+    }
+
+    function getTicketInfo (uint256 ticketId) public view returns (Ticket memory) {
+        return allTicketsMap[ticketId];
     }
 
 }

@@ -12,19 +12,25 @@ describe("NFTicket", async function() {
     })
 
     it("should let a user create an event", async function() {
+        [user] = await ethers.getSigners();
 
         // create event
-        const tx = await nfticket.createEvent(1000, 10) // amount, price
+        const amount = 1000;
+        const price = 10;
+        const tx = await nfticket.createEvent(amount, price) // amount, price
         await tx.wait()
 
         // get event info from contract
         const lastEventId = await nfticket.getLastEventId();
-        const ticketsAvailable = await nfticket.getTicketsAvailable(lastEventId);
-        const ticketPrice = await nfticket.getTicketPrice(lastEventId);
+        const eventInfo = await nfticket.getEventInfo(lastEventId);
 
-        expect(lastEventId).to.equal(1);  // events start at id 1
-        expect(ticketsAvailable).to.equal(1000);
-        expect(ticketPrice).to.equal(10);
+        // verify event information is correct
+        expect(eventInfo.eventId).to.equal(lastEventId);
+        expect(eventInfo.ticketAmount).to.equal(amount);
+        expect(eventInfo.ticketPrice).to.equal(price);
+        expect(eventInfo.ticketsAvailable).to.equal(amount);
+        expect(eventInfo.eventOwner).to.equal(user.address);
+
 
     });
 
@@ -43,13 +49,48 @@ describe("NFTicket", async function() {
         // check user balance
         const ownedTickets = await nfticket.getAllOwnedTickets();
 
+        // get event info
+        const lastEventId = await nfticket.getLastEventId();
+        const firstEventInfo = await nfticket.getEventInfo(lastEventId - 1);
+        const secondEventInfo = await nfticket.getEventInfo(lastEventId);
+
+        // get ticket info
+        const ticketInfo = await nfticket.getTicketInfo(2000001);
+
         // ticket id of form    000 | 00000000
         //                  event id    ticket id
         expect(ownedTickets.length).to.equal(5);
         expect(ownedTickets[0].toNumber()).to.equal(1000000);
         expect(ownedTickets[4].toNumber()).to.equal(2000001);
+        expect(firstEventInfo.ticketsAvailable).to.equal(997);
+        expect(secondEventInfo.ticketsAvailable).to.equal(998);
+        expect(ticketInfo.owner).to.equal(user.address);
 
+    })
 
+    it("should let a user redeem tickets", async function () {
+        // create event
+        await nfticket.createEvent(1000, 10);
+
+        // mint a ticket
+        [user, otherUser] = await ethers.getSigners();
+        const tx = await nfticket.mintTickets(1, 1);
+        await tx.wait();
+
+        // git ticket info
+        let ticketInfo = await nfticket.getTicketInfo(1000000);
+        // should start with redeemed = false
+        expect(ticketInfo.redeemed).to.equal(false);
+
+        // another user tries to redeem ticket
+        await expect(nfticket.connect(otherUser).redeemTicket(1000000)).to.be.revertedWith("Only the ticket owner can redeem a ticket");
+        ticketInfo = await nfticket.getTicketInfo(1000000);
+        expect(ticketInfo.redeemed).to.equal(false);
+
+        // owner should be able to redeem ticket
+        await nfticket.redeemTicket(1000000);
+        ticketInfo = await nfticket.getTicketInfo(1000000);
+        expect(ticketInfo.redeemed).to.equal(true);
 
     })
 
