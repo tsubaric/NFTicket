@@ -83,7 +83,8 @@ describe("NFTicket", async function() {
         expect(ticketInfo.redeemed).to.equal(false);
 
         // another user tries to redeem ticket
-        await expect(nfticket.connect(otherUser).redeemTicket(1000000)).to.be.revertedWith("Only the ticket owner can redeem a ticket");
+        await expect(nfticket.connect(otherUser).redeemTicket(1000000))
+            .to.be.revertedWith("Only the ticket owner can redeem a ticket");
         ticketInfo = await nfticket.getTicketInfo(1000000);
         expect(ticketInfo.redeemed).to.equal(false);
 
