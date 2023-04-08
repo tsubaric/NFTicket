@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/trbiv/OneDrive/School/Spring 2023/senior_design_pt2/NFTicket/contracts/NFTicket.sol": {
-      "lastModificationDate": 1677637103690,
-      "contentHash": "02460b12db69494eb47983eea5d44397",
+      "lastModificationDate": 1680927922340,
+      "contentHash": "2154ff4fdf84c44479d04489423edd2f",
       "sourceName": "contracts/NFTicket.sol",
       "solcConfig": {
         "version": "0.8.17",
