@@ -42,9 +42,6 @@ describe("NFTicket", async function() {
 
         // check user balance
         const ownedTickets = await nfticket.getAllOwnedTickets();
-        //for (let i = 0; i < ownedTickets.length; i++){
-            //console.log(ownedTickets[i].toNumber());
-        //}
 
         // ticket id of form    000 | 00000000
         //                  event id    ticket id
