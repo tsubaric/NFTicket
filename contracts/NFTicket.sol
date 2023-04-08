@@ -47,7 +47,6 @@ contract NFTicket is ERC1155 {
 
     function mintTickets (uint256 eventId, uint256 amount) public payable {
         // TODO: make this actually charge for the tickets
-        //require(msg.value == ALL_GA_TICKETS_PRICE[eventId] * amount, "Incorrect Amount of ETH");
         require(allEventsMap[eventId].ticketsAvailable >= amount, "Insufficient tickets remaining");
         require(amount > 0, "Must mint at least 1 ticket");
 
