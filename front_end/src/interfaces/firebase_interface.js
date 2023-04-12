@@ -70,7 +70,7 @@ export const updateEvents = async () => {
   const cur_events = [];
   const lastEventId = await getLastEventId();
   console.log("last event id: " + lastEventId);
-  for (let i = 0; i < lastEventId; i++) {
+  for (let i = 0; i <= lastEventId; i++) {
     const dbRef = ref(database);
     await get(child(dbRef, `events/${i}`)).then((snapshot) => {
       if (snapshot.exists()) {
