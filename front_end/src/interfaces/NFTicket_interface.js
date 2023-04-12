@@ -41,3 +41,26 @@ export const mintTickets = async (eventId, amount) => {
     console.log("transaction confirmed");
     return receipt;
 }
+
+export const getAllOwnedTickets = async () => {
+    const contractRef = await getContractRef()
+    const tickets = [];
+    const response = await contractRef.getAllOwnedTickets()
+    response.forEach((ticket) => {
+        console.log(ticket)
+        getTicketInfo(Number(ticket)).then((ticketInfo) => {
+            tickets.push(ticketInfo)
+        })
+    })
+    return tickets
+}
+
+export const getTicketInfo = async (ticketId) => {
+    const contractRef = await getContractRef()
+    const ticket = await contractRef.getTicketInfo(ticketId)
+    return {
+        ticketId: Number(ticket[0]),
+        redeemed: ticket[1],
+        owner: ticket[2],
+    }
+}

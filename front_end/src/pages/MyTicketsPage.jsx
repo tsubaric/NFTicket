@@ -13,58 +13,27 @@ import TabContext from "@mui/lab/TabContext";
 import PersonIcon from "@mui/icons-material/Person";
 import Tab from "@mui/material/Tab";
 import TabList from "@mui/lab/TabList";
+import { getAllOwnedTickets } from "../interfaces/NFTicket_interface";
+import { getTicketInfo } from "../interfaces/NFTicket_interface";
 
 export default function MyTicketsPage() {
-  const [ticketBalance, setTicketBalance] = useState([]);
+  const [ownedTickets, setOwnedTickets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
 
   const loadOwnedTickets = async () => {
-    // get address of connected wallet
-    let address = await window.ethereum.request({
-      method: "eth_requestAccounts",
+    // load all the tickets that the user owned
+    getAllOwnedTickets().then((tickets) => {
+        setOwnedTickets(tickets);
+        setIsLoading(false);
     });
-    address = address[0];
-
-    // grab balance of each event id
-    // NOTE: this is not scalable, but for now it works
-    //
-    const lastEventId = await getLastEventId();
-    const balances = [];
-    for (let i = 0; i <= lastEventId; i++) {
-      const balance = await getTicketBalance(address, i);
-      if (balance > 0) {
-        const info = await getEventInfo(i);
-        balances.push({ eventId: i, balance: balance, eventInfo: info[0] });
-        setTicketBalance(balances);
-      }
-    }
-    setIsLoading(false);
   };
 
-  const displayTickets = () => {
-    const ticketCards = [];
-    ticketBalance.forEach((ticket) => {
-      for (let i = 0; i < ticket.balance; i++) {
-        ticketCards.push(
-            <Grid item xs={2} sm={2} md={2} lg={2}>
-                <TicketCard
-                  key={ticket.eventId + "-" + i} // just so it is unique
-                  eventName={ticket.eventInfo.eventName}
-                  eventImage={ticket.eventInfo.thumbnail}
-                />
-            </Grid>
-        );
-      }
-    });
-
-    return ticketCards;
-  };
 
   useEffect(() => {
     console.log("loading owned tickets...");
     loadOwnedTickets();
-    console.log(ticketBalance);
+    console.log("owned tickets: ", ownedTickets);
   }, []);
 
   if (isLoading) {
@@ -84,7 +53,17 @@ export default function MyTicketsPage() {
                 container
                 spacing={4}
               >
-                {displayTickets()}
+                {ownedTickets.map((ticket) => {
+                    return (
+                        <Grid item xs={12} sm={6} md={4} lg={3}>
+                        <TicketCard
+                            key={ticket.ticketId}
+                            eventName={"event name here"}
+                            eventImage={null}
+                        />
+                        </Grid>
+                    );
+                })}
               </Grid>
             </Box>
         </TabContext>
