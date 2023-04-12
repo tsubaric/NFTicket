@@ -16,9 +16,9 @@ const getContractRef = async () => {
 export const createEvent = async (ticketAmount, ticketPrice) => {
     const contractRef = await getContractRef()
     const transaction = await contractRef.createEvent(ticketAmount, ticketPrice);
-    console.log("waiting for transaction confirmation...");
+    console.log("waiting for event to be created...");
     const receipt = await transaction.wait();
-    console.log("transaction confirmed!");
+    console.log("event created");
     return receipt;
 }
 
@@ -31,4 +31,13 @@ export const getTicketBalance = async (address, eventId) => {
     const contractRef = await getContractRef()
     const balance = await contractRef.balanceOf(address, eventId)
     return Number(balance)
+}
+
+export const mintTickets = async (eventId, amount) => {
+    const contractRef = await getContractRef()
+    const transaction = await contractRef.mintTickets(eventId, amount);
+    console.log("waiting for transaction to be confirmed...");
+    const receipt = await transaction.wait();
+    console.log("transaction confirmed");
+    return receipt;
 }
