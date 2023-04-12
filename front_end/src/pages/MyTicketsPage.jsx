@@ -19,7 +19,7 @@ import { getTicketInfo } from "../interfaces/NFTicket_interface";
 export default function MyTicketsPage() {
   const [ownedTickets, setOwnedTickets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [address, setAddress] = useState("");
 
   const loadOwnedTickets = async () => {
     // load all the tickets that the user owned
