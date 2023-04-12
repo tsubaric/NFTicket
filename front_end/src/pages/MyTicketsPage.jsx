@@ -40,6 +40,7 @@ export default function MyTicketsPage() {
         const info = await getEventInfo(i);
         balances.push({ eventId: i, balance: balance, eventInfo: info[0] });
         setTicketBalance(balances);
+        setDisplayList(balances);
       }
     }
     setIsLoading(false);
