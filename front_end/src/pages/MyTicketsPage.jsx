@@ -22,6 +22,9 @@ export default function MyTicketsPage() {
                 return await getTicketInfo(Number(ticket))
             }
         })
+        console.log("found owned tickets: ", ownedTicketsInfo)
+        console.log("found owned tickets: ", ownedTicketsInfo[0])
+        console.log("found owned tickets: ", ownedTicketsInfo.length)
         setOwnedTickets(ownedTicketsInfo)
 
     })
@@ -42,7 +45,7 @@ export default function MyTicketsPage() {
               </TabList>
             </Box>
             <Box style={{ display: "flex", justifyContent: "center", margin: "50px" }}>
-                {
+                { ownedTickets[0] === 0 ? <h1>No tickets found</h1> :
                     ownedTickets.map((t, i) => {
                         return <TicketCard
                             key={i}

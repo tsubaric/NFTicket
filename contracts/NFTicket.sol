@@ -19,6 +19,7 @@ contract NFTicket is ERC1155 {
     }
 
     struct Ticket {
+        uint256 eventId;
         uint256 ticketId; // ticketId is the eventId concatenated with the ticket number
         bool redeemed;
         address owner;
@@ -30,7 +31,7 @@ contract NFTicket is ERC1155 {
     mapping (address => uint256[]) private ownedEventsMap; // user -> owned eventId
 
 
-    constructor() ERC1155("https://ipfs.io/ipfs/QmZHERTYLSB3EaTzmwCMXYkdSNvwfZm6ZLctoP7JrsDHma?filename={id}.json") {
+    constructor() ERC1155("gs://nfticket-f0356.appspot.com/metadata/{id}.json") {
         eventCounter.increment(); // start at event id 1
     }
 
@@ -68,7 +69,7 @@ contract NFTicket is ERC1155 {
         // doing this after minting in case mint fails
         for (uint i = 0; i < amount; i++){
             ticketCounters[eventId].increment(); // increment ticket counter
-            allTicketsMap[ids[i]] = Ticket(ids[i], false, msg.sender);  // update ticket information
+            allTicketsMap[ids[i]] = Ticket(eventId, ids[i], false, msg.sender);  // update ticket information
             ownedTicketsMap[msg.sender].push(ids[i]);  // add ticket to owner mapping
             allEventsMap[eventId].ticketsAvailable--;  // update available tickets
         }

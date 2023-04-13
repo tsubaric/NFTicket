@@ -95,4 +95,23 @@ describe("NFTicket", async function() {
 
     })
 
+    it("should return owned tickets", async function () {
+        await nfticket.createEvent(1000, 10);
+
+        let ownedTickets = await nfticket.getAllOwnedTickets();
+        expect(ownedTickets.length).to.equal(0);
+        console.log(ownedTickets);
+
+        // mint some tickets
+        [user, otherUser] = await ethers.getSigners();
+        const tx = await nfticket.mintTickets(1, 3);
+        await tx.wait();
+
+        // get owned tickets
+        ownedTickets = await nfticket.getAllOwnedTickets();
+        expect(ownedTickets.length).to.equal(3);
+        expect(ownedTickets[0].toNumber()).to.equal(1000000);
+        expect(ownedTickets[2].toNumber()).to.equal(1000002);
+    })
+
 });
