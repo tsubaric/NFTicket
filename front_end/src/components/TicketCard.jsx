@@ -71,26 +71,6 @@ export default function TicketCard(props) {
         >
           <Box component="form" sx={style}>
             <TextField
-              id="From"
-              required
-              label="From"
-              name="From"
-              type="text"
-              value={props.address}
-              disabled={true}
-            />
-            <br />
-            <TextField
-              id="eventId"
-              required
-              label="Event ID"
-              name="eventId"
-              type="text"
-              value={props.eventId}
-              disabled={true}
-            />
-            <br />
-            <TextField
               id="To"
               required
               label="To"
@@ -100,18 +80,6 @@ export default function TicketCard(props) {
                 setToAddress(e.target.value);
               }}
             />
-            <br />
-            <TextField
-              id="Amount"
-              required
-              label="Amount"
-              name="Amount"
-              type="number"
-              onChange={(e) => {
-                setAmount(e.target.value);
-              }}
-            />
-            <br />
             <Button
               id="createEventButton"
               style={{
