@@ -57,7 +57,9 @@ export const getTicketInfo = async (ticketId) => {
     }
 }
 
-export const transferTicket = async (eventId, amount, from, to) => {
+export const transferTicket = async (ticketId, amount, to) => {
   const contractRef = await getContractRef();
-  return contractRef.safeTransferFrom(from, to, eventId, amount, "0x00");
+  const from = await provider.getSigner();
+  console.log(from.address);
+  return contractRef.safeTransferFrom(from, to, ticketId, amount, "0x00");
 };

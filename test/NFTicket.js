@@ -100,7 +100,6 @@ describe("NFTicket", async function() {
 
         let ownedTickets = await nfticket.getAllOwnedTickets();
         expect(ownedTickets.length).to.equal(0);
-        console.log(ownedTickets);
 
         // mint some tickets
         [user, otherUser] = await ethers.getSigners();
@@ -112,6 +111,38 @@ describe("NFTicket", async function() {
         expect(ownedTickets.length).to.equal(3);
         expect(ownedTickets[0].toNumber()).to.equal(1000000);
         expect(ownedTickets[2].toNumber()).to.equal(1000002);
+    })
+
+    it("should transfer tickets", async function () {
+        await nfticket.createEvent(1000, 10);
+
+        // mint some tickets
+        [user, otherUser] = await ethers.getSigners();
+        let tx = await nfticket.mintTickets(1, 3);
+        await tx.wait();
+        tx = await nfticket.connect(otherUser).mintTickets(1, 2);
+        await tx.wait();
+
+        // balance before transfer
+        let userBalance = await nfticket.getAllOwnedTickets();
+        let otherUserBalance = await nfticket.connect(otherUser).getAllOwnedTickets();
+
+        expect(userBalance.length).to.equal(3);
+        expect(otherUserBalance.length).to.equal(2);
+
+        // transfer 1 ticket to other user
+        tx = await nfticket.transferTicket(userBalance[0].toNumber(), otherUser.address);
+        await tx.wait();
+
+        // balance after transfer
+        userBalance = await nfticket.getAllOwnedTickets();
+        otherUserBalance = await nfticket.connect(otherUser).getAllOwnedTickets();
+
+        expect(userBalance.length).to.equal(2);
+        expect(otherUserBalance.length).to.equal(3);
+
+
+
     })
 
 });

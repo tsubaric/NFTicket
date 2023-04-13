@@ -49,6 +49,7 @@ export default function MyTicketsPage() {
                           <TicketCard
                             key={i}
                             eventName={t.ticketId}
+                            ticketId={t.ticketId}
                             eventId={0}
                             owned={true}
                           />

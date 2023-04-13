@@ -31,7 +31,11 @@ export default function TicketCard(props) {
   const [toAddress, setToAddress] = useState("");
   const [amount, setAmount] = useState(0);
   const onSubmit = async () => {
-    await transferTicket(props.eventId, amount, props.address, toAddress);
+    console.log("Transfering ticket");
+    console.log(props.ticketId);
+    console.log(amount);
+    console.log(toAddress);
+    await transferTicket(props.ticketId, amount, toAddress);
     setTransferOpen(false);
   };
 

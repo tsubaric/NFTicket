@@ -88,6 +88,25 @@ contract NFTicket is ERC1155 {
         allTicketsMap[ticketId].redeemed = true;
     }
 
+    function transferTicket (uint256 ticketId, address recipient) public {
+        require(allTicketsMap[ticketId].owner == msg.sender, "Only the ticket owner can transfer a ticket");
+        allTicketsMap[ticketId].owner = recipient;
+        ownedTicketsMap[msg.sender] = removeTicketId(ownedTicketsMap[msg.sender], ticketId);
+        ownedTicketsMap[recipient].push(ticketId);
+    }
+
+    function removeTicketId (uint256[] memory ticketIds, uint256 ticketId) internal pure returns (uint256[] memory) {
+        uint256[] memory newTicketIds = new uint256[](ticketIds.length - 1);
+        uint256 j = 0;
+        for (uint i = 0; i < ticketIds.length; i++) {
+            if (ticketIds[i] != ticketId) {
+                newTicketIds[j] = ticketIds[i];
+                j++;
+            }
+        }
+        return newTicketIds;
+    }
+
     // ------------------------
     // getters defined below
     function getLastEventId () public view returns (uint256) {
