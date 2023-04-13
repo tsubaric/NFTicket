@@ -90,6 +90,7 @@ contract NFTicket is ERC1155 {
 
     function transferTicket (uint256 ticketId, address recipient) public {
         require(allTicketsMap[ticketId].owner == msg.sender, "Only the ticket owner can transfer a ticket");
+        safeTransferFrom(msg.sender, recipient, ticketId, 1, "");
         allTicketsMap[ticketId].owner = recipient;
         ownedTicketsMap[msg.sender] = removeTicketId(ownedTicketsMap[msg.sender], ticketId);
         ownedTicketsMap[recipient].push(ticketId);

@@ -131,7 +131,8 @@ describe("NFTicket", async function() {
         expect(otherUserBalance.length).to.equal(2);
 
         // transfer 1 ticket to other user
-        tx = await nfticket.transferTicket(userBalance[0].toNumber(), otherUser.address);
+        const transferedTicketId = userBalance[0].toNumber();
+        tx = await nfticket.transferTicket(transferedTicketId, otherUser.address);
         await tx.wait();
 
         // balance after transfer
@@ -140,6 +141,16 @@ describe("NFTicket", async function() {
 
         expect(userBalance.length).to.equal(2);
         expect(otherUserBalance.length).to.equal(3);
+
+        // check ticket ownership
+        let ticketInfo = await nfticket.getTicketInfo(transferedTicketId);
+        expect(ticketInfo.owner).to.equal(otherUser.address);
+
+        // that ticket should not be in user's balance
+        expect(userBalance.includes(transferedTicketId)).to.equal(false);
+
+        // ticket was transferred to other user
+        expect(await nfticket.balanceOf(otherUser.address, transferedTicketId)).to.equal(1);
 
 
 
