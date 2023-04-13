@@ -57,9 +57,12 @@ export const getTicketInfo = async (ticketId) => {
     }
 }
 
-export const transferTicket = async (ticketId, amount, to) => {
+export const transferTicket = async (ticketId, to) => {
   const contractRef = await getContractRef();
   const from = await provider.getSigner();
   console.log(from.address);
-  return contractRef.safeTransferFrom(from, to, ticketId, amount, "0x00");
+  const transaction = await contractRef.transferTicket(ticketId, to);
+  console.log("waiting for transaction to be confirmed...");
+  await transaction.wait();
+  console.log("transaction confirmed");
 };
