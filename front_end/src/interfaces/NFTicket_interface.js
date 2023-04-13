@@ -43,12 +43,7 @@ export const mintTickets = async (eventId, amount) => {
 
 export const getAllOwnedTickets = async () => {
     const contractRef = await getContractRef()
-    const response = await contractRef.getAllOwnedTickets()
-    const tickets_with_info = [];
-    response.map(async ticket => {
-        tickets_with_info.push(await getTicketInfo(ticket))
-    })
-    return tickets_with_info;
+    return await contractRef.getAllOwnedTickets()
 }
 
 export const getTicketInfo = async (ticketId) => {
