@@ -4,41 +4,31 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TicketCard from "../components/TicketCard";
 import { useState, useEffect } from "react";
-import {
-  getLastEventId,
-  getTicketBalance,
-} from "../interfaces/NFTicket_interface";
-import { getEventInfo } from "../interfaces/firebase_interface";
 import TabContext from "@mui/lab/TabContext";
 import PersonIcon from "@mui/icons-material/Person";
 import Tab from "@mui/material/Tab";
 import TabList from "@mui/lab/TabList";
 import { getAllOwnedTickets } from "../interfaces/NFTicket_interface";
-import { getTicketInfo } from "../interfaces/NFTicket_interface";
 
 export default function MyTicketsPage() {
   const [ownedTickets, setOwnedTickets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [address, setAddress] = useState("");
+  const [displayedTickets, setDisplayedTickets] = useState([]);
 
-  const loadOwnedTickets = async () => {
-    // load all the tickets that the user owned
-    getAllOwnedTickets().then((tickets) => {
-        setOwnedTickets(tickets);
-        setIsLoading(false);
-    });
-  };
 
+  async function loadTickets() {
+    const tickets = await getAllOwnedTickets()
+    console.log("tickets: ", tickets);
+    setOwnedTickets([...ownedTickets, tickets]);
+
+    setIsLoading(false);
+  }
 
   useEffect(() => {
-    console.log("loading owned tickets...");
-    loadOwnedTickets();
-    console.log("owned tickets: ", ownedTickets);
+    loadTickets();
   }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  if (isLoading) return <div>Loading...</div>;
   return (
     <div className="main-container">
       <div className="ownedNFTS">
@@ -49,22 +39,16 @@ export default function MyTicketsPage() {
               </TabList>
             </Box>
             <Box style={{ display: "flex", justifyContent: "center", margin: "50px" }}>
-              <Grid
-                container
-                spacing={4}
-              >
                 {ownedTickets.map((ticket) => {
+                    console.log(ticket.ticketId);
                     return (
-                        <Grid item xs={12} sm={6} md={4} lg={3}>
                         <TicketCard
                             key={ticket.ticketId}
                             eventName={"event name here"}
                             eventImage={null}
                         />
-                        </Grid>
                     );
                 })}
-              </Grid>
             </Box>
         </TabContext>
       </div>
