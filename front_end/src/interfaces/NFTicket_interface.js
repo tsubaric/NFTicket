@@ -50,9 +50,10 @@ export const getTicketInfo = async (ticketId) => {
     const contractRef = await getContractRef()
     const ticket = await contractRef.getTicketInfo(ticketId)
     return {
-        ticketId: Number(ticket[0]),
-        redeemed: ticket[1],
-        owner: ticket[2],
+        eventId: Number(ticket[0]),
+        ticketId: Number(ticket[1]),
+        redeemed: ticket[2],
+        owner: ticket[3],
     }
 }
 

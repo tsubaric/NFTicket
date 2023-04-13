@@ -14,20 +14,17 @@ export default function MyTicketsPage() {
   const [ownedTickets, setOwnedTickets] = useState([]);
 
 
-  function loadTickets() {
+  async function loadTickets() {
     // get ticket ids of owned tickets
-    getAllOwnedTickets().then((tickets) => {
-        const ownedTicketsInfo = tickets.map(async (ticket) => {
-            {
-                return await getTicketInfo(Number(ticket))
-            }
-        })
-        console.log("found owned tickets: ", ownedTicketsInfo)
-        console.log("found owned tickets: ", ownedTicketsInfo[0])
-        console.log("found owned tickets: ", ownedTicketsInfo.length)
-        setOwnedTickets(ownedTicketsInfo)
-
+    const tickets = await getAllOwnedTickets();
+    const promises = tickets.map((ticket) => {
+        {
+            return getTicketInfo(Number(ticket))
+        }
     })
+    const ownedTickets = await Promise.all(promises)
+    console.log("found owned tickets: ", ownedTickets)
+    setOwnedTickets(ownedTickets)
   }
 
   useEffect(() => {
@@ -47,12 +44,16 @@ export default function MyTicketsPage() {
             <Box style={{ display: "flex", justifyContent: "center", margin: "50px" }}>
                 { ownedTickets[0] === 0 ? <h1>No tickets found</h1> :
                     ownedTickets.map((t, i) => {
-                        return <TicketCard
+                        return (
+                            <>
+                          <TicketCard
                             key={i}
-                            eventName={"name"}
+                            eventName={t.ticketId}
                             eventId={0}
                             owned={true}
-                        />
+                          />
+                            </>
+                        )
                     })
                 }
             </Box>
