@@ -4,7 +4,6 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { database } from "../firebase.js";
 import { ref, set, get } from "firebase/database";
-import { Web3Storage } from "web3.storage";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
@@ -34,19 +33,6 @@ export default class CreateEventForm extends React.Component {
     this.uploadImage = this.uploadImage.bind(this);
   }
 
-  async generateMetadata(eventId) {
-      const metadata = {
-          name: `${this.state.eventName} Ticket`,
-          description: `Digital Ticket for ${this.state.eventName}`,
-          image: await getEventImageUrl(eventId),
-      };
-
-      this.state.numGATickets = parseInt(this.state.numGATickets);
-      for (let i = 0; i < this.state.numGATickets; i++) {
-          const ticketId = eventId * 1000000 + i;
-          console.log(ticketId);
-      }
-  };
 
   async handleCreate(event) {
     alert("Creating Event: " + this.state.eventName);
@@ -55,8 +41,8 @@ export default class CreateEventForm extends React.Component {
     // TODO: redirect to confirmation page
     // determine event id and create event
     createEvent(
-      this.state.gaTicketPrice,
-      this.state.numGATickets
+      this.state.numGATickets,
+      this.state.gaTicketPrice
     ).then((response) => {
         console.log("create event response: ", response);
         getLastEventId().then((eventId) => {

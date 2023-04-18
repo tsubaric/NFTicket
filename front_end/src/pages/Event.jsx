@@ -32,10 +32,10 @@ export default function Event() {
     getEventInfo(eventId).then((eventInfo) => {
       console.log("eventInfo: ", eventInfo);
       setEventInfo({
-        name: eventInfo[0].eventName,
-        description: eventInfo[0].eventDescription,
-        price: Number((eventInfo[0].gaTicketPrice * 0.0005361).toFixed(5)),
-        avaliableTickets: eventInfo[0].numGATickets,
+        name: eventInfo.eventName,
+        description: eventInfo.eventDescription,
+        price: Number((eventInfo.gaTicketPrice * 0.0005361).toFixed(5)),
+        avaliableTickets: eventInfo.numGATickets,
       });
     });
   };
