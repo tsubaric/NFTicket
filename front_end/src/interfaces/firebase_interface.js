@@ -38,32 +38,7 @@ export const getEventInfo = async (eventId) => {
     .catch((error) => {
       console.error(error);
     });
-  const storage = getStorage();
-  const imageRef = storageRef(storage, `events/${eventId}/image.jpg`);
-  // TODO: update to store the image url in the events database so we dont need to do this
-  await getDownloadURL(imageRef)
-    .then((url) => {
-      events[0].thumbnail = url;
-    })
-    .catch((error) => {
-      switch (error.code) {
-        case "storage/object-not-found":
-          console.log(error.code);
-          break;
-        case "storage/unauthorized":
-          console.log(error.code);
-          break;
-        case "storage/canceled":
-          console.log(error.code);
-          break;
-        case "storage/unknown":
-          console.log(error.code);
-          break;
-        default:
-          console.log(error.code);
-          break;
-      }
-    });
+
   return events;
 };
 
@@ -71,7 +46,7 @@ export const updateEvents = async () => {
   const cur_events = [];
   const lastEventId = await getLastEventId();
   console.log("last event id: " + lastEventId);
-  for (let i = 0; i <= lastEventId; i++) {
+  for (let i = 1; i <= lastEventId; i++) {
     const dbRef = ref(database);
     await get(child(dbRef, `events/${i}`)).then((snapshot) => {
       if (snapshot.exists()) {
@@ -80,33 +55,7 @@ export const updateEvents = async () => {
         console.log("No data available");
       }
     });
-    const storage = getStorage();
-    const imageRef = storageRef(storage, `events/${i}/image.jpg`);
-    await getDownloadURL(imageRef)
-      .then((url) => {
-        cur_events[i].thumbnail = url;
-      })
-      .catch((error) => {
-        switch (error.code) {
-          case "storage/object-not-found":
-            console.log(error.code);
-            break;
-          case "storage/unauthorized":
-            console.log(error.code);
-            break;
-          case "storage/canceled":
-            console.log(error.code);
-            break;
-          case "storage/unknown":
-            console.log(error.code);
-            break;
-          default:
-            console.log(error.code);
-            break;
-        }
-      });
   }
-
   return cur_events;
 };
 
@@ -128,5 +77,4 @@ export const uploadMetadata = async (id, metadata) => {
     // upload blob to firebase storage
     await uploadBytes(metadataRef, blob);
 
-    console.log("download url: ", await getDownloadURL(metadataRef));
 }

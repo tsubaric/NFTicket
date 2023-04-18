@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import Modal from "@mui/material/Modal";
@@ -13,7 +11,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { transferTicket } from "../interfaces/NFTicket_interface";
 import Button from "@mui/material/Button";
-
+import { getEventImageUrl, getEventInfo } from "../interfaces/firebase_interface";
 const style = {
   position: "absolute",
   top: "50%",
@@ -29,7 +27,27 @@ const style = {
 export default function TicketCard(props) {
   const [transferOpen, setTransferOpen] = useState(false);
   const [toAddress, setToAddress] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [imageUrl, setImageUrl] = useState("");
+  const [eventInfo, setEventInfo] = useState({});
+
+  useEffect(() => {
+      if (imageUrl === "") {
+          getEventImageUrl(props.eventId).then((url) => {
+              setImageUrl(url);
+            })
+      }
+  }, [imageUrl])
+
+  useEffect(() => {
+    if (eventInfo === {}) {
+        getEventInfo(props.eventId).then((info) => {
+            console.log("event info: ", info)
+            setEventInfo(info);
+        })
+    }
+  }, [])
+
+
   const onSubmit = async () => {
     console.log("Transfering ticket");
     console.log(props.ticketId);
@@ -38,21 +56,18 @@ export default function TicketCard(props) {
     setTransferOpen(false);
   };
 
-  if (props.owned === true) {
     return (
       <div>
-        <Card sx={{ maxWidth: 345 }}>
-          <CardHeader title={props.eventName} />
+        <Card sx={{ width: 200 }}>
+          <CardHeader title={eventInfo.eventName} />
           <CardMedia
             component="img"
-            height="194"
-            image={props.eventImage}
-            alt="NFT name"
+            height="100"
+            title="NFT Ticket Card"
+            alt="Event Image"
+            image={imageUrl}
           />
           <CardActions disableSpacing>
-            <IconButton aria-label="add to cart">
-              <ShoppingCartIcon />
-            </IconButton>
             <IconButton
               aria-label="Transfer Ticket"
               onClick={() => setTransferOpen(true)}
@@ -97,26 +112,7 @@ export default function TicketCard(props) {
         </Modal>
       </div>
     );
-  } else {
-    return (
-      <Card sx={{ maxWidth: 345 }}>
-        <CardHeader title={props.eventName} />
-        <CardMedia
-          component="img"
-          height="194"
-          image={props.eventImage}
-          alt="NFT name"
-        />
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to cart">
-            <ShoppingCartIcon />
-          </IconButton>
-        </CardActions>
-      </Card>
-    );
-  }
 }
-
 /*
 return (
     <Card sx={{ maxWidth: 345 }}>

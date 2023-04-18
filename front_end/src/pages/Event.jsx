@@ -6,17 +6,27 @@ import { useParams } from "react-router-dom";
 import { getEventInfo } from "../interfaces/firebase_interface";
 import { Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
+import { getEventImageUrl } from "../interfaces/firebase_interface";
 
 export default function Event() {
   const { eventId } = useParams();
   const [eventInfo, setEventInfo] = React.useState({
     name: "",
     description: "",
-    thumbnail: "",
     price: 0,
     avaliableTickets: 0,
   });
   const [isLoading, setIsLoading] = React.useState(true);
+
+  // load image url
+  const [imageUrl, setImageUrl] = React.useState("");
+  useEffect(() => {
+    if (imageUrl === "") {
+        getEventImageUrl(eventId).then((url) => {
+            setImageUrl(url);
+        })
+    }
+  }, [imageUrl])
 
   const updateEventInfo = async () => {
     getEventInfo(eventId).then((eventInfo) => {
@@ -24,7 +34,6 @@ export default function Event() {
       setEventInfo({
         name: eventInfo[0].eventName,
         description: eventInfo[0].eventDescription,
-        thumbnail: eventInfo[0].thumbnail,
         price: Number((eventInfo[0].gaTicketPrice * 0.0005361).toFixed(5)),
         avaliableTickets: eventInfo[0].numGATickets,
       });
@@ -58,7 +67,7 @@ export default function Event() {
         <div style={{ display: "flex" }}>
           <img
             alt=""
-            src={eventInfo.thumbnail}
+            src={imageUrl}
             width={350}
             height={350}
             justifyContent="left"

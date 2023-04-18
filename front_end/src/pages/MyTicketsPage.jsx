@@ -1,8 +1,7 @@
 import * as React from "react";
 import "../styles/MyTicketsPage.css";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import TicketCard from "../components/TicketCard";
+import TicketCard from "../components/TicketCard.jsx";
 import { useState, useEffect } from "react";
 import TabContext from "@mui/lab/TabContext";
 import PersonIcon from "@mui/icons-material/Person";
@@ -46,15 +45,11 @@ export default function MyTicketsPage() {
                 { ownedTickets[0] === 0 ? <h1>No tickets found</h1> :
                     ownedTickets.map((t, i) => {
                         return (
-                            <>
                           <TicketCard
                             key={i}
-                            eventName={t.ticketId}
                             ticketId={t.ticketId}
-                            eventId={0}
-                            owned={true}
+                            eventId={t.eventId}
                           />
-                            </>
                         )
                     })
                 }
