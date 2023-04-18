@@ -3,8 +3,9 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
@@ -28,7 +29,9 @@ export default function TicketCard(props) {
   const [transferOpen, setTransferOpen] = useState(false);
   const [toAddress, setToAddress] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [eventName, setEventName] = useState("");
   const [eventInfo, setEventInfo] = useState({});
+
 
   useEffect(() => {
       if (imageUrl === "") {
@@ -39,12 +42,12 @@ export default function TicketCard(props) {
   }, [imageUrl])
 
   useEffect(() => {
-    if (eventInfo === {}) {
-        getEventInfo(props.eventId).then((info) => {
-            console.log("event info: ", info)
-            setEventInfo(info);
-        })
-    }
+      const loadEventInfo = async () => {
+          const info = await getEventInfo(props.eventId);
+          console.log(info);
+          setEventInfo(info);
+      }
+      loadEventInfo();
   }, [])
 
 
@@ -62,11 +65,13 @@ export default function TicketCard(props) {
           <CardHeader title={eventInfo.eventName} />
           <CardMedia
             component="img"
-            height="100"
+            height="150"
             title="NFT Ticket Card"
             alt="Event Image"
             image={imageUrl}
           />
+          <CardContent>
+          </CardContent>
           <CardActions disableSpacing>
             <IconButton
               aria-label="Transfer Ticket"

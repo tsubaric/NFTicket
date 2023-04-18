@@ -39,7 +39,7 @@ export const getEventInfo = async (eventId) => {
       console.error(error);
     });
 
-  return events;
+  return events[0];
 };
 
 export const updateEvents = async () => {
