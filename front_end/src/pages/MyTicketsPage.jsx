@@ -45,11 +45,13 @@ export default function MyTicketsPage() {
                 { ownedTickets[0] === 0 ? <h1>No tickets found</h1> :
                     ownedTickets.map((t, i) => {
                         return (
+                          <div style={{ padding: "15px"}}>
                           <TicketCard
                             key={i}
                             ticketId={t.ticketId}
                             eventId={t.eventId}
                           />
+                          </div>
                         )
                     })
                 }
