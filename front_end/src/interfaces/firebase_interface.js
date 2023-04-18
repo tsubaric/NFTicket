@@ -4,6 +4,7 @@ import {
   getStorage,
   ref as storageRef,
   getDownloadURL,
+  uploadBytes,
 } from "firebase/storage";
 import { getLastEventId } from "./NFTicket_interface";
 
@@ -108,3 +109,24 @@ export const updateEvents = async () => {
 
   return cur_events;
 };
+
+export const getEventImageUrl = async (eventId) => {
+    const storage = getStorage();
+    return await getDownloadURL(storageRef(storage, `events/${eventId}/image.jpg`))
+};
+
+export const uploadMetadata = async (id, metadata) => {
+    const storage = getStorage();
+    const metadataRef = storageRef(storage, `metadata/${id}.json`);
+
+    // convert object into json string
+    const metadataString = JSON.stringify(metadata);
+
+    // create blob from json string
+    const blob = new Blob([metadataString], {type: "application/json"});
+
+    // upload blob to firebase storage
+    await uploadBytes(metadataRef, blob);
+
+    console.log("download url: ", await getDownloadURL(metadataRef));
+}

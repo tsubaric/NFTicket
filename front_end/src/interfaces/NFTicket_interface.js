@@ -66,3 +66,8 @@ export const transferTicket = async (ticketId, to) => {
   await transaction.wait();
   console.log("transaction confirmed");
 };
+
+export const getTicketUri = async (ticketId) => {
+    const contractRef = await getContractRef()
+    return await contractRef.uri(ticketId)
+}

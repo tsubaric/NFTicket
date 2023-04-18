@@ -14,7 +14,7 @@ import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { storage } from "../firebase.js";
 import { uploadBytes, ref as sRef } from "firebase/storage";
 import { createEvent, getLastEventId } from "../interfaces/NFTicket_interface";
-
+import { getEventImageUrl, uploadMetadata } from "../interfaces/firebase_interface.js";
 
 export default class CreateEventForm extends React.Component {
   constructor(props) {
@@ -34,10 +34,23 @@ export default class CreateEventForm extends React.Component {
     this.uploadImage = this.uploadImage.bind(this);
   }
 
+  async generateMetadata(eventId) {
+      const metadata = {
+          name: `${this.state.eventName} Ticket`,
+          description: `Digital Ticket for ${this.state.eventName}`,
+          image: await getEventImageUrl(eventId),
+      };
+
+      this.state.numGATickets = parseInt(this.state.numGATickets);
+      for (let i = 0; i < this.state.numGATickets; i++) {
+          const ticketId = eventId * 1000000 + i;
+          console.log(ticketId);
+      }
+  };
+
   async handleCreate(event) {
     alert("Creating Event: " + this.state.eventName);
     event.preventDefault();
-
 
     // TODO: redirect to confirmation page
     // determine event id and create event
@@ -61,62 +74,30 @@ export default class CreateEventForm extends React.Component {
               );
               set(ref(database, "events/" + eventId), this.state);
 
-              // update metadata cid
-              //console.log(`updating metadata/live_cid with ${cid}`);
-              //set(ref(database, "metadata/live_cid"), { cid: cid });
+              // create and upload metadata
+              const metadata = {
+                  name: `${this.state.eventName} Ticket`,
+                  description: `Digital Ticket for ${this.state.eventName}`,
+                  image: await getEventImageUrl(eventId),
+              };
+
+              console.log("uploading metadata...")
+              this.state.numGATickets = parseInt(this.state.numGATickets);
+              for (let i = 0; i <= this.state.numGATickets; i++) {
+                  const ticketId = eventId * 1000000 + i;
+                  await uploadMetadata(ticketId, metadata);
+              }
+
+
             });
 
             alert("Event Created" + this.state.eventName);
 
         });
     });
-
-
-    /*
-
-    // write metadata to ipfs and set ipfs uri in contract
-    const metadata = {
-      name: this.state.eventName,
-      description: this.state.eventDescription,
-      image: null, // TODO: upload image to ipfs put link here,
-      properties: {
-        ticketType: "GA",
-      },
-    };
-    console.log(metadata);
-    const blob = new Blob([JSON.stringify(metadata)], {
-      type: "application/json",
-    });
-    const metadata_file = new File([blob], `${eventId}.json`);
-
-    const accessToken = process.env.REACT_APP_WEB3STORAGE_TOKEN;
-    const client = new Web3Storage({ token: accessToken });
-
-    // get current uris
-    const current_cid = (await get(ref(database, "metadata/live_cid"))).val().cid;
-    console.log(`current cid: ${current_cid}`);
-    response = await client.get(current_cid);
-    console.log(`Got a response! [${response.status}] ${response.statusText}`);
-    if (!response.ok) {
-      throw new Error(
-        `failed to get ${current_cid} - [${response.status}] ${response.statusText}`
-      );
-    }
-    const files = await response.files();
-
-    // add new file and upload
-    files.push(metadata_file);
-    const cid = await client.put(files);
-    console.log(cid);
-
-    // TODO: set ipfs uri in contract
-    response = await NFTicketContract.setEventUri(
-      `https://${cid}.ipfs.w3s.link/{id}.json`
-    );
-
-    */
-
   };
+
+
 
   handleChange(event) {
     const target = event.target;

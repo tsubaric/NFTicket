@@ -8,7 +8,7 @@ import TabContext from "@mui/lab/TabContext";
 import PersonIcon from "@mui/icons-material/Person";
 import Tab from "@mui/material/Tab";
 import TabList from "@mui/lab/TabList";
-import { getAllOwnedTickets, getTicketInfo } from "../interfaces/NFTicket_interface";
+import { getAllOwnedTickets, getTicketInfo, getTicketUri } from "../interfaces/NFTicket_interface";
 
 export default function MyTicketsPage() {
   const [ownedTickets, setOwnedTickets] = useState([]);
@@ -19,6 +19,7 @@ export default function MyTicketsPage() {
     const tickets = await getAllOwnedTickets();
     const promises = tickets.map((ticket) => {
         {
+            console.log("ticket URI ", getTicketUri(Number(ticket)))
             return getTicketInfo(Number(ticket))
         }
     })

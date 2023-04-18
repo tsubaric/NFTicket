@@ -30,8 +30,7 @@ contract NFTicket is ERC1155 {
     mapping (address => uint256[]) private ownedTicketsMap;  // user -> owned ticketIds
     mapping (address => uint256[]) private ownedEventsMap; // user -> owned eventId
 
-
-    constructor() ERC1155("gs://nfticket-f0356.appspot.com/metadata/{id}.json") {
+    constructor() ERC1155("https://firebasestorage.googleapis.com/v0/b/nfticket-f0356.appspot.com/o/metadata%2F{id}.json?alt=media") {
         eventCounter.increment(); // start at event id 1
     }
 
