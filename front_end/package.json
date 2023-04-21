@@ -48,6 +48,7 @@
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.9",
     "@webpack-cli/generators": "^3.0.1",
+    "cypress": "^12.10.0",
     "ethers": "^6.0.3",
     "html-webpack-plugin": "^5.5.0",
     "web3.storage": "^4.5.4",
