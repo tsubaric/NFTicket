@@ -1,4 +1,4 @@
-import { ref, get, child } from "firebase/database";
+import { ref, get, child, update } from "firebase/database";
 import { database } from "../firebase";
 import {
   getStorage,
@@ -50,13 +50,20 @@ export const updateEvents = async () => {
     const dbRef = ref(database);
     await get(child(dbRef, `events/${i}`)).then((snapshot) => {
       if (snapshot.exists()) {
-        cur_events.push(snapshot.val());
+        const event = snapshot.val();
+        event.numGATickets = Number(event.numGATickets);
+        cur_events.push(event);
       } else {
         console.log("No data available");
       }
     });
   }
   return cur_events;
+};
+
+export const updateNumGATickets = async (eventId, numTickets) => {
+  const dbRef = ref(database);
+  await update(child(dbRef, `events/${eventId}/numGATickets`), numTickets);
 };
 
 export const getEventImageUrl = async (eventId) => {
@@ -78,3 +85,4 @@ export const uploadMetadata = async (id, metadata) => {
     await uploadBytes(metadataRef, blob);
 
 }
+
