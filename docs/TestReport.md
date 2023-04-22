@@ -10,7 +10,7 @@
 #### Introduction
 
 Digital Ticketing is an industry that is rife with problems. Scalpers billions from 
-event goers, souvenier tickets are gone, and replaced with a email printout with some 
+event goers, souvenir tickets are gone, and replaced with a email printout with some 
 qr code on it. Transferring tickets you bought can be a nightmare, and there is no way 
 to prevent scams from taking place when digital tickets are resold. NFTicket looks to solve
 these problems by leveraging smart contract on Ethereum, to represent digital tickets as NFTs. 
@@ -39,7 +39,7 @@ project, Ethereum ERC-4337 was introduced, providing account abstraction,
 which aims to solve the same problem that we were trying to solve. 
 
 Because of the lack of Ethereum development experience across the team, Thomas worked on the smart 
-contract and overall design of the project, incduing backend hosting and database, as well as front 
+contract and overall design of the project, including back-end hosting and database, as well as front 
 end components. Mark, Tommy, and Jordyn contributed to building the front-end, as well as writing 
 documentation and reports. 
 
@@ -47,12 +47,12 @@ Throughout this process, the team utilized various project management skills and
 ensure the completion of the project. 
 1. Planning: we created a detailed project plan, and tracked progress and tasks using Jira. This 
 helped us learn how to manage multiple different tasks, and deadlines in a team environment. 
-2. Communication: we communicated regularly, and made sure to help each other out. There was a 
+2. Communication: we communicated regularly, and made sure to help each other out. There was  
 a learning curve for everyone, so working together was important to make sure everyone stayed 
 on the same page. 
 3. Risk Management: the team identified potential risks and roadblocks that could affect 
-the projcts success, and took decisive actions to mitigate those risks and keep the project on track. 
-4. Time Management: the team learned how to schedule and proritize tasks, it was important 
+the projects success, and took decisive actions to mitigate those risks and keep the project on track. 
+4. Time Management: the team learned how to schedule and prioritize tasks, it was important 
 to prioritize tasks so that nobody was holding anyone else back. If a task needed to be completed
 before another task could be worked on, we made sure that it was done first. 
 
@@ -61,7 +61,7 @@ ensuring the success of the project. These skills helps use to stay organized, f
 track throughout the project, and I think will be invaluable going forward in our careers as 
 engineers. 
 
-The github contribution history can be seen below. It should be noted that not everyone 
+The Github contribution history can be seen below. It should be noted that not everyone 
 was initially able to contribute as much do to different levels of experience with the technologies
 used.
  - trbutler4: Thomas Butler 
@@ -85,22 +85,22 @@ was working and what was not. Through this decisiveness we were able to focus on
 and deliver a simpler, more user friendly design. While it does not have all of the features 
 initially planned, and does solve the problem and meets the specification.
 
-**Analysis of Possible Solutions and Tradeoffs**
+**Analysis of Possible Solutions and Trade Offs**
 
-Initally, we had planned to represent tickets using the ERC-721 standard. After further 
+Initially, we had planned to represent tickets using the ERC-721 standard. After further 
 review, we decided to switch to the ERC-1155 token standard. This is a relatively small change, 
 but it allowed us to mint and transfer multiple tickets at a time, and also allows for more 
 flexibility in the ticket design going forward. This is because ERC-1155 tokens can be either 
 fungible, or non-fungible, while ERC-721 tokens are strictly non-fungible. Also, the question of 
-how to store event information was not so simple. In smart contracts, there is a tradeoff between 
-how much data your contract uses, and how much that contract actaully costs to deploy. The same 
+how to store event information was not so simple. In smart contracts, there is a trade off between 
+how much data your contract uses, and how much that contract actually costs to deploy. The same 
 thing goes with transactions. The more data and logic that a smart contract method must process, 
 the more expensive that transaction becomes. However, if no data is stored in the contract, 
-than some of the benefits of its immutability are lost. The tradeoff we landed on was to store 
+than some of the benefits of its immutability are lost. The trade off we landed on was to store 
 essential information in the smart contract, such as event and ticket ids, as well as ticket and 
 event owners and ticket redemption status in the contract. The rest of the data, such as the event 
 data, name, description, and other information can be stored in the database. This way, event 
-creators can easilty update this information at no cost, while the core event funtionality is 
+creators can easily update this information at no cost, while the core event functionality is 
 kept decentralized and immutable with the smart contract. 
 
 **Constraints**
@@ -116,7 +116,7 @@ In order to accomplish the first constraint, we created a React app using Materi
 Firebase hosting and database. These tools are considered to be some of the best, and 
 easily work on any browser. Constraints 2 and 3 were met by writing our smart contract in 
 Solidity, and deploying to Polygon. This ensures that transactions are quick and cheap. Also, we 
-followed ERC standards for tokens, which ensures EVM compatiblity. 
+followed ERC standards for tokens, which ensures EVM compatibility. 
 
 
 **Standards** 
@@ -151,13 +151,13 @@ My Tickets Page
 Transferring Ticket Dialogue 
 ![](images/transferDialog.png)
 
-**Maintainance** 
+**Maintenance** 
 
 Currently, the smart contract supports up to 999 events, and each event can have up to 99999999 tickets. 
 In order to increase this number, the contract will need to be modified, but this should be enough for 
 now. The contract can be redeployed if need be to reset the events and tickets, and the previous
 will still exist, however the database will overwrite old event information. The site needs to be hosted,
-and there is a data limit with firebase. Other than that, there is no maintainence needed once the 
+and there is a data limit with Firebase. Other than that, there is no maintenance needed once the 
 contract is deployed on chain.
 
 #### Test Report 
