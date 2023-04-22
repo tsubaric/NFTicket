@@ -32,7 +32,7 @@ export default function Event(props) {
     }
   }, [imageUrl])
 
-  // query contract for available tickets 
+  // query contract for available tickets
   const loadAvailableTickets = async () => {
     const availableTickets = await getRemAvailTickets(eventId);
     setRemAvailTickets(availableTickets)
@@ -47,9 +47,9 @@ export default function Event(props) {
         description: eventInfo.eventDescription,
         price: Number((eventInfo.gaTicketPrice * 0.0005361).toFixed(5)),
         availableTickets: remAvailTickets
-      });      
+      });
 
-    });      
+    });
 
   };
 
@@ -63,14 +63,11 @@ export default function Event(props) {
   const handleMintTickets = async (amount) => {
     const remainingAvailTickets = await mintTickets(eventId, amount);
     setRemAvailTickets(remainingAvailTickets);
-  
-    // Update the number of available tickets in Firebase
-    updateNumGATickets(remainingAvailTickets);
-  
+
     // Fetch the latest event information from Firebase and update the state
     updateEventInfo();
   };
-  
+
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -117,7 +114,7 @@ export default function Event(props) {
                 </div>
               </Typography>
               <br />
-              <MintButton 
+              <MintButton
                 eventId={eventId}
                 //setRemAvailTickets={setRemAvailTickets}
                 //remAvailTickets={remAvailTickets}
