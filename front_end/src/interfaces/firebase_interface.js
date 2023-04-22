@@ -50,7 +50,8 @@ export const updateEvents = async () => {
     const dbRef = ref(database);
     await get(child(dbRef, `events/${i}`)).then((snapshot) => {
       if (snapshot.exists()) {
-        cur_events.push(snapshot.val());
+        const event = snapshot.val();
+        cur_events.push(event);
       } else {
         console.log("No data available");
       }
@@ -78,3 +79,4 @@ export const uploadMetadata = async (id, metadata) => {
     await uploadBytes(metadataRef, blob);
 
 }
+

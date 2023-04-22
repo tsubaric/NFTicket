@@ -156,4 +156,18 @@ describe("NFTicket", async function() {
 
     })
 
+    it("should show remaining tickets", async function () {
+        await nfticket.createEvent(1000, 10);
+
+        // mint some tickets
+        [user] = await ethers.getSigners();
+        let tx = await nfticket.mintTickets(1, 3);
+        await tx.wait();
+        
+        // check remaining 
+        const numTicketsRem = await nfticket.getRemainingAvailTickets(1);
+        expect(numTicketsRem).to.equal(997);
+    })
+
+
 });

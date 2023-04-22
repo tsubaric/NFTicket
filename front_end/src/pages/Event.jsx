@@ -7,16 +7,20 @@ import { getEventInfo } from "../interfaces/firebase_interface";
 import { Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import { getEventImageUrl } from "../interfaces/firebase_interface";
+import { mintTickets } from "../interfaces/NFTicket_interface";
+import { updateNumGATickets } from "../interfaces/firebase_interface";
+import { getRemAvailTickets } from "../interfaces/NFTicket_interface";
 
-export default function Event() {
+export default function Event(props) {
   const { eventId } = useParams();
   const [eventInfo, setEventInfo] = React.useState({
     name: "",
     description: "",
     price: 0,
-    avaliableTickets: 0,
+    availableTickets: 0,
   });
   const [isLoading, setIsLoading] = React.useState(true);
+  const [remAvailTickets, setRemAvailTickets] = React.useState(true);
 
   // load image url
   const [imageUrl, setImageUrl] = React.useState("");
@@ -28,6 +32,13 @@ export default function Event() {
     }
   }, [imageUrl])
 
+  // query contract for available tickets 
+  const loadAvailableTickets = async () => {
+    const availableTickets = await getRemAvailTickets(eventId);
+    setRemAvailTickets(availableTickets)
+    console.log("available tickets: ", availableTickets)
+  }
+
   const updateEventInfo = async () => {
     getEventInfo(eventId).then((eventInfo) => {
       console.log("eventInfo: ", eventInfo);
@@ -35,15 +46,31 @@ export default function Event() {
         name: eventInfo.eventName,
         description: eventInfo.eventDescription,
         price: Number((eventInfo.gaTicketPrice * 0.0005361).toFixed(5)),
-        avaliableTickets: eventInfo.numGATickets,
-      });
-    });
+        availableTickets: remAvailTickets
+      });      
+
+    });      
+
   };
 
   useEffect(() => {
+    loadAvailableTickets().then(() => {
+      updateEventInfo();
+    })
+    setIsLoading(false)
+  }, [remAvailTickets]);
+
+  const handleMintTickets = async (amount) => {
+    const remainingAvailTickets = await mintTickets(eventId, amount);
+    setRemAvailTickets(remainingAvailTickets);
+  
+    // Update the number of available tickets in Firebase
+    updateNumGATickets(remainingAvailTickets);
+  
+    // Fetch the latest event information from Firebase and update the state
     updateEventInfo();
-    setIsLoading(false);
-  }, []);
+  };
+  
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -82,7 +109,7 @@ export default function Event() {
               <Typography variant="body1" gutterBottom>
                 <div>DATE</div>
                 <div>Ticket Price: {eventInfo.price} ETH</div>
-                <div>Avaliable Tickets: {eventInfo.avaliableTickets}</div>
+                <div>Avaliable Tickets: {eventInfo.availableTickets}</div>
               </Typography>
               <Typography variant="h3" gutterBottom fontStyle="italic">
                 <div style={{ color: "black", fontFamily: "Roberto" }}>
@@ -90,7 +117,12 @@ export default function Event() {
                 </div>
               </Typography>
               <br />
-              <MintButton eventId={eventId} />
+              <MintButton 
+                eventId={eventId}
+                //setRemAvailTickets={setRemAvailTickets}
+                //remAvailTickets={remAvailTickets}
+                onSuccess={handleMintTickets}
+               />
             </div>
           </div>
         </div>

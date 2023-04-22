@@ -125,4 +125,8 @@ contract NFTicket is ERC1155 {
         return allTicketsMap[ticketId];
     }
 
+    function getRemainingAvailTickets (uint256 eventId) public view returns (uint ticketRemain){
+        return allEventsMap[eventId].ticketsAvailable;
+    }
+
 }
