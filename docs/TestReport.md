@@ -88,7 +88,7 @@ initially planned, and does solve the problem and meets the specification.
 **Analysis of Possible Solutions and Tradeoffs**
 
 Initally, we had planned to represent tickets using the ERC-721 standard. After further 
-review, we decided to switch to the ERC-1155 token standard. This is a relativiley small change, 
+review, we decided to switch to the ERC-1155 token standard. This is a relatively small change, 
 but it allowed us to mint and transfer multiple tickets at a time, and also allows for more 
 flexibility in the ticket design going forward. This is because ERC-1155 tokens can be either 
 fungible, or non-fungible, while ERC-721 tokens are strictly non-fungible. Also, the question of 
@@ -105,15 +105,83 @@ kept decentralized and immutable with the smart contract.
 
 **Constraints**
 
+The constraints we set out to satisfy in our project proposal were as follows:
 
+1. The system shall be easily used on any web browser.
+2. The system shall ensure that transactions complete in under 1 minute, at little  
+or no cost to the user. 
+3. The system shall be compatible with any EVM compatible network. 
+
+In order to accomplish the first constraint, we created a React app using Material UI, with 
+Firebase hosting and database. These tools are considered to be some of the best, and 
+easily work on any browser. Constraints 2 and 3 were met by writing our smart contract in 
+Solidity, and deploying to Polygon. This ensures that transactions are quick and cheap. Also, we 
+followed ERC standards for tokens, which ensures EVM compatiblity. 
+
+
+**Standards** 
+
+We followed ERC-1155 token standard for our digital tickets. This is different than our original 
+plan to use ERC-721 token standard, and the reason for switching is discussed above. QR code for 
+redemption is ISO 27001 compliant. User wallets are Ethereum accounts, and a user can import any 
+wallet into MetaMask to use with our site.
+
+**Architecture** 
+
+![Architecture](images/architecture.png)
+
+
+**UI/UX**
+
+Home Page 
+![](images/homepage.png)
+
+Creating an Event 
+![](images/createEventPage.png)
+
+Events Page 
+![](images/eventsPage.png)
+
+Event Page 
+![](images/eventPage.png)
+
+My Tickets Page 
+![](images/myTicketsPage.png)
+
+Transferring Ticket Dialogue 
+![](images/transferDialog.png)
+
+**Maintainance** 
+
+Currently, the smart contract supports up to 999 events, and each event can have up to 99999999 tickets. 
+In order to increase this number, the contract will need to be modified, but this should be enough for 
+now. The contract can be redeployed if need be to reset the events and tickets, and the previous
+will still exist, however the database will overwrite old event information. The site needs to be hosted,
+and there is a data limit with firebase. Other than that, there is no maintainence needed once the 
+contract is deployed on chain.
 
 #### Test Report 
 
+For testing, we employed two different tools. For testing our smart contract, we used Hardhat, which is 
+an Ethereum development environment which includes a locally hosted node. Hardhat lets use write tests 
+in JavaScript, and test on the local Ethereum network. For testing our front end, we used Cypress. 
 
-| Req | |
-| ----|-|
+| Requirement                                   | Test Type | Test Result |
+| ------------                                  |---------- | ----------- |
+| Users can create events                       | Hardhat   | Pass        |
+| Users can mint tickets                        | Hardhat   | Pass        |
+| Users can redeem tickets                      | Hardhat   | Pass        |
+| Contract returns tickets owned by user        | Hardhat   | Pass        | 
+| Contract can transfer tickets                 | Hardhat   | Pass        | 
+| Home page displays all relevant information   | Cypress   | Pass        | 
+| Event page displays relevant information      | Cypress   | Pass        |
+| Create event page has all needed forms        | Cypress   | Pass        |
+| My Tickets page displays owned tickets        | Cypress   | Pass        | 
+
 
 #### Appendices 
+
+[Source Code](https://github.com/trbutler4/NFTicket)
 
 
 
