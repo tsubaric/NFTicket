@@ -4,9 +4,9 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import RedeemIcon from "@mui/icons-material/Redeem";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -29,8 +29,8 @@ export default function TicketCard(props) {
   const [transferOpen, setTransferOpen] = useState(false);
   const [toAddress, setToAddress] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [eventName, setEventName] = useState("");
   const [eventInfo, setEventInfo] = useState({});
+  const [redeemOpen, setRedeemOpen] = useState(false);
 
 
   useEffect(() => {
@@ -79,6 +79,12 @@ export default function TicketCard(props) {
             >
               <CompareArrowsIcon />
             </IconButton>
+            <IconButton
+                aria-label="Add to Cart"
+                onClick={() => setRedeemOpen(true)}
+            >
+              <RedeemIcon />
+            </IconButton>
           </CardActions>
         </Card>
         <Modal
@@ -114,6 +120,18 @@ export default function TicketCard(props) {
             </Button>
             <br />
           </Box>
+        </Modal>
+        <Modal
+          open={redeemOpen}
+          onClose={() => {
+              setRedeemOpen(false);
+          }}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+            <Box component="form" sx={style}>
+                redeem open
+            </Box>
         </Modal>
       </div>
     );
