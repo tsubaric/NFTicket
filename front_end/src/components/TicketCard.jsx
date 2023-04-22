@@ -13,6 +13,10 @@ import TextField from "@mui/material/TextField";
 import { transferTicket } from "../interfaces/NFTicket_interface";
 import Button from "@mui/material/Button";
 import { getEventImageUrl, getEventInfo } from "../interfaces/firebase_interface";
+import QRCode from "react-qr-code";
+import ReactDOM from "react-dom";
+
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -129,50 +133,13 @@ export default function TicketCard(props) {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-            <Box component="form" sx={style}>
-                redeem open
+            <Box sx={style}>
+                Scan Code to Redeem Ticket
+                <div style={{ background: 'white', padding: '16px'}}>
+                  <QRCode value={props.ticketId} />
+                </div>
             </Box>
         </Modal>
       </div>
     );
 }
-/*
-return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        title="NFT Event Name"
-        subheader="Date"
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="NFT name"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          NFT Description
-        </Typography>
-        <Typography>
-          <b>Ticket ID:</b>
-        </Typography>
-        <Typography>
-          <b>Stock Price:</b>
-        </Typography>
-        <Typography>
-          <b>Ticket Avaliable:</b>
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to cart">
-          <ShoppingCartIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
-  );
-*/
