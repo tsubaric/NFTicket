@@ -1,6 +1,6 @@
 ### ECE:4890, ECE Senior Design 
 
-### Final Project Documentation 
+### Final Project Documentation and Test Report
 
 #### Team 3: Thomas Butler, Jordyn Iannuzzelli, Tommy Subaric, Mark Brom 
 
