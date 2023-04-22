@@ -1,6 +1,6 @@
 ## NFTicket 
 
-NFT Ticket platform for easy event creation, transfer, redemtion, and ownership
+NFT Ticket platform for easy event creation, transfer, redemption, and ownership
 
 
 ### Test Report
