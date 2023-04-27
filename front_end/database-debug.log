@@ -12,3 +12,8 @@ namespace nfticket-f0356, but the emulator is configured for nfticket-f0356-defa
 opt-out of single project mode add/set the single_project_mode: false property in 
 the firebase.json emulators config. 
 16:35:42.679 [NamespaceSystem-akka.actor.default-dispatcher-9] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356 successfully activated FBKV (SurveyIdle(0)) wait: 38ms, init: 0ms
+16:51:16.452 [FirebaseWorkerPool-1-3] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested 
+namespace fake-server, but the emulator is configured for nfticket-f0356-default-rtdb,nfticket-f0356. To 
+opt-out of single project mode add/set the single_project_mode: false property in 
+the firebase.json emulators config. 
+16:51:16.464 [NamespaceSystem-akka.actor.default-dispatcher-28] INFO com.firebase.core.namespace.NamespaceActor - fake-server successfully activated FBKV (SurveyIdle(0)) wait: 6ms, init: 0ms

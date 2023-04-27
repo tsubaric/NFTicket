@@ -84,7 +84,7 @@ export default function TicketCard(props) {
               <CompareArrowsIcon />
             </IconButton>
             <IconButton
-                aria-label="Add to Cart"
+                aria-label="Redeem Ticket"
                 onClick={() => setRedeemOpen(true)}
             >
               <RedeemIcon />
