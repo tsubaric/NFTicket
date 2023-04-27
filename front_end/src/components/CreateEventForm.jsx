@@ -193,6 +193,7 @@ export default class CreateEventForm extends React.Component {
               required
               label="category"
               name="eventCategory"
+              id="eventCategory"
               onChange={this.handleChange}
             >
               <MenuItem value={"Restaurants"}>Restaurants</MenuItem>
@@ -204,27 +205,6 @@ export default class CreateEventForm extends React.Component {
               <MenuItem value={"Health"}>Health</MenuItem>
             </Select>
           </FormControl>
-          {this.state.selectedImage && (
-            <div>
-              <img
-                alt="not found"
-                width={"250px"}
-                src={URL.createObjectURL(this.state.selectedImage)}
-              />
-              <br />
-              <IconButton
-                color="primary"
-                component="label"
-                onClick={() => {
-                  this.setState({ selectedImage: null });
-                  this.fileInput.value = "";
-                }}
-              >
-                <AttachFileIcon fontSize="medium" /> Remove Image
-              </IconButton>
-            </div>
-          )}
-          {!this.state.selectedImage && (
             <IconButton color="primary" component="label">
               <input
                 ref={(ref) => (this.fileInput = ref)}
@@ -238,7 +218,6 @@ export default class CreateEventForm extends React.Component {
               />
               <AttachFileIcon fontSize="medium" /> Upload Image
             </IconButton>
-          )}
           <Button
             id="createEventButton"
             style={{
