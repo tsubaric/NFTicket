@@ -1,4 +1,4 @@
-import { ref, get, child } from "firebase/database";
+import { ref, get, child, getDatabase, connectDatabaseEmulator } from "firebase/database";
 import { database } from "../firebase";
 import {
   getStorage,
@@ -7,6 +7,7 @@ import {
   uploadBytes,
 } from "firebase/storage";
 import { getLastEventId } from "./NFTicket_interface";
+
 
 export const getEvents = async (lastEventId) => {
   const cur_events = [];
@@ -79,4 +80,3 @@ export const uploadMetadata = async (id, metadata) => {
     await uploadBytes(metadataRef, blob);
 
 }
-

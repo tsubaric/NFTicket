@@ -205,19 +205,41 @@ export default class CreateEventForm extends React.Component {
               <MenuItem value={"Health"}>Health</MenuItem>
             </Select>
           </FormControl>
-            <IconButton color="primary" component="label">
-              <input
-                ref={(ref) => (this.fileInput = ref)}
-                type="file"
-                accept="image/*"
-                hidden
-                onChange={(e) => {
-                  console.log(e.target.files[0]);
-                  this.setState({ selectedImage: e.target.files[0] });
-                }}
-              />
-              <AttachFileIcon fontSize="medium" /> Upload Image
-            </IconButton>
+            {this.state.selectedImage && (
+                <div>
+                  <img
+                    alt="not found"
+                    width={"250px"}
+                    src={URL.createObjectURL(this.state.selectedImage)}
+                  />
+                  <br />
+                  <IconButton
+                    color="primary"
+                    component="label"
+                    onClick={() => {
+                      this.setState({ selectedImage: null });
+                      this.fileInput.value = "";
+                    }}
+                  >
+                    <AttachFileIcon fontSize="medium" /> Remove Image
+                  </IconButton>
+                </div>
+              )}
+              {!this.state.selectedImage && (
+                <IconButton color="primary" component="label">
+                  <input
+                    ref={(ref) => (this.fileInput = ref)}
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    onChange={(e) => {
+                      console.log(e.target.files[0]);
+                      this.setState({ selectedImage: e.target.files[0] });
+                    }}
+                  />
+                  <AttachFileIcon fontSize="medium" /> Upload Image
+                </IconButton>
+              )}
           <Button
             id="createEventButton"
             style={{

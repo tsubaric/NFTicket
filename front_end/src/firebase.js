@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { getDatabase, connectDatabaseEmulator } from "firebase/database";
 import { getStorage } from "firebase/storage";
 
 
@@ -14,7 +14,17 @@ const firebaseConfig = {
 };
 
 const firebase = initializeApp(firebaseConfig);
+
+// point to emulators if on localhost
 const database = getDatabase(firebase);
+console.log("HOSTNAME: ", window.location.hostname);
+if (window.location.hostname === "127.0.0.1") {
+    connectDatabaseEmulator(database, "127.0.0.1", 9000);
+}
+else if (window.location.hostname === "localhost") {
+    connectDatabaseEmulator(database, "localhost", 9000);
+}
+
 //creating a root reference
 const storage = getStorage(firebase);
 

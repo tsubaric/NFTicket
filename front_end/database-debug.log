@@ -3,10 +3,12 @@ WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (fil
 WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-22:06:30.921 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-22:06:31.105 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
-22:06:33.668 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
-22:06:33.675 [NamespaceSystem-akka.actor.default-dispatcher-8] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: nfticket-f0356-default-rtdb
-22:06:33.764 [NamespaceSystem-akka.actor.default-dispatcher-8] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for nfticket-f0356-default-rtdb
-22:06:33.773 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
-22:06:33.773 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.DeadLetterResponder - Message InternalEnvelope(AttemptFbkvInit(SurveyIdle(0))) meant for NamespaceActor (akka://NamespaceSystem/user/nfticket-f0356-default-rtdb) went to deadletter actor
+15:19:54.347 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+15:19:54.603 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+15:19:56.205 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 214ms, init: 0ms
+15:19:56.314 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace nfticket-f0356-default-rtdb status Active to Active
+15:24:17.395 [FirebaseWorkerPool-1-1] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested 
+namespace nfticket-f0356, but the emulator is configured for nfticket-f0356-default-rtdb. To 
+opt-out of single project mode add/set the single_project_mode: false property in 
+the firebase.json emulators config. 
+15:24:17.404 [NamespaceSystem-akka.actor.default-dispatcher-16] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356 successfully activated FBKV (SurveyIdle(0)) wait: 5ms, init: 0ms
