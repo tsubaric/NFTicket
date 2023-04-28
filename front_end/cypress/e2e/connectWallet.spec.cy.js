@@ -1,4 +1,4 @@
-describe("connect wallet spec", () => {
+describe("connect wallet", () => {
   beforeEach(() => {
     cy.visit("/");
   });
@@ -10,10 +10,9 @@ describe("connect wallet spec", () => {
 
   it("should connect wallet with success", () => {
     cy.contains("Connect Wallet");
-    cy.get('[data-test="nav-bar"]').find('[data-test="connect-wallet"]').click();
+    cy.get('[data-test="connect-wallet"]').click();
     cy.acceptMetamaskAccess();
     cy.reload();  // reload so account is updated on button
-    cy.get('[data-test="nav-bar"]').find('[data-test="connect-wallet"]').should("have.text", "f39f...");
     cy.get('[data-test="connect-wallet"]').should("have.text", "f39f...");
   });
 
