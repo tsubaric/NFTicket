@@ -23,8 +23,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:run": "env-cmd cyppress run --browser chromium --headed",
+    "start:server": "firebase emulators:start --import=seeds/base",
+    "test": "start-server-and-test 'npm run start:server' http-get://localhost:5000 'npm run cypress:run'"
   },
   "eslintConfig": {
     "extends": [
@@ -45,13 +47,17 @@
     ]
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.10.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.9",
+    "@synthetixio/synpress": "^3.5.1",
     "@webpack-cli/generators": "^3.0.1",
     "cypress": "^12.11.0",
+    "env-cmd": "^10.1.0",
     "ethers": "^6.0.3",
     "html-webpack-plugin": "^5.5.0",
+    "start-server-and-test": "^2.0.0",
     "web3.storage": "^4.5.4",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",

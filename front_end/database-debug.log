@@ -3,17 +3,11 @@ WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (fil
 WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-16:32:51.168 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-16:32:51.371 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
-16:32:51.942 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 236ms, init: 0ms
-16:32:54.644 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace nfticket-f0356-default-rtdb status Active to Active
-16:35:42.627 [FirebaseWorkerPool-1-4] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested 
-namespace nfticket-f0356, but the emulator is configured for nfticket-f0356-default-rtdb. To 
-opt-out of single project mode add/set the single_project_mode: false property in 
-the firebase.json emulators config. 
-16:35:42.679 [NamespaceSystem-akka.actor.default-dispatcher-9] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356 successfully activated FBKV (SurveyIdle(0)) wait: 38ms, init: 0ms
-16:51:16.452 [FirebaseWorkerPool-1-3] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested 
-namespace fake-server, but the emulator is configured for nfticket-f0356-default-rtdb,nfticket-f0356. To 
-opt-out of single project mode add/set the single_project_mode: false property in 
-the firebase.json emulators config. 
-16:51:16.464 [NamespaceSystem-akka.actor.default-dispatcher-28] INFO com.firebase.core.namespace.NamespaceActor - fake-server successfully activated FBKV (SurveyIdle(0)) wait: 6ms, init: 0ms
+21:11:01.757 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+21:11:01.958 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+21:11:02.616 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 284ms, init: 0ms
+21:11:05.199 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace nfticket-f0356-default-rtdb status Active to Active
+21:11:07.496 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+21:11:07.515 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: nfticket-f0356-default-rtdb
+21:11:07.540 [NamespaceSystem-akka.actor.default-dispatcher-8] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for nfticket-f0356-default-rtdb
+21:11:07.562 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.

@@ -1,16 +1,18 @@
 const { defineConfig } = require("cypress");
+const synpressPlugins = require("@synthetixio/synpress/plugins");
 
 module.exports = defineConfig({
-  e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
-  },
-
-  component: {
-    devServer: {
-      framework: "create-react-app",
-      bundler: "webpack",
-    },
-  },
+    userAgent: "synpress",
+    //chromeWebSecurity: true,
+    defaultCommandTimeout: 30000,
+    pageLoadTimeout: 30000,
+    requestTimeout: 30000,
+    e2e: {
+        testIsolation: true,
+        setupNodeEvents(on, config) {
+            synpressPlugins(on, config);
+        },
+        baseUrl: "http://localhost:5000",
+        supportFile: "cypress/support/e2e.js"
+    }
 });
