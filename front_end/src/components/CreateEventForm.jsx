@@ -139,6 +139,7 @@ export default class CreateEventForm extends React.Component {
             label="Event Name"
             name="eventName"
             onChange={this.handleChange}
+            data-test="event-name-field"
           />
           <TextField
             id="eventDescription"
@@ -154,6 +155,7 @@ export default class CreateEventForm extends React.Component {
             label="Description"
             name="eventDescription"
             onChange={this.handleChange}
+            data-test="event-description-field"
           />
           <TextField
             id="numGATickets"
@@ -167,6 +169,7 @@ export default class CreateEventForm extends React.Component {
             name="numGATickets"
             type="number"
             onChange={this.handleChange}
+            data-test="num-tickets-field"
           />
           <TextField
             id="gaTicketPrice"
@@ -180,6 +183,7 @@ export default class CreateEventForm extends React.Component {
             name="gaTicketPrice"
             type="number"
             onChange={this.handleChange}
+            data-test="ticket-price-field"
           />
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Category</InputLabel>
@@ -195,14 +199,15 @@ export default class CreateEventForm extends React.Component {
               name="eventCategory"
               id="eventCategory"
               onChange={this.handleChange}
+              data-test="category-dropdown"
             >
-              <MenuItem value={"Restaurants"}>Restaurants</MenuItem>
-              <MenuItem value={"Festivals"}>Festivals</MenuItem>
-              <MenuItem value={"Sports"}>Sports</MenuItem>
-              <MenuItem value={"Travel"}>Travel</MenuItem>
-              <MenuItem value={"Charity"}>Charity</MenuItem>
-              <MenuItem value={"Virtual"}>Virtual</MenuItem>
-              <MenuItem value={"Health"}>Health</MenuItem>
+              <MenuItem data-test="restaurant-category" value={"Restaurants"}>Restaurants</MenuItem>
+              <MenuItem data-test="festival-category" value={"Festivals"}>Festivals</MenuItem>
+              <MenuItem data-test="sports-category" value={"Sports"}>Sports</MenuItem>
+              <MenuItem data-test="travel-category" value={"Travel"}>Travel</MenuItem>
+              <MenuItem data-test="charity-category" value={"Charity"}>Charity</MenuItem>
+              <MenuItem data-test="virtual-category" value={"Virtual"}>Virtual</MenuItem>
+              <MenuItem data-test="health-category" value={"Health"}>Health</MenuItem>
             </Select>
           </FormControl>
             {this.state.selectedImage && (
@@ -236,8 +241,9 @@ export default class CreateEventForm extends React.Component {
                       console.log(e.target.files[0]);
                       this.setState({ selectedImage: e.target.files[0] });
                     }}
+                    data-test="upload-image-input"
                   />
-                  <AttachFileIcon fontSize="medium" /> Upload Image
+                  <AttachFileIcon data-test="upload-image-icon" fontSize="medium" /> Upload Image
                 </IconButton>
               )}
           <Button
@@ -249,7 +255,7 @@ export default class CreateEventForm extends React.Component {
             }}
             variant="contained"
             onClick={this.handleCreate}
-
+            data-test="create-event-submit-button"
           >
             Create
           </Button>

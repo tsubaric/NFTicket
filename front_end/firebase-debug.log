@@ -1,0 +1,103 @@
+[debug] [2023-04-28T06:13:29.035Z] ----------------------------------------------------------------------
+[debug] [2023-04-28T06:13:29.037Z] Command:       /home/trbiv/.nvm/versions/node/v18.12.1/bin/node /home/trbiv/.nvm/versions/node/v18.12.1/bin/firebase emulators:start
+[debug] [2023-04-28T06:13:29.037Z] CLI Version:   11.24.0
+[debug] [2023-04-28T06:13:29.038Z] Platform:      linux
+[debug] [2023-04-28T06:13:29.038Z] Node Version:  v18.12.1
+[debug] [2023-04-28T06:13:29.038Z] Time:          Fri Apr 28 2023 01:13:29 GMT-0500 (Central Daylight Time)
+[debug] [2023-04-28T06:13:29.038Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-28T06:13:29.114Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-28T06:13:29.114Z] > authorizing via signed-in user (trbutler44@gmail.com)
+[debug] [2023-04-28T06:13:29.211Z] openjdk version "11.0.18" 2023-01-17
+
+[debug] [2023-04-28T06:13:29.212Z] OpenJDK Runtime Environment (build 11.0.18+10-post-Ubuntu-0ubuntu122.04)
+OpenJDK 64-Bit Server VM (build 11.0.18+10-post-Ubuntu-0ubuntu122.04, mixed mode, sharing)
+
+[debug] [2023-04-28T06:13:29.217Z] Parsed Java major version: 11
+[info] i  emulators: Starting emulators: database, hosting, storage {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: database, hosting, storage"}}
+[debug] [2023-04-28T06:13:29.225Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-04-28T06:13:29.226Z] [database] Database Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-04-28T06:13:29.226Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-04-28T06:13:29.226Z] [storage] Storage Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-04-28T06:13:29.226Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}],"storage":[{"address":"127.0.0.1","family":"IPv4","port":9199}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-04-28T06:13:29.231Z] [hub] writing locator at /tmp/hub-nfticket-f0356.json
+[debug] [2023-04-28T06:13:29.236Z] > refreshing access token with scopes: []
+[debug] [2023-04-28T06:13:29.238Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-04-28T06:13:29.238Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-04-28T06:13:29.405Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-04-28T06:13:29.405Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-04-28T06:13:29.414Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nfticket-f0356 [none]
+[debug] [2023-04-28T06:13:29.725Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nfticket-f0356 200
+[debug] [2023-04-28T06:13:29.725Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nfticket-f0356 {"projectId":"nfticket-f0356","projectNumber":"575312394572","displayName":"NFTicket","name":"projects/nfticket-f0356","resources":{"hostingSite":"nfticket-f0356","realtimeDatabaseInstance":"nfticket-f0356-default-rtdb","storageBucket":"nfticket-f0356.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_7c5228d9-e2ec-4cb2-913c-997c12558902"}
+[debug] [2023-04-28T06:13:29.725Z] database rules config:  [{"instance":"nfticket-f0356-default-rtdb","rules":"/home/trbiv/OneDrive/School/Spring 2023/senior_design_pt2/NFTicket/front_end/database.rules.json"}]
+[debug] [2023-04-28T06:13:29.728Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2023-04-28T06:13:29.728Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-04-28T06:13:29.728Z] Ignoring unsupported arg: rules {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: rules"}}
+[debug] [2023-04-28T06:13:29.728Z] Starting Database Emulator with command {"binary":"java","args":["-Duser.language=en","-jar","/home/trbiv/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar","--host","127.0.0.1","--port",9000,"--single_project_mode","Warning"],"optionalArgs":["port","host","functions_emulator_port","functions_emulator_host","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"database"},"message":"Starting Database Emulator with command {\"binary\":\"java\",\"args\":[\"-Duser.language=en\",\"-jar\",\"/home/trbiv/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar\",\"--host\",\"127.0.0.1\",\"--port\",9000,\"--single_project_mode\",\"Warning\"],\"optionalArgs\":[\"port\",\"host\",\"functions_emulator_port\",\"functions_emulator_host\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[info] i  database: Database Emulator logging to database-debug.log {"metadata":{"emulator":{"name":"database"},"message":"Database Emulator logging to \u001b[1mdatabase-debug.log\u001b[22m"}}
+[debug] [2023-04-28T06:13:30.490Z] WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/trbiv/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar) to field sun.nio.ch.SelectorImpl.selectedKeys
+WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+ {"metadata":{"emulator":{"name":"database"},"message":"WARNING: An illegal reflective access operation has occurred\nWARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/trbiv/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar) to field sun.nio.ch.SelectorImpl.selectedKeys\nWARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil\nWARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations\nWARNING: All illegal access operations will be denied in a future release\n"}}
+[debug] [2023-04-28T06:13:31.286Z] 01:13:31.285 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+ {"metadata":{"emulator":{"name":"database"},"message":"01:13:31.285 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started\n"}}
+[debug] [2023-04-28T06:13:31.505Z] 01:13:31.504 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+ {"metadata":{"emulator":{"name":"database"},"message":"01:13:31.504 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000\n"}}
+[debug] [2023-04-28T06:13:31.754Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"storage"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-04-28T06:13:32.926Z] Temp file directory for storage emulator: /tmp/firebase/storage/blobs {"metadata":{"emulator":{"name":"storage"},"message":"Temp file directory for storage emulator: /tmp/firebase/storage/blobs"}}
+[debug] [2023-04-28T06:13:32.934Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/nfticket-f0356/sites 
+[debug] [2023-04-28T06:13:33.308Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/nfticket-f0356/sites 200
+[debug] [2023-04-28T06:13:33.308Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/nfticket-f0356/sites {"sites":[{"name":"projects/nfticket-f0356/sites/nfticket-f0356","defaultUrl":"https://nfticket-f0356.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2023-04-28T06:13:33.308Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nfticket-f0356/webApps/-/config [none]
+[debug] [2023-04-28T06:13:33.556Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nfticket-f0356/webApps/-/config 200
+[debug] [2023-04-28T06:13:33.556Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nfticket-f0356/webApps/-/config {"projectId":"nfticket-f0356","appId":"1:575312394572:web:8203623c9256f953eeb7e9","databaseURL":"https://nfticket-f0356-default-rtdb.firebaseio.com","storageBucket":"nfticket-f0356.appspot.com","locationId":"us-central","apiKey":"AIzaSyC8vZ-feUJW1h9Yr6SqA4bZvf7EZWDRol4","authDomain":"nfticket-f0356.firebaseapp.com","messagingSenderId":"575312394572"}
+[debug] [2023-04-28T06:13:33.569Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nfticket-f0356 [none]
+[debug] [2023-04-28T06:13:33.820Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nfticket-f0356 200
+[debug] [2023-04-28T06:13:33.820Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nfticket-f0356 {"projectId":"nfticket-f0356","projectNumber":"575312394572","displayName":"NFTicket","name":"projects/nfticket-f0356","resources":{"hostingSite":"nfticket-f0356","realtimeDatabaseInstance":"nfticket-f0356-default-rtdb","storageBucket":"nfticket-f0356.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_7c5228d9-e2ec-4cb2-913c-997c12558902"}
+[info] i  hosting[nfticket-f0356]: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] ✔  hosting[nfticket-f0356]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[debug] [2023-04-28T06:13:33.830Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-04-28T06:13:33.830Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-04-28T06:13:33.830Z] Starting Emulator UI with command {"binary":"node","args":["/home/trbiv/.cache/firebase/emulators/ui-v1.11.4/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/home/trbiv/.cache/firebase/emulators/ui-v1.11.4/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-04-28T06:13:33.949Z] Web / API server started at 127.0.0.1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
+[debug] [2023-04-28T06:13:33.950Z] Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
+[debug] [2023-04-28T06:13:34.093Z] >>> [apiv2][query] PUT http://127.0.0.1:9000/.settings/rules.json ns=nfticket-f0356-default-rtdb
+[debug] [2023-04-28T06:13:34.093Z] >>> [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json "{\n  \"rules\": {\n    \".read\": true,\n    \".write\": true\n  }\n}\n"
+[debug] [2023-04-28T06:13:34.424Z] 01:13:34.423 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 165ms, init: 0ms
+ {"metadata":{"emulator":{"name":"database"},"message":"01:13:34.423 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 165ms, init: 0ms\n"}}
+[debug] [2023-04-28T06:13:34.524Z] 01:13:34.524 [NamespaceSystem-blocking-namespace-operation-dispatcher-6] INFO com.firebase.core.namespace.StateManager - Namespace nfticket-f0356-default-rtdb status Active to Active
+ {"metadata":{"emulator":{"name":"database"},"message":"01:13:34.524 [NamespaceSystem-blocking-namespace-operation-dispatcher-6] INFO com.firebase.core.namespace.StateManager - Namespace nfticket-f0356-default-rtdb status Active to Active\n"}}
+[debug] [2023-04-28T06:13:34.591Z] <<< [apiv2][status] PUT http://127.0.0.1:9000/.settings/rules.json 200
+[debug] [2023-04-28T06:13:34.591Z] <<< [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json {"status":"ok"}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌──────────┬────────────────┬────────────────────────────────┐
+│ Emulator │ Host:Port      │ View in Emulator UI            │
+├──────────┼────────────────┼────────────────────────────────┤
+│ Database │ 127.0.0.1:9000 │ http://127.0.0.1:4000/database │
+├──────────┼────────────────┼────────────────────────────────┤
+│ Hosting  │ 127.0.0.1:5000 │ n/a                            │
+├──────────┼────────────────┼────────────────────────────────┤
+│ Storage  │ 127.0.0.1:9199 │ http://127.0.0.1:4000/storage  │
+└──────────┴────────────────┴────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2023-04-28T06:17:04.118Z] 01:17:04.118 [FirebaseWorkerPool-1-3] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested 
+namespace nfticket-f0356, but the emulator is configured for nfticket-f0356-default-rtdb. To 
+opt-out of single project mode add/set the single_project_mode: false property in 
+the firebase.json emulators config. 
+ {"metadata":{"emulator":{"name":"database"},"message":"01:17:04.118 [FirebaseWorkerPool-1-3] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested \nnamespace nfticket-f0356, but the emulator is configured for nfticket-f0356-default-rtdb. To \nopt-out of single project mode add/set the single_project_mode: false property in \nthe firebase.json emulators config. \n"}}
+[debug] [2023-04-28T06:17:04.143Z] 01:17:04.142 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356 successfully activated FBKV (SurveyIdle(0)) wait: 19ms, init: 0ms
+ {"metadata":{"emulator":{"name":"database"},"message":"01:17:04.142 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356 successfully activated FBKV (SurveyIdle(0)) wait: 19ms, init: 0ms\n"}}
