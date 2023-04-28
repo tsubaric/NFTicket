@@ -1,2 +1,6 @@
 node_modules/
 .env
+artifacts/
+cache/
+front_end/firebase-debug.log
+front_end/ui-debug.log
