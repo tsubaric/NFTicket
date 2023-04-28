@@ -13,7 +13,7 @@ function App() {
   return (
     <Router history={history}>
       <div className="App">
-        <Dashboard />
+        <Dashboard id="dashboard"/>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/create" exact component={CreateEvent} />

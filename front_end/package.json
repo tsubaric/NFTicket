@@ -24,9 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "cypress:run": "env-cmd cyppress run --browser chromium --headed",
-    "start:server": "firebase emulators:start --import=seeds/base",
-    "test": "start-server-and-test 'npm run start:server' http-get://localhost:5000 'npm run cypress:run'"
+    "cypress:run": "env-cmd cypress run --browser chromium --headed",
+    "test": "start-server-and-test 'BROWSER=none react-scripts start' http-get://localhost:3000 'npm run cypress:run'"
   },
   "eslintConfig": {
     "extends": [

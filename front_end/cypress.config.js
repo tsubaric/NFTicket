@@ -3,7 +3,7 @@ const synpressPlugins = require("@synthetixio/synpress/plugins");
 
 module.exports = defineConfig({
     userAgent: "synpress",
-    //chromeWebSecurity: true,
+    chromeWebSecurity: true,
     defaultCommandTimeout: 30000,
     pageLoadTimeout: 30000,
     requestTimeout: 30000,
@@ -12,7 +12,7 @@ module.exports = defineConfig({
         setupNodeEvents(on, config) {
             synpressPlugins(on, config);
         },
-        baseUrl: "http://localhost:5000",
+        baseUrl: "http://127.0.0.1:3000",
         supportFile: "cypress/support/e2e.js"
     }
 });

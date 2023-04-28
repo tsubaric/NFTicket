@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 
 const Dashboard = (props) => {
   return (
-    <nav className={`dashboard-1 ${props.className || ""}`}>
+    <nav data-test="nav-bar" className={`dashboard-1 ${props.className || ""}`}>
       <p>NFTicket</p>
 
       <Button variant="text" href="/">

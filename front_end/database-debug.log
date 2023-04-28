@@ -3,11 +3,11 @@ WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (fil
 WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-21:11:01.757 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-21:11:01.958 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
-21:11:02.616 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 284ms, init: 0ms
-21:11:05.199 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace nfticket-f0356-default-rtdb status Active to Active
-21:11:07.496 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
-21:11:07.515 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: nfticket-f0356-default-rtdb
-21:11:07.540 [NamespaceSystem-akka.actor.default-dispatcher-8] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for nfticket-f0356-default-rtdb
-21:11:07.562 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
+23:00:11.708 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+23:00:11.888 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+23:00:12.549 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 189ms, init: 0ms
+23:00:14.967 [NamespaceSystem-blocking-namespace-operation-dispatcher-8] INFO com.firebase.core.namespace.StateManager - Namespace nfticket-f0356-default-rtdb status Active to Active
+23:03:19.009 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+23:03:19.065 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: nfticket-f0356-default-rtdb
+23:03:19.104 [NamespaceSystem-akka.actor.default-dispatcher-10] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for nfticket-f0356-default-rtdb
+23:03:19.140 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.

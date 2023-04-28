@@ -9,12 +9,12 @@ describe("connect wallet spec", () => {
   });
 
   it("should connect wallet with success", () => {
-    cy.get("#connectWallet").click()
+    cy.contains("Connect Wallet");
+    cy.get('[data-test="nav-bar"]').find('[data-test="connect-wallet"]').click();
     cy.acceptMetamaskAccess();
-    cy.get("#accounts").should(
-      "have.text",
-      "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
-    );
+    cy.reload();  // reload so account is updated on button
+    cy.get('[data-test="nav-bar"]').find('[data-test="connect-wallet"]').should("have.text", "f39f...");
+    cy.get('[data-test="connect-wallet"]').should("have.text", "f39f...");
   });
 
 });
