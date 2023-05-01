@@ -1,8 +1,14 @@
-### ECE:4890, ECE Senior Design 
+<div align="center">
 
-### Final Project Documentation and Test Report
+### NFTicket
+##### Team 3: Thomas Butler, Jordyn Iannuzzelli, Tommy Subaric, Mark Brom 
 
-#### Team 3 NFTicket: Thomas Butler, Jordyn Iannuzzelli, Tommy Subaric, Mark Brom 
+##### ECE:4890, ECE Senior Design 
+
+##### Final Project Documentation and Test Report
+
+
+</div>
 
 <br>
 <br>
@@ -62,16 +68,19 @@ track throughout the project, and I think will be invaluable going forward in ou
 engineers. 
 
 The Github contribution history can be seen below. It should be noted that not everyone 
-was initially able to contribute as much do to different levels of experience with the technologies
-used.Thomas has the most experience with Ethereum development, as well as software engineering in 
-general, as the other team members have not taken higher level software engineering courses. 
+was initially able to contribute as much due to different levels of experience with the technologies
+used. Thomas has the most experience with Ethereum development, as well as software engineering in 
+general, as the other team members have not taken higher level software engineering courses. The rest of the 
+team struggled to understand the tools and technologies being used, which led to a significantly lower contribution 
+history. 
+
  - trbutler4: Thomas Butler 
  - jiannuzzelli: Jordyn Iannuzzelli 
  - mjbrom: Mark Brom 
  - tsubaric, tjsubaric: Tommy Subaric 
 
-![GitHub Contribution History](images/github_contribution_4.21.png)
-<div align="center"><b> Figure 1: Github Contribution History <b></div>
+![GitHub Contribution History](images/github-contribution-final.png)
+<div align="center"><b> Figure 1: Github Contribution History </b></div>
 
 #### Design Documentation 
 
@@ -131,7 +140,8 @@ wallet into MetaMask to use with our site.
 **Architecture**
 
 ![Architecture](images/architecture.png)
-<div align="center"><b> Figure 2: Project Architecture <b></div>
+<div align="center"><b> Figure 2: Project Architecture </b></div>
+<br>
 
 **UI/UX**
 
@@ -222,7 +232,7 @@ tests are unit tests, and cypress tests are end to end integration tests.
 <br>
 
 
-The majority of the end to end testing with cypress worked. However, there is an issue with cypress conntecting 
+The majority of the end to end testing with cypress worked. However, there is an issue with cypress connecting 
 to our firebase real time database. This is noted in the traceability matrix, with manual testing required, and we 
 verified that this functionality works by creating the event manually. In the test coverage below, it can be seen that 
 the CreateEventForm component has very low test coverage. This is because of the issue with cypress and firebase, 
@@ -230,13 +240,15 @@ which unfortunately was not able to be resolved before this report was due.
 Thankfully, the realtime database is only used to store event information like the event description images, and 
 most of our data comes from the smart contract itself. Because of this, even though the cypress tests were unable 
 to store the event information, all the smart contract logic with Metamask was still fully testable simply by 
-seeding the database with the correct event informaiton before the tests were run.
+seeding the database with the correct event information before the tests were run.
 
-Hardhat Test Coverage
 ![](images/hardhat-coverage.png)
+<div align="center"><b> Figure 11: Hardhat Test Coverage </b></div>
+<br>
 
-Cypress Test Coverage 
 ![](images/cypress-coverage.png)
+<div align="center"><b> FIgure 12: Cypress Test Coverage </b></div>
+<br>
 
 
 #### Appendices 
