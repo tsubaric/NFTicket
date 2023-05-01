@@ -1,0 +1,19 @@
+{
+  "name": "metadata/2000077.json",
+  "bucket": "nfticket-f0356.appspot.com",
+  "metageneration": 1,
+  "generation": 1682896557435,
+  "contentType": "application/json",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3f12bd1a-62d5-42e5-b910-c9e7f93526ea"
+  ],
+  "etag": "lmuYRsc0ezMIPJFftjJWPq9Q9Ps",
+  "customMetadata": {},
+  "timeCreated": "2023-04-30T23:15:57.435Z",
+  "updated": "2023-04-30T23:15:57.435Z",
+  "size": 216,
+  "md5Hash": "OM72lawcKArHgM3UxWOgkw==",
+  "crc32c": "4279653183"
+}

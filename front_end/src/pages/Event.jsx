@@ -104,9 +104,8 @@ export default function Event(props) {
                 </div>
               </Typography>
               <Typography variant="body1" gutterBottom>
-                <div>DATE</div>
-                <div>Ticket Price: {eventInfo.price} ETH</div>
-                <div>Avaliable Tickets: {eventInfo.availableTickets}</div>
+                <div>{`Ticket Price: ${eventInfo.price} ETH`}</div>
+                <div>{ `Available Tickets: ${eventInfo.availableTickets}`}</div>
               </Typography>
               <Typography variant="h3" gutterBottom fontStyle="italic">
                 <div style={{ color: "black", fontFamily: "Roberto" }}>
@@ -119,6 +118,7 @@ export default function Event(props) {
                 //setRemAvailTickets={setRemAvailTickets}
                 //remAvailTickets={remAvailTickets}
                 onSuccess={handleMintTickets}
+                data-test="mint-component"
                />
             </div>
           </div>

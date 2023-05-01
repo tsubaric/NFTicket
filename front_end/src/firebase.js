@@ -13,22 +13,23 @@ const firebaseConfig = {
     appId: "1:575312394572:web:8203623c9256f953eeb7e9"
 };
 
-const firebase = initializeApp(firebaseConfig);
+let firebase; // = initializeApp(firebaseConfig);
 
-const database = getDatabase(firebase);
+let database; //= getDatabase(firebase);
 
-const storage = getStorage(firebase);
-
+let storage; //= getStorage(firebase);
 
 // point to local emulator if running locally
-console.log("HOSTNAME: ", window.location.hostname);
-if (window.location.hostname === "127.0.0.1") {
-    connectDatabaseEmulator(database, "127.0.0.1", 9000);
-    connectStorageEmulator(storage, "127.0.0.1", 9199);
-}
-else if (window.location.hostname === "localhost") {
+if (window.location.hostname === "localhost") {
+    firebase = initializeApp(firebaseConfig, {experimentalForceLongPolling: true});
+    database = getDatabase(firebase);
+    storage = getStorage(firebase);
     connectDatabaseEmulator(database, "localhost", 9000);
     connectStorageEmulator(storage, "localhost", 9199);
+} else {
+    firebase = initializeApp(firebaseConfig);
+    database = getDatabase(firebase);
+    storage = getStorage(firebase);
 }
 
 export { database, firebase, storage };

@@ -50,8 +50,6 @@ export default function EventCard(props) {
             </div>
           </Typography>
 
-          <Typography variant="body1">DATE</Typography>
-
           <Typography
             variant="h4"
             gutterBottom

@@ -65,7 +65,7 @@ export default function TicketCard(props) {
 
     return (
       <div>
-        <Card sx={{ width: 200 }}>
+        <Card sx={{ width: 200 }} data-test="ticket-card">
           <CardHeader title={eventInfo.eventName} />
           <CardMedia
             component="img"
@@ -79,12 +79,14 @@ export default function TicketCard(props) {
           <CardActions disableSpacing>
             <IconButton
               aria-label="Transfer Ticket"
+              data-test="transfer-ticket-button"
               onClick={() => setTransferOpen(true)}
             >
               <CompareArrowsIcon />
             </IconButton>
             <IconButton
                 aria-label="Redeem Ticket"
+                data-test="redeem-ticket-button"
                 onClick={() => setRedeemOpen(true)}
             >
               <RedeemIcon />
@@ -109,9 +111,10 @@ export default function TicketCard(props) {
               onChange={(e) => {
                 setToAddress(e.target.value);
               }}
+              data-test="to-address-input"
             />
             <Button
-              id="createEventButton"
+              id="transferButton"
               style={{
                 marginTop: "25px",
                 marginBottom: "25px",
@@ -119,6 +122,7 @@ export default function TicketCard(props) {
               }}
               variant="contained"
               onClick={onSubmit}
+              data-test="transfer-submit-button"
             >
               Transfer
             </Button>
@@ -135,7 +139,7 @@ export default function TicketCard(props) {
         >
             <Box sx={style}>
                 Scan Code to Redeem Ticket
-                <div style={{ background: 'white', padding: '16px'}}>
+                <div data-test="redeem-qr-display" style={{ background: 'white', padding: '16px'}}>
                   <QRCode value={props.ticketId} />
                 </div>
             </Box>

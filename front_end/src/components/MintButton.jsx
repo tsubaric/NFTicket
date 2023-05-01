@@ -9,7 +9,7 @@ export default function MintButton(props) {
   const [amount, setAmount] = React.useState(0);
 
   const eventId = props.eventId;
-  const remAvailTickets = props.remAvailTickets;
+  //const remAvailTickets = props.remAvailTickets;
   const setRemAvailTickets = props.setRemAvailTickets;
 
   const handleChange = (event) => {
@@ -22,7 +22,7 @@ export default function MintButton(props) {
     console.log("newRemAvailTickets:", remainingAvailTicketsAfter);
     props.onSuccess(remainingAvailTicketsAfter);
   }
-  
+
   return (
     <div style={{ display: "flex" }}>
       <TextField
@@ -35,11 +35,13 @@ export default function MintButton(props) {
         variant="outlined"
         value={amount}
         onChange={handleChange}
+        data-test="mint-button-input"
       />
       <Button
         style={{ marginLeft: "10px" }}
         variant="contained"
         onClick={handleMint}
+        data-test="mint-button-submit"
       >
         Mint
       </Button>
