@@ -2,7 +2,7 @@
 
 ### Final Project Documentation and Test Report
 
-#### Team 3: Thomas Butler, Jordyn Iannuzzelli, Tommy Subaric, Mark Brom 
+#### Team 3 NFTicket: Thomas Butler, Jordyn Iannuzzelli, Tommy Subaric, Mark Brom 
 
 <br>
 <br>
@@ -63,13 +63,15 @@ engineers.
 
 The Github contribution history can be seen below. It should be noted that not everyone 
 was initially able to contribute as much do to different levels of experience with the technologies
-used.
+used.Thomas has the most experience with Ethereum development, as well as software engineering in 
+general, as the other team members have not taken higher level software engineering courses. 
  - trbutler4: Thomas Butler 
  - jiannuzzelli: Jordyn Iannuzzelli 
  - mjbrom: Mark Brom 
  - tsubaric, tjsubaric: Tommy Subaric 
 
 ![GitHub Contribution History](images/github_contribution_4.21.png)
+<div align="center"><b> Figure 1: Github Contribution History <b></div>
 
 #### Design Documentation 
 
@@ -107,7 +109,7 @@ kept decentralized and immutable with the smart contract.
 
 The constraints we set out to satisfy in our project proposal were as follows:
 
-1. The system shall be easily used on any web browser.
+1. The system shall run on any web browser.
 2. The system shall ensure that transactions complete in under 1 minute, at little  
 or no cost to the user. 
 3. The system shall be compatible with any EVM compatible network. 
@@ -126,30 +128,61 @@ plan to use ERC-721 token standard, and the reason for switching is discussed ab
 redemption is ISO 27001 compliant. User wallets are Ethereum accounts, and a user can import any 
 wallet into MetaMask to use with our site.
 
-**Architecture** 
+**Architecture**
 
 ![Architecture](images/architecture.png)
-
+<div align="center"><b> Figure 2: Project Architecture <b></div>
 
 **UI/UX**
 
-Home Page 
 ![](images/homepage.png)
+<div align="center"><b> Figure 3: Home Page </b></div>
+<br>
 
-Creating an Event 
+The homepage is where users land. From here, they can connect their wallet, and begin interacting with events.
+
 ![](images/createEventPage.png)
+<div align="center"><b> Figure 4: Create Event Page </b></div>
+<br>
 
-Events Page 
+This is the page users see when they want to create a new event. They can enter the event name, description, number 
+of tickets, ticket price, and event category.
+
 ![](images/eventsPage.png)
+<div align="center"><b> Figure 5: Events Page </b></div>
+<br>
 
-Event Page 
+This Page shows all created events. From here, a user can search for different events, and filter them based on 
+their category. Clicking on an event will bring the user to the event page, where they can purchase a ticket. 
+
 ![](images/eventPage.png)
+<div align="center"><b> Figure 6: Event Page </b></div>
+<br>
 
-My Tickets Page 
+Each event will have an associated event page, where the user can see the event information, and purchase a 
+ticket by entering the amount, and clicking the mint button. This will give the user a Metamask popup asking them 
+to confirm the transaction, and once they do the smart contract will create the ticket and send it to their wallet.
+
 ![](images/myTicketsPage.png)
+<div align="center"><b> Figure 7: My Tickets Page </b></div>
+<br>
 
-Transferring Ticket Dialogue 
+This page is where the user can see all their owned tickets. From here, users can transfer or redeem the tickets they own.
+
 ![](images/transferDialog.png)
+<div align="center"><b> Figure 8: Transferring Ticket Dialgue </b></div>
+<br>
+
+When a user clicks the transfer button on a ticket they own, they will be presented with this dialogue. The transfer 
+only requires a valid Ethereum address. This means that the tickets can be sent to anyone with an Ethereum wallet, 
+regardless of whether they have ever used the NFTicket platform. No signup required!
+
+![](images/ticket-redemption.png)
+<div align="center"><b> Figure 9: Ticket Redemption </b></div>
+<br>
+
+When a user clicks the redeem button on an owned ticket, they will be presented with a QR code. This QR code can then 
+be scanned, transacting with the smart contract to mark that ticket as redeemed.  
 
 **Maintenance** 
 
@@ -164,19 +197,46 @@ contract is deployed on chain.
 
 For testing, we employed two different tools. For testing our smart contract, we used Hardhat, which is 
 an Ethereum development environment which includes a locally hosted node. Hardhat lets use write tests 
-in JavaScript, and test on the local Ethereum network. For testing our front end, we used Cypress. 
+in JavaScript, and test on the local Ethereum network. For testing our front end, we used Cypress.
+In order to test the Metamask integration, we used a tool called synpress, which is a cypress plugin.
+This allows us to set up a wallet with metamask, and sign transactions with it in our tests. Hardhat 
+tests are unit tests, and cypress tests are end to end integration tests.
 
-| Requirement                                   | Test Type | Test Result |
-| ------------                                  |---------- | ----------- |
-| Users can create events                       | Hardhat   | Pass        |
-| Users can mint tickets                        | Hardhat   | Pass        |
-| Users can redeem tickets                      | Hardhat   | Pass        |
-| Contract returns tickets owned by user        | Hardhat   | Pass        | 
-| Contract can transfer tickets                 | Hardhat   | Pass        | 
-| Home page displays all relevant information   | Cypress   | Pass        | 
-| Event page displays relevant information      | Cypress   | Pass        |
-| Create event page has all needed forms        | Cypress   | Pass        |
-| My Tickets page displays owned tickets        | Cypress   | Pass        | 
+| Requirement                                           |Test Type  | Test Tool | Test Result |
+| ------------                                          |-----------|---------- | ----------- |
+| Contract can create events                            | Unit      | Hardhat   | Pass        |
+| Contract can mint tickets                             | Unit      | Hardhat   | Pass        |
+| Contract can redeem tickets                           | Unit      | Hardhat   | Pass        |
+| Contract returns tickets owned by user                | Unit      | Hardhat   | Pass        | 
+| Contract can transfer tickets                         | Unit      | Hardhat   | Pass        | 
+| Users can create an event                             | end-to-end| Cypress   | Manual Testing Required |
+| Created events should be displayed on events page     | end-to-end| Cypress   | Pass        | 
+| Users can search events                               | end-to-end| Cypress   | Pass        | 
+| Users can filter events                               | end-to-end| Cypress   | Pass        | 
+| Event page should display event details               | end-to-end| Cypress   | Pass        | 
+| User can buy tickets                                  | end-to-end| Cypress   | Pass        | 
+| User can transfer tickets                             | end-to-end| Cypress   | Pass        | 
+| User can redeem tickets                               | end-to-end| Cypress   | Pass        | 
+
+<div align="center"> <b>Figure 10: Requirement Traceability Matrix </b></div>
+<br>
+
+
+The majority of the end to end testing with cypress worked. However, there is an issue with cypress conntecting 
+to our firebase real time database. This is noted in the traceability matrix, with manual testing required, and we 
+verified that this functionality works by creating the event manually. In the test coverage below, it can be seen that 
+the CreateEventForm component has very low test coverage. This is because of the issue with cypress and firebase, 
+which unfortunately was not able to be resolved before this report was due. 
+Thankfully, the realtime database is only used to store event information like the event description images, and 
+most of our data comes from the smart contract itself. Because of this, even though the cypress tests were unable 
+to store the event information, all the smart contract logic with Metamask was still fully testable simply by 
+seeding the database with the correct event informaiton before the tests were run.
+
+Hardhat Test Coverage
+![](images/hardhat-coverage.png)
+
+Cypress Test Coverage 
+![](images/cypress-coverage.png)
 
 
 #### Appendices 
