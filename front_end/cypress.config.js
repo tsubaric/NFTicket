@@ -1,5 +1,6 @@
 const { defineConfig } = require("cypress");
 const synpressPlugins = require("@synthetixio/synpress/plugins");
+const coveragePlugins = require("@cypress/code-coverage/task");
 
 module.exports = defineConfig({
     userAgent: "synpress",
@@ -11,8 +12,16 @@ module.exports = defineConfig({
         testIsolation: true,
         setupNodeEvents(on, config) {
             synpressPlugins(on, config);
+            coveragePlugins(on, config);
+
+            return config;
         },
         baseUrl: "http://localhost:3000",
-        supportFile: "cypress/support/e2e.js"
+        supportFile: "cypress/support/e2e.js",
+        devServer: {
+            framework: "create-react-app",
+            bundler: "webpack",
+        },
+        video: false,
     }
 });

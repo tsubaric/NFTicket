@@ -20,7 +20,7 @@ let database; //= getDatabase(firebase);
 let storage; //= getStorage(firebase);
 
 // point to local emulator if running locally
-if (window.location.hostname === "localhost") {
+if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
     firebase = initializeApp(firebaseConfig, {experimentalForceLongPolling: true});
     database = getDatabase(firebase);
     storage = getStorage(firebase);

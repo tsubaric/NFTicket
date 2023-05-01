@@ -22,11 +22,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:instrumented": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "ethereum:deploy": "cd ../ && npx hardhat run scripts/deploy.js --network localhost && cd front_end/",
     "cypress:run": "env-cmd cypress run --browser chromium --headed",
-    "serve:test": "start-server-and-test 'BROWSER=none react-scripts start' http-get://localhost:3000 'npm run cypress:run'",
+    "serve:test": "start-server-and-test 'BROWSER=none react-scripts -r @cypress/instrument-cra start' http-get://localhost:3000 'npm run cypress:run'",
     "test": "npm run ethereum:deploy && npm run serve:test"
   },
   "eslintConfig": {
@@ -49,11 +50,13 @@
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.10.4",
+    "@cypress/instrument-cra": "^1.4.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.9",
     "@synthetixio/synpress": "^3.5.1",
     "@webpack-cli/generators": "^3.0.1",
+    "babel-plugin-istanbul": "^6.1.1",
     "cypress": "^12.11.0",
     "env-cmd": "^10.1.0",
     "ethers": "^6.0.3",

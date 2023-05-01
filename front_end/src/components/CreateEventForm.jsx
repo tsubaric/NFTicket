@@ -67,7 +67,6 @@ export default class CreateEventForm extends React.Component {
                   image: await getEventImageUrl(eventId),
               };
 
-              console.log("uploading metadata...")
               this.state.numGATickets = parseInt(this.state.numGATickets);
               for (let i = 0; i <= this.state.numGATickets; i++) {
                   const ticketId = eventId * 1000000 + i;
