@@ -14,8 +14,13 @@ import { storage } from "../firebase.js";
 import { uploadBytes, ref as sRef } from "firebase/storage";
 import { createEvent, getLastEventId } from "../interfaces/NFTicket_interface";
 import { getEventImageUrl, uploadMetadata } from "../interfaces/firebase_interface.js";
+import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { withRouter } from "react-router-dom";
 
-export default class CreateEventForm extends React.Component {
+
+class CreateEventForm extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +31,8 @@ export default class CreateEventForm extends React.Component {
       eventId: 0,
       selectedImage: null,
       eventCategory: "",
+      eventCreated: false,
+      creating: false
     };
 
     this.handleCreate = this.handleCreate.bind(this);
@@ -35,7 +42,8 @@ export default class CreateEventForm extends React.Component {
 
 
   async handleCreate(event) {
-    alert("Creating Event: " + this.state.eventName);
+    //alert("Creating Event: " + this.state.eventName);
+    this.setState({ creating: true });
     event.preventDefault();
 
     // TODO: redirect to confirmation page
@@ -76,7 +84,11 @@ export default class CreateEventForm extends React.Component {
 
             });
 
-            alert("Event Created" + this.state.eventName);
+            //alert("Event Created" + this.state.eventName);
+            this.setState({ eventCreated: true, creating: false }, () => {
+              // redirect to events page
+              this.props.history.push("/events");
+            });
 
         });
     });
@@ -258,8 +270,16 @@ export default class CreateEventForm extends React.Component {
           >
             Create
           </Button>
+          <Dialog open={this.state.creating}>
+          <DialogTitle>Creating event...</DialogTitle>
+          <DialogContent style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <CircularProgress />
+          </DialogContent>
+        </Dialog>
         </div>
       </Box>
     );
   }
 }
+
+export default withRouter(CreateEventForm);
