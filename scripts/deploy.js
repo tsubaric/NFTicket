@@ -5,20 +5,26 @@
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
 const hre = require("hardhat");
+const { deployPriceConsumerV3 } = require("./deployPriceConsumerV3");
 
 async function main() {
+
+
+    const network = hre.network.name;
+    const chainId = hre.network.config.chainId;
+    console.log(`network: ${network}`);
+
+    // deploy price consumer
+    await deployPriceConsumerV3(chainId);
 
     // deploy Ticket contract
     const NFTicket = await hre.ethers.getContractFactory("NFTicket");
     const nfticket = await NFTicket.deploy();
     //console.log(nfticket)
     await nfticket.deployed();
-    console.log(
-    `NFTicket contract deployed to ${nfticket.address}`
+    console.log(`NFTicket contract deployed to ${network} ${nfticket.address}`
     );
 
-    const network = hre.network.name;
-    console.log(`network: ${network}`);
         // write contract address to front end
     const fs = require('fs');
     const contractInfo = {

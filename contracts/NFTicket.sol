@@ -1,14 +1,15 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/utils/Counters.sol"; // library for counters -- may not be needed
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol"; // NFT token standard
+import "./PriceConsumerV3.sol"; // Chainlink price feed
 
 contract NFTicket is ERC1155 {
 
     using Counters for Counters.Counter;
     Counters.Counter private eventCounter;
-    mapping(uint256 => Counters.Counter) private ticketCounters; // counter for each event
+    mapping(uint256 => Counters.Counter) private ticketCounters;
 
     struct Event {
         uint256 eventId; // 1 - 999
