@@ -3,18 +3,19 @@ pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/utils/Counters.sol"; // library for counters -- may not be needed
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol"; // NFT token standard
-import "./PriceConsumerV3.sol"; // Chainlink price feed
+import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 contract NFTicket is ERC1155 {
 
     using Counters for Counters.Counter;
     Counters.Counter private eventCounter;
     mapping(uint256 => Counters.Counter) private ticketCounters;
+    AggregatorV3Interface internal immutable priceFeed;
 
     struct Event {
         uint256 eventId; // 1 - 999
         uint256 ticketAmount; // 0 - 999999
-        uint256 ticketPrice;
+        uint256 ticketPriceUSD;
         uint256 ticketsAvailable;
         address eventOwner;
     }
@@ -31,15 +32,16 @@ contract NFTicket is ERC1155 {
     mapping (address => uint256[]) private ownedTicketsMap;  // user -> owned ticketIds
     mapping (address => uint256[]) private ownedEventsMap; // user -> owned eventId
 
-    constructor() ERC1155("https://firebasestorage.googleapis.com/v0/b/nfticket-f0356.appspot.com/o/metadata%2F{id}.json?alt=media") {
+    constructor(address _priceFeed) ERC1155("https://firebasestorage.googleapis.com/v0/b/nfticket-f0356.appspot.com/o/metadata%2F{id}.json?alt=media") {
         eventCounter.increment(); // start at event id 1
+        priceFeed = AggregatorV3Interface(_priceFeed); // ETH/USD price feed
     }
 
     // create a new event
-    function createEvent (uint256 ticketAmount, uint256 ticketPrice) public returns (uint256) {
+    function createEvent (uint256 ticketAmount, uint256 ticketPriceUSD) public returns (uint256) {
         uint256 eventId = eventCounter.current();
         eventCounter.increment(); // start ticket ids at 1
-        allEventsMap[eventId] =  Event(eventId, ticketAmount, ticketPrice, ticketAmount, msg.sender);
+        allEventsMap[eventId] =  Event(eventId, ticketAmount, ticketPriceUSD, ticketAmount, msg.sender);
         return eventId;
     }
 
@@ -48,7 +50,7 @@ contract NFTicket is ERC1155 {
     }
 
     function mintTickets (uint256 eventId, uint256 amount) public payable {
-        // TODO: make this actually charge for the tickets
+        require(msg.value >= (getTicketPriceETH(eventId) * amount), "Incorrect amount of ETH sent");
         require(allEventsMap[eventId].ticketsAvailable >= amount, "Insufficient tickets remaining");
         require(amount > 0, "Must mint at least 1 ticket");
 
@@ -126,8 +128,30 @@ contract NFTicket is ERC1155 {
         return allTicketsMap[ticketId];
     }
 
+    // returns number of tickets still available for an event
     function getRemainingAvailTickets (uint256 eventId) public view returns (uint ticketRemain){
         return allEventsMap[eventId].ticketsAvailable;
+    }
+
+    // returns ticket price in USD
+    function getTicketPriceUSD (uint256 eventId) public view returns (uint256) {
+        return allEventsMap[eventId].ticketPriceUSD;
+    }
+
+    function getTicketPriceETH (uint256 eventId) public view returns (uint256) {
+        uint256 ticketPriceUSD = getTicketPriceUSD(eventId);
+        uint8 decimals = priceFeed.decimals();
+
+        (
+            uint80 roundID,
+            int256 price,
+            uint256 startedAt,
+            uint256 timeStamp,
+            uint80 answeredInRound
+        ) = priceFeed.latestRoundData();
+
+        return (ticketPriceUSD * 10 ** decimals) / (uint256(price) / 10 ** decimals);
+
     }
 
 }
