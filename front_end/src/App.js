@@ -6,6 +6,7 @@ import MyTicketsPage from "./pages/MyTicketsPage.jsx";
 import Event from "./pages/Event.jsx";
 import { createBrowserHistory as history } from "history";
 import Dashboard from "./components/Dashboard";
+import Footer from "./components/Footer";
 import Events from "./pages/Events.jsx";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/event/:eventId" exact component={Event} />
         </Switch>
       </div>
+      <Footer/>
     </Router>
   );
 }
