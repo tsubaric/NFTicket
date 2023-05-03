@@ -1,0 +1,19 @@
+{
+  "name": "events/1/image.jpg",
+  "bucket": "nfticket-f0356.appspot.com",
+  "metageneration": 1,
+  "generation": 1682896313856,
+  "contentType": "image/png",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d8080624-e7f6-4fad-a308-d93c67f63e72"
+  ],
+  "etag": "x+d2di7ks8etOMeug2+pPZdMuJQ",
+  "customMetadata": {},
+  "timeCreated": "2023-04-30T23:11:53.857Z",
+  "updated": "2023-04-30T23:11:53.857Z",
+  "size": 26188,
+  "md5Hash": "YKaKjK0ulaIMzHrM1bTncg==",
+  "crc32c": "2115402321"
+}

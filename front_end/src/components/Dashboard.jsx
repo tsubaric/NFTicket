@@ -5,21 +5,20 @@ import Button from "@mui/material/Button";
 
 const Dashboard = (props) => {
   return (
-    <nav className={`dashboard-1 ${props.className || ""}`}>
+    <nav data-test="nav-bar" className={`dashboard-1 ${props.className || ""}`}>
       <p>NFTicket</p>
-      {/* <input type="text" placeholder="Search" className="rectangle-3" /> */}
 
-      <Button variant="contained" class="button" href="/">
+      <Button variant="text" href="/">
         Home
       </Button>
-      <Button variant="contained" class="button" href="/events">
+      <Button variant="text" href="/events">
         Events
       </Button>
-      <Button variant="contained" class="button" href="/tickets">
+      <Button variant="text" href="/tickets">
         My Tickets
       </Button>
 
-      <Button variant="contained" class="button" href="/create">
+      <Button variant="text" className="button" href="/create">
         Create
       </Button>
 

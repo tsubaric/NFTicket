@@ -1,50 +1,19 @@
 import * as React from "react";
 import "../styles/MyTicketsPage.css";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import TicketCard from "../components/TicketCard";
+import TicketCard from "../components/TicketCard.jsx";
 import { useState, useEffect } from "react";
-import {
-  getLastEventId,
-  getTicketBalance,
-} from "../interfaces/NFTicket_interface";
-import { getEventInfo } from "../interfaces/firebase_interface";
 import TabContext from "@mui/lab/TabContext";
 import PersonIcon from "@mui/icons-material/Person";
 import Tab from "@mui/material/Tab";
 import TabList from "@mui/lab/TabList";
+import { getAllOwnedTickets, getTicketInfo, getTicketUri } from "../interfaces/NFTicket_interface";
 
 export default function MyTicketsPage() {
-  const [ticketBalance, setTicketBalance] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [address, setAddress] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [displayList, setDisplayList] = useState([]);
+  const [ownedTickets, setOwnedTickets] = useState([]);
 
-  const loadOwnedTickets = async () => {
-    // get address of connected wallet
-    let address = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-    address = address[0];
-    setAddress(address);
-
-    // grab balance of each event id
-    // NOTE: this is not scalable, but for now it works
-    //
-    const lastEventId = await getLastEventId();
-    const balances = [];
-    for (let i = 0; i <= lastEventId; i++) {
-      const balance = await getTicketBalance(address, i);
-      if (balance > 0) {
-        const info = await getEventInfo(i);
-        balances.push({ eventId: i, balance: balance, eventInfo: info[0] });
-        setTicketBalance(balances);
-        setDisplayList(balances);
-      }
-    }
-    setIsLoading(false);
-  };
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     filterEvents();
@@ -52,7 +21,7 @@ export default function MyTicketsPage() {
 
   const filterEvents = () => {
     // apply category filter if category is not "All"
-    let filteredEvents = ticketBalance;
+    let filteredEvents = ownedTickets;
     //apply search filter if search term is not empty
     if (searchTerm !== "") {
       filteredEvents = filteredEvents.filter((event) =>
@@ -63,37 +32,26 @@ export default function MyTicketsPage() {
     setDisplayList(filteredEvents);
   };
 
-  const displayTickets = () => {
-    const ticketCards = [];
-    displayList.forEach((ticket) => {
-      for (let i = 0; i < ticket.balance; i++) {
-        ticketCards.push(
-          <Grid item xs={2} sm={2} md={2} lg={2}>
-            <TicketCard
-              key={ticket.eventId + "-" + i} // just so it is unique
-              eventId={ticket.eventId}
-              eventName={ticket.eventInfo.eventName}
-              eventImage={ticket.eventInfo.thumbnail}
-              owned={true}
-              address={address}
-            />
-          </Grid>
-        );
+  async function loadTickets() {
+    // get ticket ids of owned tickets
+    const tickets = await getAllOwnedTickets();
+    const promises = tickets.map((ticket) => {
+      {
+        console.log("ticket URI ", getTicketUri(Number(ticket)))
+        return getTicketInfo(Number(ticket))
       }
-    });
-
-    return ticketCards;
-  };
+    })
+    const ownedTickets = await Promise.all(promises)
+    console.log("found owned tickets: ", ownedTickets)
+    setOwnedTickets(ownedTickets)
+    setDisplayList(displayList)
+  }
 
   useEffect(() => {
-    console.log("loading owned tickets...");
-    loadOwnedTickets();
-    console.log(ticketBalance);
+    loadTickets();
   }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+
   return (
     <div className="main-container">
       <div className="ownedNFTS">
@@ -118,9 +76,21 @@ export default function MyTicketsPage() {
               className="searchBar"
               style={{ width: "100vh", fontSize: "40px", margin: "20px" }}
             />
-            <Grid container spacing={4}>
-              {displayTickets()}
-            </Grid>
+          </Box>
+          <Box style={{ display: "flex", justifyContent: "center", margin: "50px" }}>
+              { ownedTickets[0] === 0 ? <h1>No tickets found</h1> :
+                  ownedTickets.map((t, i) => {
+                      return (
+                        <div style={{ padding: "15px"}}>
+                        <TicketCard
+                          key={i}
+                          ticketId={t.ticketId}
+                          eventId={t.eventId}
+                        />
+                        </div>
+                      )
+                  })
+              }
           </Box>
         </TabContext>
       </div>

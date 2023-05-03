@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import RedeemIcon from "@mui/icons-material/Redeem";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import { transferTicket } from "../interfaces/NFTicket_interface";
 import Button from "@mui/material/Button";
+import { getEventImageUrl, getEventInfo } from "../interfaces/firebase_interface";
+import QRCode from "react-qr-code";
+import ReactDOM from "react-dom";
+
 
 const style = {
   position: "absolute",
@@ -32,32 +32,64 @@ const style = {
 export default function TicketCard(props) {
   const [transferOpen, setTransferOpen] = useState(false);
   const [toAddress, setToAddress] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [imageUrl, setImageUrl] = useState("");
+  const [eventInfo, setEventInfo] = useState({});
+  const [redeemOpen, setRedeemOpen] = useState(false);
+
+
+  useEffect(() => {
+      if (imageUrl === "") {
+          getEventImageUrl(props.eventId).then((url) => {
+              setImageUrl(url);
+            })
+      }
+  }, [imageUrl])
+
+  useEffect(() => {
+      const loadEventInfo = async () => {
+          const info = await getEventInfo(props.eventId);
+          console.log(info);
+          setEventInfo(info);
+      }
+      loadEventInfo();
+  }, [])
+
+
   const onSubmit = async () => {
-    await transferTicket(props.eventId, amount, props.address, toAddress);
+    console.log("Transfering ticket");
+    console.log(props.ticketId);
+    console.log(toAddress);
+    await transferTicket(props.ticketId, toAddress);
     setTransferOpen(false);
   };
 
-  if (props.owned === true) {
     return (
       <div>
-        <Card sx={{ maxWidth: 345 }}>
-          <CardHeader title={props.eventName} />
+        <Card sx={{ width: 200 }} data-test="ticket-card">
+          <CardHeader title={eventInfo.eventName} />
           <CardMedia
             component="img"
-            height="194"
-            image={props.eventImage}
-            alt="NFT name"
+            height="150"
+            title="NFT Ticket Card"
+            alt="Event Image"
+            image={imageUrl}
           />
+          <CardContent>
+          </CardContent>
           <CardActions disableSpacing>
-            <IconButton aria-label="add to cart">
-              <ShoppingCartIcon />
-            </IconButton>
             <IconButton
               aria-label="Transfer Ticket"
+              data-test="transfer-ticket-button"
               onClick={() => setTransferOpen(true)}
             >
               <CompareArrowsIcon />
+            </IconButton>
+            <IconButton
+                aria-label="Redeem Ticket"
+                data-test="redeem-ticket-button"
+                onClick={() => setRedeemOpen(true)}
+            >
+              <RedeemIcon />
             </IconButton>
           </CardActions>
         </Card>
@@ -71,26 +103,6 @@ export default function TicketCard(props) {
         >
           <Box component="form" sx={style}>
             <TextField
-              id="From"
-              required
-              label="From"
-              name="From"
-              type="text"
-              value={props.address}
-              disabled={true}
-            />
-            <br />
-            <TextField
-              id="eventId"
-              required
-              label="Event ID"
-              name="eventId"
-              type="text"
-              value={props.eventId}
-              disabled={true}
-            />
-            <br />
-            <TextField
               id="To"
               required
               label="To"
@@ -99,21 +111,10 @@ export default function TicketCard(props) {
               onChange={(e) => {
                 setToAddress(e.target.value);
               }}
+              data-test="to-address-input"
             />
-            <br />
-            <TextField
-              id="Amount"
-              required
-              label="Amount"
-              name="Amount"
-              type="number"
-              onChange={(e) => {
-                setAmount(e.target.value);
-              }}
-            />
-            <br />
             <Button
-              id="createEventButton"
+              id="transferButton"
               style={{
                 marginTop: "25px",
                 marginBottom: "25px",
@@ -121,71 +122,28 @@ export default function TicketCard(props) {
               }}
               variant="contained"
               onClick={onSubmit}
+              data-test="transfer-submit-button"
             >
               Transfer
             </Button>
             <br />
           </Box>
         </Modal>
+        <Modal
+          open={redeemOpen}
+          onClose={() => {
+              setRedeemOpen(false);
+          }}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+            <Box sx={style}>
+                Scan Code to Redeem Ticket
+                <div data-test="redeem-qr-display" style={{ background: 'white', padding: '16px'}}>
+                  <QRCode value={props.ticketId} />
+                </div>
+            </Box>
+        </Modal>
       </div>
     );
-  } else {
-    return (
-      <Card sx={{ maxWidth: 345 }}>
-        <CardHeader title={props.eventName} />
-        <CardMedia
-          component="img"
-          height="194"
-          image={props.eventImage}
-          alt="NFT name"
-        />
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to cart">
-            <ShoppingCartIcon />
-          </IconButton>
-        </CardActions>
-      </Card>
-    );
-  }
 }
-
-/*
-return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        title="NFT Event Name"
-        subheader="Date"
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="NFT name"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          NFT Description
-        </Typography>
-        <Typography>
-          <b>Ticket ID:</b>
-        </Typography>
-        <Typography>
-          <b>Stock Price:</b>
-        </Typography>
-        <Typography>
-          <b>Ticket Avaliable:</b>
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to cart">
-          <ShoppingCartIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
-  );
-*/

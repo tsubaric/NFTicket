@@ -4,9 +4,6 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { database } from "../firebase.js";
 import { ref, set, get } from "firebase/database";
-import { ethers } from "ethers";
-import ContractData from "../NFTicket.json";
-import { Web3Storage } from "web3.storage";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
@@ -15,9 +12,15 @@ import IconButton from "@mui/material/IconButton";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { storage } from "../firebase.js";
 import { uploadBytes, ref as sRef } from "firebase/storage";
+import { createEvent, getLastEventId } from "../interfaces/NFTicket_interface";
+import { getEventImageUrl, uploadMetadata } from "../interfaces/firebase_interface.js";
+import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { withRouter } from "react-router-dom";
 
 
-export default class CreateEventForm extends React.Component {
+class CreateEventForm extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -28,6 +31,8 @@ export default class CreateEventForm extends React.Component {
       eventId: 0,
       selectedImage: null,
       eventCategory: "",
+      eventCreated: false,
+      creating: false
     };
 
     this.handleCreate = this.handleCreate.bind(this);
@@ -35,103 +40,61 @@ export default class CreateEventForm extends React.Component {
     this.uploadImage = this.uploadImage.bind(this);
   }
 
-  async handleCreate(event) {
-    alert("Creating Event: " + this.state.eventName);
-    event.preventDefault();
 
+  async handleCreate(event) {
+    //alert("Creating Event: " + this.state.eventName);
+    this.setState({ creating: true });
+    event.preventDefault();
 
     // TODO: redirect to confirmation page
     // determine event id and create event
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner();
-    const NFTicketAbi = ContractData.abi;
-    const NFTicketAddress = ContractData.address;
-    const NFTicketContract = new ethers.Contract(
-      NFTicketAddress,
-      NFTicketAbi,
-      signer
-    );
-    var response = await NFTicketContract.createEvent(
-      this.state.gaTicketPrice,
-      this.state.numGATickets
-    ); // price, amount
-    console.log(response);
-    const eventId = Number(await NFTicketContract.getLastEventId());
-    console.log("eventId: ", eventId); // verifying correct event id
-    console.log(
-      "numGATickets: ",
-      Number(await NFTicketContract.getGATicketsAvailable(eventId))
-    ); // verifying correct number of tickets
-    console.log(
-      "gaTicketPrice: ",
-      Number(await NFTicketContract.getGATicketsPrice(eventId))
-    ); // verifying correct ticket price
+    createEvent(
+      this.state.numGATickets,
+      this.state.gaTicketPrice
+    ).then((response) => {
+        console.log("create event response: ", response);
+        getLastEventId().then((eventId) => {
+            // write to database
+            this.setState({ ["eventId"]: eventId }, async () => {
+              // upload image
+              console.log("uploading image...")
+              console.log(eventId);
+              console.log(this.state.selectedImage);
+              await this.uploadImage(eventId, this.state.selectedImage);
 
-    // write metadata to ipfs and set ipfs uri in contract
-    const metadata = {
-      name: this.state.eventName,
-      description: this.state.eventDescription,
-      image: null, // TODO: upload image to ipfs put link here,
-      properties: {
-        ticketType: "GA",
-      },
-    };
-    console.log(metadata);
-    const blob = new Blob([JSON.stringify(metadata)], {
-      type: "application/json",
+              // update events
+              console.log(
+                `adding to events/${eventId} wtih state: ${JSON.stringify(this.state)}`
+              );
+              set(ref(database, "events/" + eventId), this.state);
+
+              // create and upload metadata
+              const metadata = {
+                  name: `${this.state.eventName} Ticket`,
+                  description: `Digital Ticket for ${this.state.eventName}`,
+                  image: await getEventImageUrl(eventId),
+              };
+
+              this.state.numGATickets = parseInt(this.state.numGATickets);
+              for (let i = 0; i <= this.state.numGATickets; i++) {
+                  const ticketId = eventId * 1000000 + i;
+                  await uploadMetadata(ticketId, metadata);
+              }
+
+
+            });
+
+            //alert("Event Created" + this.state.eventName);
+            this.setState({ eventCreated: true, creating: false }, () => {
+              // redirect to events page
+              this.props.history.push("/events");
+            });
+
+        });
     });
-    const metadata_file = new File([blob], `${eventId}.json`);
+  };
 
-    const accessToken = process.env.REACT_APP_WEB3STORAGE_TOKEN;
-    const client = new Web3Storage({ token: accessToken });
 
-    // get current uris
-    /*
-    const current_cid = (await get(ref(database, "metadata/live_cid"))).val().cid;
-    console.log(`current cid: ${current_cid}`);
-    response = await client.get(current_cid);
-    console.log(`Got a response! [${response.status}] ${response.statusText}`);
-    if (!response.ok) {
-      throw new Error(
-        `failed to get ${current_cid} - [${response.status}] ${response.statusText}`
-      );
-    }
-    const files = await response.files();
-
-    // add new file and upload
-    files.push(metadata_file);
-    const cid = await client.put(files);
-    console.log(cid);
-
-    // TODO: set ipfs uri in contract
-    response = await NFTicketContract.setEventUri(
-      `https://${cid}.ipfs.w3s.link/{id}.json`
-    );
-
-    */
-
-    // write to database
-    this.setState({ ["eventId"]: eventId }, async () => {
-      // upload image
-      console.log("uploading image...")
-      console.log(eventId);
-      console.log(this.state.selectedImage);
-      await this.uploadImage(eventId, this.state.selectedImage);
-
-      // update events
-      console.log(
-        `adding to events/${eventId} wtih state: ${JSON.stringify(this.state)}`
-      );
-      set(ref(database, "events/" + eventId), this.state);
-
-      // update metadata cid
-      //console.log(`updating metadata/live_cid with ${cid}`);
-      //set(ref(database, "metadata/live_cid"), { cid: cid });
-    });
-
-    alert("Event Created" + this.state.eventName);
-
-  }
 
   handleChange(event) {
     const target = event.target;
@@ -187,6 +150,7 @@ export default class CreateEventForm extends React.Component {
             label="Event Name"
             name="eventName"
             onChange={this.handleChange}
+            data-test="event-name-field"
           />
           <TextField
             id="eventDescription"
@@ -202,6 +166,7 @@ export default class CreateEventForm extends React.Component {
             label="Description"
             name="eventDescription"
             onChange={this.handleChange}
+            data-test="event-description-field"
           />
           <TextField
             id="numGATickets"
@@ -215,12 +180,13 @@ export default class CreateEventForm extends React.Component {
             name="numGATickets"
             type="number"
             onChange={this.handleChange}
+            data-test="num-tickets-field"
           />
           <TextField
             id="gaTicketPrice"
             style={{
               marginTop: "25px",
-              marginBottom: "25px", 
+              marginBottom: "25px",
               width: "100%",
               }}
             required
@@ -228,6 +194,7 @@ export default class CreateEventForm extends React.Component {
             name="gaTicketPrice"
             type="number"
             onChange={this.handleChange}
+            data-test="ticket-price-field"
           />
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Category</InputLabel>
@@ -241,52 +208,55 @@ export default class CreateEventForm extends React.Component {
               required
               label="category"
               name="eventCategory"
+              id="eventCategory"
               onChange={this.handleChange}
+              data-test="category-dropdown"
             >
-              <MenuItem value={"Restaurants"}>Restaurants</MenuItem>
-              <MenuItem value={"Festivals"}>Festivals</MenuItem>
-              <MenuItem value={"Sports"}>Sports</MenuItem>
-              <MenuItem value={"Travel"}>Travel</MenuItem>
-              <MenuItem value={"Charity"}>Charity</MenuItem>
-              <MenuItem value={"Virtual"}>Virtual</MenuItem>
-              <MenuItem value={"Health"}>Health</MenuItem>
+              <MenuItem data-test="restaurant-category" value={"Restaurants"}>Restaurants</MenuItem>
+              <MenuItem data-test="festival-category" value={"Festivals"}>Festivals</MenuItem>
+              <MenuItem data-test="sports-category" value={"Sports"}>Sports</MenuItem>
+              <MenuItem data-test="travel-category" value={"Travel"}>Travel</MenuItem>
+              <MenuItem data-test="charity-category" value={"Charity"}>Charity</MenuItem>
+              <MenuItem data-test="virtual-category" value={"Virtual"}>Virtual</MenuItem>
+              <MenuItem data-test="health-category" value={"Health"}>Health</MenuItem>
             </Select>
           </FormControl>
-          {this.state.selectedImage && (
-            <div>
-              <img
-                alt="not found"
-                width={"250px"}
-                src={URL.createObjectURL(this.state.selectedImage)}
-              />
-              <br />
-              <IconButton
-                color="primary"
-                component="label"
-                onClick={() => {
-                  this.setState({ selectedImage: null });
-                  this.fileInput.value = "";
-                }}
-              >
-                <AttachFileIcon fontSize="medium" /> Remove Image
-              </IconButton>
-            </div>
-          )}
-          {!this.state.selectedImage && (
-            <IconButton color="primary" component="label">
-              <input
-                ref={(ref) => (this.fileInput = ref)}
-                type="file"
-                accept="image/*"
-                hidden
-                onChange={(e) => {
-                  console.log(e.target.files[0]);
-                  this.setState({ selectedImage: e.target.files[0] });
-                }}
-              />
-              <AttachFileIcon fontSize="medium" /> Upload Image
-            </IconButton>
-          )}
+            {this.state.selectedImage && (
+                <div>
+                  <img
+                    alt="not found"
+                    width={"250px"}
+                    src={URL.createObjectURL(this.state.selectedImage)}
+                  />
+                  <br />
+                  <IconButton
+                    color="primary"
+                    component="label"
+                    onClick={() => {
+                      this.setState({ selectedImage: null });
+                      this.fileInput.value = "";
+                    }}
+                  >
+                    <AttachFileIcon fontSize="medium" /> Remove Image
+                  </IconButton>
+                </div>
+              )}
+              {!this.state.selectedImage && (
+                <IconButton color="primary" component="label">
+                  <input
+                    ref={(ref) => (this.fileInput = ref)}
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    onChange={(e) => {
+                      console.log(e.target.files[0]);
+                      this.setState({ selectedImage: e.target.files[0] });
+                    }}
+                    data-test="upload-image-input"
+                  />
+                  <AttachFileIcon data-test="upload-image-icon" fontSize="medium" /> Upload Image
+                </IconButton>
+              )}
           <Button
             id="createEventButton"
             style={{
@@ -296,12 +266,20 @@ export default class CreateEventForm extends React.Component {
             }}
             variant="contained"
             onClick={this.handleCreate}
-
+            data-test="create-event-submit-button"
           >
             Create
           </Button>
+          <Dialog open={this.state.creating}>
+          <DialogTitle>Creating event...</DialogTitle>
+          <DialogContent style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <CircularProgress />
+          </DialogContent>
+        </Dialog>
         </div>
       </Box>
     );
   }
 }
+
+export default withRouter(CreateEventForm);

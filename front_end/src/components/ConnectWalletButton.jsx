@@ -37,7 +37,7 @@ const ConnectWalletButton = () => {
 
 
     return (
-        <Button variant="contained" onClick={connectWallet} >
+        <Button name="connectWallet" variant="contained" onClick={connectWallet} data-test="connect-wallet">
             {message}
         </Button>
     )

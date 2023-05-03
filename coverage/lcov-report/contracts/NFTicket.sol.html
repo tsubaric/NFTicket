@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/NFTicket.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> NFTicket.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.97% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>32/33</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">64.29% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>9/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92.31% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>12/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.73% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>43/44</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+&nbsp;
+import "@openzeppelin/contracts/utils/Counters.sol"; // library for counters -- may not be needed
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol"; // NFT token standard
+&nbsp;
+contract NFTicket is ERC1155 {
+&nbsp;
+    using Counters for Counters.Counter;
+    Counters.Counter private eventCounter;
+    mapping(uint256 =&gt; Counters.Counter) private ticketCounters; // counter for each event
+&nbsp;
+    struct Event {
+        uint256 eventId; // 1 - 999
+        uint256 ticketAmount; // 0 - 999999
+        uint256 ticketPrice;
+        uint256 ticketsAvailable;
+        address eventOwner;
+    }
+&nbsp;
+    struct Ticket {
+        uint256 eventId;
+        uint256 ticketId; // ticketId is the eventId concatenated with the ticket number
+        bool redeemed;
+        address owner;
+    }
+&nbsp;
+    mapping (uint256 =&gt; Event) private allEventsMap; // event id -&gt; Event struct
+    mapping (uint256 =&gt; Ticket) private allTicketsMap;  // ticket id -&gt; Ticket struct
+    mapping (address =&gt; uint256[]) private ownedTicketsMap;  // user -&gt; owned ticketIds
+    mapping (address =&gt; uint256[]) private ownedEventsMap; // user -&gt; owned eventId
+&nbsp;
+    constructor() ERC1155("https://firebasestorage.googleapis.com/v0/b/nfticket-f0356.appspot.com/o/metadata%2F{id}.json?alt=media") {
+        eventCounter.increment(); // start at event id 1
+    }
+&nbsp;
+    // create a new event
+    function createEvent (uint256 ticketAmount, uint256 ticketPrice) public returns (uint256) {
+        uint256 eventId = eventCounter.current();
+        eventCounter.increment(); // start ticket ids at 1
+        allEventsMap[eventId] =  Event(eventId, ticketAmount, ticketPrice, ticketAmount, msg.sender);
+        return eventId;
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function setEventUri (string memory eventURI) public {</span>
+<span class="cstat-no" title="statement not covered" >        _setURI(eventURI)</span>;
+    }
+&nbsp;
+    function mintTickets (uint256 eventId, uint256 amount) public payable {
+        // TODO: make this actually charge for the tickets
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(allEventsMap[eventId].ticketsAvailable &gt;= amount, "Insufficient tickets remaining");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(amount &gt; 0, "Must mint at least 1 ticket");
+&nbsp;
+        // mint tickets and update amount available
+        uint256[] memory ids = new uint256[](amount);
+        uint256[] memory amounts = new uint256[](amount);
+        uint256 curTicketCount = ticketCounters[eventId].current();
+        // generate ids for minting
+        for (uint i = 0; i &lt; amount; i++) {
+            uint256 ticketId = generateTicketId(eventId, curTicketCount);
+            ids[i] = ticketId;
+            amounts[i] = 1;
+            curTicketCount++; // incrementing temp variable because we want to increment counter after minting
+        }
+        _mintBatch(msg.sender, ids, amounts, "");
+&nbsp;
+        // update owned tickets
+        // doing this after minting in case mint fails
+        for (uint i = 0; i &lt; amount; i++){
+            ticketCounters[eventId].increment(); // increment ticket counter
+            allTicketsMap[ids[i]] = Ticket(eventId, ids[i], false, msg.sender);  // update ticket information
+            ownedTicketsMap[msg.sender].push(ids[i]);  // add ticket to owner mapping
+            allEventsMap[eventId].ticketsAvailable--;  // update available tickets
+        }
+    }
+&nbsp;
+    // increment the event id each time a new event is created
+    function generateTicketId (uint256 eventId, uint256 ticketNumber) internal pure returns (uint256) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(eventId &lt;= 999, "Event ID must be less than 1000");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(ticketNumber &lt;= 999999, "Ticket number must be less than 999999");
+&nbsp;
+        return eventId * 1000000 + ticketNumber;
+    }
+&nbsp;
+    function redeemTicket (uint256 ticketId) public {
+        require(allTicketsMap[ticketId].owner == msg.sender, "Only the ticket owner can redeem a ticket");
+        allTicketsMap[ticketId].redeemed = true;
+    }
+&nbsp;
+    function transferTicket (uint256 ticketId, address recipient) public {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(allTicketsMap[ticketId].owner == msg.sender, "Only the ticket owner can transfer a ticket");
+        safeTransferFrom(msg.sender, recipient, ticketId, 1, "");
+        allTicketsMap[ticketId].owner = recipient;
+        ownedTicketsMap[msg.sender] = removeTicketId(ownedTicketsMap[msg.sender], ticketId);
+        ownedTicketsMap[recipient].push(ticketId);
+    }
+&nbsp;
+    function removeTicketId (uint256[] memory ticketIds, uint256 ticketId) internal pure returns (uint256[] memory) {
+        uint256[] memory newTicketIds = new uint256[](ticketIds.length - 1);
+        uint256 j = 0;
+        for (uint i = 0; i &lt; ticketIds.length; i++) {
+            if (ticketIds[i] != ticketId) {
+                newTicketIds[j] = ticketIds[i];
+                j++;
+            }
+        }
+        return newTicketIds;
+    }
+&nbsp;
+    // ------------------------
+    // getters defined below
+    function getLastEventId () public view returns (uint256) {
+        return eventCounter.current() - 1;
+    }
+&nbsp;
+    function getEventInfo (uint256 eventId) public view returns (Event memory) {
+        return allEventsMap[eventId];
+    }
+&nbsp;
+    function getAllOwnedTickets () public view returns (uint256[] memory ticketIds) {
+        return ownedTicketsMap[msg.sender];
+    }
+&nbsp;
+    function getTicketInfo (uint256 ticketId) public view returns (Ticket memory) {
+        return allTicketsMap[ticketId];
+    }
+&nbsp;
+    function getRemainingAvailTickets (uint256 eventId) public view returns (uint ticketRemain){
+        return allEventsMap[eventId].ticketsAvailable;
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 30 2023 22:21:32 GMT-0500 (Central Daylight Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

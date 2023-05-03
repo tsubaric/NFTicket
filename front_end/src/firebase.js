@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
-import { getStorage } from "firebase/storage";
+import { getDatabase, connectDatabaseEmulator } from "firebase/database";
+import { getStorage, connectStorageEmulator } from "firebase/storage";
 
 
 const firebaseConfig = {
@@ -13,10 +13,23 @@ const firebaseConfig = {
     appId: "1:575312394572:web:8203623c9256f953eeb7e9"
 };
 
-const firebase = initializeApp(firebaseConfig);
-const database = getDatabase(firebase);
-//creating a root reference
-const storage = getStorage(firebase);
+let firebase; // = initializeApp(firebaseConfig);
 
+let database; //= getDatabase(firebase);
+
+let storage; //= getStorage(firebase);
+
+// point to local emulator if running locally
+if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+    firebase = initializeApp(firebaseConfig, {experimentalForceLongPolling: true});
+    database = getDatabase(firebase);
+    storage = getStorage(firebase);
+    connectDatabaseEmulator(database, "localhost", 9000);
+    connectStorageEmulator(storage, "localhost", 9199);
+} else {
+    firebase = initializeApp(firebaseConfig);
+    database = getDatabase(firebase);
+    storage = getStorage(firebase);
+}
 
 export { database, firebase, storage };

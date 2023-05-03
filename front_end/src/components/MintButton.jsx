@@ -3,36 +3,25 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { ethers } from "ethers";
 import ContractData from "../NFTicket.json";
+import { mintTickets } from "../interfaces/NFTicket_interface";
 
 export default function MintButton(props) {
   const [amount, setAmount] = React.useState(0);
 
-  console.log("props: ", props);
+  const eventId = props.eventId;
+  //const remAvailTickets = props.remAvailTickets;
+  const setRemAvailTickets = props.setRemAvailTickets;
 
   const handleChange = (event) => {
     setAmount(event.target.value);
   };
 
-  const mintTicket = async (amount) => {
-    // TODO: find a way to localize this
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner();
-    const NFTicketAbi = ContractData.abi;
-    const NFTicketAddress = ContractData.address;
-
-    const NFTicketContract = new ethers.Contract(
-      NFTicketAddress,
-      NFTicketAbi,
-      signer
-    );
-
-    // mint the ticket
-    // TODO: get ticket price from Contract -- right now tickets are just free
-    // TODO: mint transaction
-
-    const response = await NFTicketContract.mintGATickets(props.eventId, amount);
-    console.log(response);
-  };
+  const handleMint = async () => {
+    const remainingAvailTicketsAfter = await mintTickets(eventId, amount);
+    setRemAvailTickets(remainingAvailTicketsAfter);
+    console.log("newRemAvailTickets:", remainingAvailTicketsAfter);
+    props.onSuccess(remainingAvailTicketsAfter);
+  }
 
   return (
     <div style={{ display: "flex" }}>
@@ -46,11 +35,13 @@ export default function MintButton(props) {
         variant="outlined"
         value={amount}
         onChange={handleChange}
+        data-test="mint-button-input"
       />
       <Button
         style={{ marginLeft: "10px" }}
         variant="contained"
-        onClick={() => mintTicket(amount)}
+        onClick={handleMint}
+        data-test="mint-button-submit"
       >
         Mint
       </Button>

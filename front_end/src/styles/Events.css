@@ -22,6 +22,10 @@
   margin-left: 1px;
 }
 
+.eventsDisplay{
+  word-break: break-all;
+}
+
 .categoryLabel {
   padding-top: 25px;
   padding-bottom: 5px;

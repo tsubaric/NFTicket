@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import EventCard from "../components/EventCard";
 import "../styles/Events.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { updateEvents } from "../interfaces/firebase_interface";
+import { updateEvents, getEventImageUrl } from "../interfaces/firebase_interface";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -45,6 +45,7 @@ const Events = () => {
   useEffect(() => {
     async function getEvents() {
       let eventData = await updateEvents();
+      console.log("events: ", eventData);
       setEvents(eventData);
       setDisplayList(eventData);
       setIsLoading(false);
@@ -72,15 +73,17 @@ const Events = () => {
           placeholder="Search"
           className="searchBar"
           style={{ width: "100vh", fontSize: "40px", margin: "20px" }}
+          data-test="events-search-bar"
         />
         <p style={{ fontSize: "40px", marginTop: "40px" }}>Category:</p>
         <Select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           style={{ fontSize: "30px", margin: "20px" }}
+          data-test="events-category-select"
         >
-          <MenuItem value="Virtual">Virtual</MenuItem>
-          <MenuItem value="Festivals">Festivals</MenuItem>
+          <MenuItem data-test="virtual-category" value="Virtual">Virtual</MenuItem>
+          <MenuItem data-test="festivals-category" value="Festivals">Festivals</MenuItem>
           <MenuItem value="Restaraunts">Restaraunts</MenuItem>
           <MenuItem value="Sports">Sports</MenuItem>
           <MenuItem value="Travel">Travel</MenuItem>
@@ -92,6 +95,7 @@ const Events = () => {
           variant="contained"
           style={{ maxHeight: "40px", marginTop: "35px" }}
           onClick={filterEvents}
+          data-test="events-filter-button"
         >
           Go
         </Button>
@@ -112,7 +116,7 @@ const Events = () => {
               ? "Your query did not return any results"
               : displayList.map((event) => {
                   return (
-                    <div
+                    <div 
                       style={{
                         display: "flex",
                         margin: "20px",
@@ -124,8 +128,8 @@ const Events = () => {
                         eventId={event.eventId}
                         name={event.eventName}
                         description={event.eventDescription}
-                        thumbnail={event.thumbnail}
                         category={event.category}
+                        data-test={`event-card-${event.eventId}`}
                       />
                     </div>
                   );
