@@ -76,3 +76,13 @@ export const getRemAvailTickets = async (eventId) => {
     const contractRef = await getContractRef()
     return Number(await contractRef.getRemainingAvailTickets(eventId));
 }
+
+export const getTicketPriceUSD = async (eventId) => {
+    const contractRef = await getContractRef()
+    return Number(await contractRef.getTicketPriceUSD(eventId));
+}
+
+export const getTicketPriceETH = async (eventId) => {
+    const contractRef = await getContractRef()
+    return Number(await contractRef.getTicketPriceETH(eventId));
+}

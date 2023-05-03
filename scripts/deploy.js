@@ -17,12 +17,13 @@ async function main() {
     const chainId = hre.network.config.chainId;
 
     let priceFeedAddress;
-    if (developmentChains.includes(network.name)) {
+    if (developmentChains.includes(network)) {
         const DECIMALS = "8"  // expecting 8 decimals for ETH price
         const INITIAL_PRICE = "200000000000" // 2000 USD to 8 decimals
 
         const mockV3AggregatorFactory = await ethers.getContractFactory("MockV3Aggregator")
         const mockV3Aggregator = await mockV3AggregatorFactory.deploy(DECIMALS, INITIAL_PRICE)
+        console.log(`MockV3Aggregator contract deployed to ${network} ${mockV3Aggregator.address}`)
 
         priceFeedAddress = mockV3Aggregator.address;
     } else {

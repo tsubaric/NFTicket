@@ -7,9 +7,12 @@ import { getEventInfo } from "../interfaces/firebase_interface";
 import { Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import { getEventImageUrl } from "../interfaces/firebase_interface";
-import { mintTickets } from "../interfaces/NFTicket_interface";
-import { updateNumGATickets } from "../interfaces/firebase_interface";
-import { getRemAvailTickets } from "../interfaces/NFTicket_interface";
+import {
+    mintTickets,
+    getRemAvailTickets,
+    getTicketPriceETH,
+    getTicketPriceUSD
+} from "../interfaces/NFTicket_interface";
 import "../styles/Event.css"
 
 export default function Event(props) {
@@ -22,9 +25,11 @@ export default function Event(props) {
   });
   const [isLoading, setIsLoading] = React.useState(true);
   const [remAvailTickets, setRemAvailTickets] = React.useState(true);
+  const [imageUrl, setImageUrl] = React.useState("");
+  const [ticketPriceUSD, setTicketPriceETH] = React.useState(0);
+  const [ticketPriceETH, setTicketPriceUSD] = React.useState(0);
 
   // load image url
-  const [imageUrl, setImageUrl] = React.useState("");
   useEffect(() => {
     if (imageUrl === "") {
       getEventImageUrl(eventId).then((url) => {
@@ -32,6 +37,28 @@ export default function Event(props) {
       })
     }
   }, [imageUrl])
+
+  // load available tickets
+  useEffect(() => {
+    loadAvailableTickets().then(() => {
+      updateEventInfo();
+    })
+    setIsLoading(false)
+  }, [remAvailTickets]);
+
+  // load ticket prices in ETH and USD
+  useEffect(() => {
+    function getTicketPrices() {
+        getTicketPriceUSD(eventId).then((price) => {
+            setTicketPriceUSD(price);
+        });
+        getTicketPriceETH(eventId).then((price) => {
+            setTicketPriceETH(price);
+        });
+    }
+    getTicketPrices();
+  }, [])
+
 
   // query contract for available tickets
   const loadAvailableTickets = async () => {
@@ -46,7 +73,7 @@ export default function Event(props) {
       setEventInfo({
         name: eventInfo.eventName,
         description: eventInfo.eventDescription,
-        price: Number((eventInfo.gaTicketPrice * 0.0005361).toFixed(5)),
+        price: `Ticket Price: ${ticketPriceETH} ETH / ${ticketPriceUSD} USD`,
         availableTickets: remAvailTickets
       });
 
@@ -54,12 +81,6 @@ export default function Event(props) {
 
   };
 
-  useEffect(() => {
-    loadAvailableTickets().then(() => {
-      updateEventInfo();
-    })
-    setIsLoading(false)
-  }, [remAvailTickets]);
 
   const handleMintTickets = async (amount) => {
     const remainingAvailTickets = await mintTickets(eventId, amount);
