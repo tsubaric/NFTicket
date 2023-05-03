@@ -10,6 +10,7 @@ import { getEventImageUrl } from "../interfaces/firebase_interface";
 import { mintTickets } from "../interfaces/NFTicket_interface";
 import { updateNumGATickets } from "../interfaces/firebase_interface";
 import { getRemAvailTickets } from "../interfaces/NFTicket_interface";
+import "../styles/Event.css"
 
 export default function Event(props) {
   const { eventId } = useParams();
@@ -26,9 +27,9 @@ export default function Event(props) {
   const [imageUrl, setImageUrl] = React.useState("");
   useEffect(() => {
     if (imageUrl === "") {
-        getEventImageUrl(eventId).then((url) => {
-            setImageUrl(url);
-        })
+      getEventImageUrl(eventId).then((url) => {
+        setImageUrl(url);
+      })
     }
   }, [imageUrl])
 
@@ -86,30 +87,36 @@ export default function Event(props) {
           alignItems: "center",
           borderRadius: 25,
           marginTop: 5,
+
         }}
       >
         <div style={{ display: "flex" }}>
           <img
+            id="event-image"
             alt=""
             src={imageUrl}
-            width={350}
-            height={350}
+            width={410}
+            height={410}
             justifyContent="left"
+            style={{ marginTop: 20, marginBottom: 20 }}
+
           />
           <div>
-            <div style={{ marginLeft: 70 }}>
+            <div style={{ marginLeft: 70, marginTop: 45, marginRight: 70 }}>
               <Typography variant="h1" component="div" gutterBottom>
-                <div style={{ color: "black", fontFamily: "Roboto" }}>
+                <div style={{ color: "black", fontFamily: "Roboto", fontSize: 50, fontWeight: "bold" }} >
                   {eventInfo.name}
                 </div>
               </Typography>
               <Typography variant="body1" gutterBottom>
                 <div>{`Ticket Price: ${eventInfo.price} ETH`}</div>
-                <div>{ `Available Tickets: ${eventInfo.availableTickets}`}</div>
+                <div>{`Available Tickets: ${eventInfo.availableTickets}`}</div>
               </Typography>
               <Typography variant="h3" gutterBottom fontStyle="italic">
-                <div style={{ color: "black", fontFamily: "Roberto" }}>
+                <div className="wordwrap" style={{ color: "black", fontFamily: "Roberto" }}>
+
                   {eventInfo.description}
+
                 </div>
               </Typography>
               <br />
@@ -119,7 +126,7 @@ export default function Event(props) {
                 //remAvailTickets={remAvailTickets}
                 onSuccess={handleMintTickets}
                 data-test="mint-component"
-               />
+              />
             </div>
           </div>
         </div>

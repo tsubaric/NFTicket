@@ -116,7 +116,7 @@ const Events = () => {
               ? "Your query did not return any results"
               : displayList.map((event) => {
                   return (
-                    <div
+                    <div 
                       style={{
                         display: "flex",
                         margin: "20px",
