@@ -18,6 +18,16 @@ padding-right: 25px;
 
 }
 
+#event-image{
+  border-radius: 80px 0px 0px 80px
+}
+
+.wordwrap{
+  word-wrap: normal;
+  word-break: break-all;
+
+}
+
 
 
 #nftItems2{
