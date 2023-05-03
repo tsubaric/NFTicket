@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { database } from "../firebase.js";
-import { ref, set, get } from "firebase/database";
+import { ref, set } from "firebase/database";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
@@ -55,7 +55,7 @@ class CreateEventForm extends React.Component {
         console.log("create event response: ", response);
         getLastEventId().then((eventId) => {
             // write to database
-            this.setState({ ["eventId"]: eventId }, async () => {
+            this.setState({ eventId: eventId }, async () => {
               // upload image
               console.log("uploading image...")
               console.log(eventId);
@@ -75,7 +75,8 @@ class CreateEventForm extends React.Component {
                   image: await getEventImageUrl(eventId),
               };
 
-              this.state.numGATickets = parseInt(this.state.numGATickets);
+              //this.state.numGATickets = parseInt(this.state.numGATickets);
+              this.setState({ numGATickets: parseInt(this.state.numGATickets) });
               for (let i = 0; i <= this.state.numGATickets; i++) {
                   const ticketId = eventId * 1000000 + i;
                   await uploadMetadata(ticketId, metadata);
