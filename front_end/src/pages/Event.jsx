@@ -9,6 +9,13 @@ import { blue } from "@mui/material/colors";
 import { getEventImageUrl } from "../interfaces/firebase_interface";
 import { mintTickets } from "../interfaces/NFTicket_interface";
 import { getRemAvailTickets } from "../interfaces/NFTicket_interface";
+
+import {
+    mintTickets,
+    getRemAvailTickets,
+    getTicketPriceETH,
+    getTicketPriceUSD
+} from "../interfaces/NFTicket_interface";
 import "../styles/Event.css"
 
 export default function Event() {
@@ -21,9 +28,9 @@ export default function Event() {
   });
   const [isLoading, setIsLoading] = React.useState(true);
   const [remAvailTickets, setRemAvailTickets] = React.useState(true);
+  const [imageUrl, setImageUrl] = React.useState("");
 
   // load image url
-  const [imageUrl, setImageUrl] = React.useState("");
   useEffect(() => {
     if (imageUrl === "") {
       getEventImageUrl(eventId).then((url) => {
@@ -31,6 +38,13 @@ export default function Event() {
       })
     }
   }, [imageUrl])
+
+  // load available tickets
+  useEffect(() => {
+    loadAvailableTickets().then(() => {
+      updateEventInfo();
+    })
+  }, [remAvailTickets]);
 
   // query contract for available tickets
   const loadAvailableTickets = async () => {
@@ -40,33 +54,31 @@ export default function Event() {
   }
 
   const updateEventInfo = async () => {
+    const _priceUSD = await getTicketPriceUSD(eventId);
+    const _priceETH = await getTicketPriceETH(eventId);
     getEventInfo(eventId).then((eventInfo) => {
       console.log("eventInfo: ", eventInfo);
       setEventInfo({
         name: eventInfo.eventName,
         description: eventInfo.eventDescription,
-        price: Number((eventInfo.gaTicketPrice * 0.0005361).toFixed(5)),
+        priceUSD: _priceUSD,
+        priceETH: _priceETH,
         availableTickets: remAvailTickets
       });
-
     });
-
+    setIsLoading(false);
   };
 
-  useEffect(() => {
-    loadAvailableTickets().then(() => {
-      updateEventInfo();
-    })
-    setIsLoading(false)
-  }, [remAvailTickets]);
-
+/*
   const handleMintTickets = async (amount) => {
+    console.log("IN HANDLE MINT TICKETS");
     const remainingAvailTickets = await mintTickets(eventId, amount);
     setRemAvailTickets(remainingAvailTickets);
 
     // Fetch the latest event information from Firebase and update the state
     updateEventInfo();
   };
+    */
 
 
   if (isLoading) {
@@ -108,7 +120,7 @@ export default function Event() {
                 </div>
               </Typography>
               <Typography variant="body1" gutterBottom>
-                <div>{`Ticket Price: ${eventInfo.price} ETH`}</div>
+                <div>{`Ticket Price: $${eventInfo.priceUSD} / ${eventInfo.priceETH / 100000000} ETH`}</div>
                 <div>{`Available Tickets: ${eventInfo.availableTickets}`}</div>
               </Typography>
               <Typography variant="h3" gutterBottom fontStyle="italic">
@@ -121,9 +133,10 @@ export default function Event() {
               <br />
               <MintButton
                 eventId={eventId}
+                price={eventInfo.priceETH}
                 //setRemAvailTickets={setRemAvailTickets}
                 //remAvailTickets={remAvailTickets}
-                onSuccess={handleMintTickets}
+                onSuccess={loadAvailableTickets}
                 data-test="mint-component"
               />
             </div>

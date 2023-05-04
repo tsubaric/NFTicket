@@ -1,13 +1,32 @@
 const { expect } = require("chai");
 const hre = require("hardhat");
+const {
+    VERIFICATION_BLOCK_CONFIRMATIONS,
+    networkConfig,
+    developmentChains,
+} = require("../helper-hardhat-config")
 
 describe("NFTicket", async function() {
     let nfticket; // reference to the contract
 
     beforeEach(async function() {
+        const chainId = hre.network.config.chainId;
+        let priceFeedAddress;
+        if (developmentChains.includes(hre.network.name)) {
+            const DECIMALS = "8"  // expecting 8 decimals for ETH price
+            const INITIAL_PRICE = "200000000000" // 2000 USD to 8 decimals
+
+            const mockV3AggregatorFactory = await ethers.getContractFactory("MockV3Aggregator")
+            const mockV3Aggregator = await mockV3AggregatorFactory.deploy(DECIMALS, INITIAL_PRICE)
+
+            priceFeedAddress = mockV3Aggregator.address;
+        } else {
+            priceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
+        }
+
         // deploy NFTicket contract
         const NFTicket = await hre.ethers.getContractFactory("NFTicket");
-        nfticket = await NFTicket.deploy();
+        nfticket = await NFTicket.deploy(priceFeedAddress);
         await nfticket.deployed();
     })
 
@@ -27,11 +46,22 @@ describe("NFTicket", async function() {
         // verify event information is correct
         expect(eventInfo.eventId).to.equal(lastEventId);
         expect(eventInfo.ticketAmount).to.equal(amount);
-        expect(eventInfo.ticketPrice).to.equal(price);
+        expect(eventInfo.ticketPriceUSD).to.equal(price);
         expect(eventInfo.ticketsAvailable).to.equal(amount);
         expect(eventInfo.eventOwner).to.equal(user.address);
 
+    });
 
+    it("should convert USD price to ETH", async function() {
+        const tx = await nfticket.createEvent(1000, 75); // ticket price $75
+        await tx.wait();
+
+        const lastEventId = await nfticket.getLastEventId();
+
+        // with eth price of $2000 / 1 ETH -> expect ticket to be 0.0375 ETH
+        const priceETH = await nfticket.getTicketPriceETH(lastEventId);
+        console.log(Number(priceETH))
+        expect(priceETH).to.equal(3750000)
     });
 
     it("should let a user mint tickets", async function () {
@@ -41,9 +71,9 @@ describe("NFTicket", async function() {
 
         // mint a ticket
         [user] = await ethers.getSigners();
-        let tx = await nfticket.mintTickets(1, 3) // buying 3 from first event
+        let tx = await nfticket.mintTickets(1, 3, {value: 3750000 * 3}) // buying 3 from first event
         await tx.wait();
-        tx = await nfticket.mintTickets(2, 2); // buying 2 tickets from second event
+        tx = await nfticket.mintTickets(2, 2, {value: 3750000 * 2}); // buying 2 tickets from second event
         await tx.wait();
 
         // check user balance
@@ -74,7 +104,7 @@ describe("NFTicket", async function() {
 
         // mint a ticket
         [user, otherUser] = await ethers.getSigners();
-        const tx = await nfticket.mintTickets(1, 1);
+        const tx = await nfticket.mintTickets(1, 1, {value: 3750000});
         await tx.wait();
 
         // git ticket info
@@ -103,7 +133,7 @@ describe("NFTicket", async function() {
 
         // mint some tickets
         [user, otherUser] = await ethers.getSigners();
-        const tx = await nfticket.mintTickets(1, 3);
+        const tx = await nfticket.mintTickets(1, 3, {value: 3750000 * 3});
         await tx.wait();
 
         // get owned tickets
@@ -118,9 +148,9 @@ describe("NFTicket", async function() {
 
         // mint some tickets
         [user, otherUser] = await ethers.getSigners();
-        let tx = await nfticket.mintTickets(1, 3);
+        let tx = await nfticket.mintTickets(1, 3, {value: 3750000 * 3});
         await tx.wait();
-        tx = await nfticket.connect(otherUser).mintTickets(1, 2);
+        tx = await nfticket.connect(otherUser).mintTickets(1, 2, {value: 3750000 * 2});
         await tx.wait();
 
         // balance before transfer
@@ -161,10 +191,10 @@ describe("NFTicket", async function() {
 
         // mint some tickets
         [user] = await ethers.getSigners();
-        let tx = await nfticket.mintTickets(1, 3);
+        let tx = await nfticket.mintTickets(1, 3, {value: 3750000});
         await tx.wait();
-        
-        // check remaining 
+
+        // check remaining
         const numTicketsRem = await nfticket.getRemainingAvailTickets(1);
         expect(numTicketsRem).to.equal(997);
     })
