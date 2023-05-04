@@ -42,6 +42,7 @@ contract NFTicket is ERC1155 {
         uint256 eventId = eventCounter.current();
         eventCounter.increment(); // start ticket ids at 1
         allEventsMap[eventId] =  Event(eventId, ticketAmount, ticketPriceUSD, ticketAmount, msg.sender);
+        ownedEventsMap[msg.sender].push(eventId);
         return eventId;
     }
 
@@ -124,6 +125,10 @@ contract NFTicket is ERC1155 {
         return ownedTicketsMap[msg.sender];
     }
 
+    function getAllOwnedEvents () public view returns (uint256[] memory eventIds) {
+        return ownedEventsMap[msg.sender];
+    }
+
     function getTicketInfo (uint256 ticketId) public view returns (Ticket memory) {
         return allTicketsMap[ticketId];
     }
@@ -142,16 +147,9 @@ contract NFTicket is ERC1155 {
         uint256 ticketPriceUSD = getTicketPriceUSD(eventId);
         uint8 decimals = priceFeed.decimals();
 
-        (
-            uint80 roundID,
-            int256 price,
-            uint256 startedAt,
-            uint256 timeStamp,
-            uint80 answeredInRound
-        ) = priceFeed.latestRoundData();
+        (,int256 price,,,) = priceFeed.latestRoundData();
 
         return (ticketPriceUSD * 10 ** decimals) / (uint256(price) / 10 ** decimals);
-
     }
 
 }

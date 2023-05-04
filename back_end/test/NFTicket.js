@@ -143,6 +143,15 @@ describe("NFTicket", async function() {
         expect(ownedTickets[2].toNumber()).to.equal(1000002);
     })
 
+    it("should return owned events", async function () {
+        await nfticket.createEvent(1000, 10);
+
+        let ownedEvents = await nfticket.getAllOwnedEvents();
+        expect(ownedEvents.length).to.equal(1);
+    })
+
+
+
     it("should transfer tickets", async function () {
         await nfticket.createEvent(1000, 10);
 
