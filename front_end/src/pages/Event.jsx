@@ -7,6 +7,9 @@ import { getEventInfo } from "../interfaces/firebase_interface";
 import { Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import { getEventImageUrl } from "../interfaces/firebase_interface";
+import { mintTickets } from "../interfaces/NFTicket_interface";
+import { getRemAvailTickets } from "../interfaces/NFTicket_interface";
+
 import {
     mintTickets,
     getRemAvailTickets,
@@ -15,7 +18,7 @@ import {
 } from "../interfaces/NFTicket_interface";
 import "../styles/Event.css"
 
-export default function Event(props) {
+export default function Event() {
   const { eventId } = useParams();
   const [eventInfo, setEventInfo] = React.useState({
     name: "",

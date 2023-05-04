@@ -32,7 +32,7 @@ export default function EventCard(props) {
       <CardMedia
         component="img"
         sx={{ width: 250 }}
-        image={imageUrl} // TODO: loads this from firebase
+        image={imageUrl}
         alt="Event name"
       />
       <Box
