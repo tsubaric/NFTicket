@@ -25,7 +25,7 @@ async function main() {
         address: nfticket.address,
         abi: nfticket.interface.format('json')
     }
-    fs.writeFile("./front_end/src/NFTicket.json", JSON.stringify(contractInfo) , function(err) {
+    fs.writeFile("../front_end/src/NFTicket.json", JSON.stringify(contractInfo) , function(err) {
         if (err) {
             return console.log(err);
         }
