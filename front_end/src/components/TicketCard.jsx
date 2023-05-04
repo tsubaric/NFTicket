@@ -84,13 +84,15 @@ export default function TicketCard(props) {
             >
               <CompareArrowsIcon />
             </IconButton>
-            <IconButton
-                aria-label="Redeem Ticket"
-                data-test="redeem-ticket-button"
-                onClick={() => setRedeemOpen(true)}
-            >
-              <RedeemIcon />
-            </IconButton>
+            {!props.redeemed && (
+                <IconButton
+                    aria-label="Redeem Ticket"
+                    data-test="redeem-ticket-button"
+                    onClick={() => setRedeemOpen(true)}
+                >
+                  <RedeemIcon />
+                </IconButton>
+            )}
           </CardActions>
         </Card>
         <Modal
@@ -129,21 +131,23 @@ export default function TicketCard(props) {
             <br />
           </Box>
         </Modal>
-        <Modal
-          open={redeemOpen}
-          onClose={() => {
-              setRedeemOpen(false);
-          }}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-            <Box sx={style}>
-                Scan Code to Redeem Ticket
-                <div data-test="redeem-qr-display" style={{ background: 'white', padding: '16px'}}>
-                  <QRCode value={props.ticketId} />
-                </div>
-            </Box>
-        </Modal>
-      </div>
+        {!props.redeemed && (
+            <Modal
+              open={redeemOpen}
+              onClose={() => {
+                  setRedeemOpen(false);
+              }}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    Scan Code to Redeem Ticket
+                    <div data-test="redeem-qr-display" style={{ background: 'white', padding: '16px'}}>
+                      <QRCode value={`${props.ticketId}`} />
+                    </div>
+                </Box>
+            </Modal>
+
+        )}      </div>
     );
 }

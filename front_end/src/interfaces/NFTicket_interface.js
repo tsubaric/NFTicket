@@ -46,6 +46,11 @@ export const getAllOwnedTickets = async () => {
     return await contractRef.getAllOwnedTickets()
 }
 
+export const getAllOwnedEvents = async () => {
+    const contractRef = await getContractRef()
+    return await contractRef.getAllOwnedEvents()
+}
+
 export const getTicketInfo = async (ticketId) => {
     const contractRef = await getContractRef()
     const ticket = await contractRef.getTicketInfo(ticketId)
@@ -87,4 +92,12 @@ export const getTicketPriceETH = async (eventId) => {
     const gweiPrice = Number(await contractRef.getTicketPriceETH(eventId));
     //console.log(gweiPrice / 1000000000);
     return gweiPrice /// 1000000000;
+}
+
+export const redeemTicket = async (ticketId) => {
+    const contractRef = await getContractRef()
+    const transaction = await contractRef.redeemTicket(ticketId);
+    console.log("waiting for transaction to be confirmed...");
+    await transaction.wait();
+    console.log("transaction confirmed");
 }
