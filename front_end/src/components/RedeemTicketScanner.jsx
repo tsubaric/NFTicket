@@ -32,6 +32,8 @@ export default function RedeemTicketScanner(props) {
               if (!!result) {
                 setData(result?.text);
                   // TODO: redirect to redeem page
+                window.location.href = `/redeem/${result?.text}`;
+
               }
 
               if (!!error) {
