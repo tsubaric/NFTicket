@@ -1,7 +1,7 @@
 import ContractData from "../NFTicket.json"
-import { ethers, wait } from "ethers";
+import { Contract, BrowserProvider } from "ethers";
 
-const provider = new ethers.BrowserProvider(window.ethereum);
+const provider = new BrowserProvider(window.ethereum);
 
 const NFTicketAbi = ContractData.abi;
 
@@ -9,7 +9,7 @@ const NFTicketAddress = ContractData.address;
 
 const getContractRef = async () => {
   const signer = await provider.getSigner();
-  return new ethers.Contract(NFTicketAddress, NFTicketAbi, signer);
+  return new Contract(NFTicketAddress, NFTicketAbi, signer);
 };
 
 export const createEvent = async (ticketAmount, ticketPrice) => {
@@ -32,9 +32,9 @@ export const getTicketBalance = async (address, eventId) => {
     return Number(balance)
 }
 
-export const mintTickets = async (eventId, amount) => {
+export const mintTickets = async (eventId, amount, priceETH) => {
     const contractRef = await getContractRef()
-    const transaction = await contractRef.mintTickets(eventId, amount);
+    const transaction = await contractRef.mintTickets(eventId, amount, {value: priceETH});
     console.log("waiting for transaction to be confirmed...");
     const receipt = await transaction.wait();
     console.log("transaction confirmed");
@@ -75,4 +75,16 @@ export const getTicketUri = async (ticketId) => {
 export const getRemAvailTickets = async (eventId) => {
     const contractRef = await getContractRef()
     return Number(await contractRef.getRemainingAvailTickets(eventId));
+}
+
+export const getTicketPriceUSD = async (eventId) => {
+    const contractRef = await getContractRef()
+    return Number(await contractRef.getTicketPriceUSD(eventId));
+}
+
+export const getTicketPriceETH = async (eventId) => {
+    const contractRef = await getContractRef()
+    const gweiPrice = Number(await contractRef.getTicketPriceETH(eventId));
+    //console.log(gweiPrice / 1000000000);
+    return gweiPrice /// 1000000000;
 }

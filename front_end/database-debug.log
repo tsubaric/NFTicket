@@ -3,11 +3,7 @@ WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (fil
 WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-15:23:07.531 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-15:23:07.718 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
-15:23:10.542 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 146ms, init: 0ms
-15:23:10.629 [NamespaceSystem-blocking-namespace-operation-dispatcher-6] INFO com.firebase.core.namespace.StateManager - Namespace nfticket-f0356-default-rtdb status Active to Active
-15:26:45.257 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
-15:26:45.272 [NamespaceSystem-akka.actor.default-dispatcher-9] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: nfticket-f0356-default-rtdb
-15:26:45.279 [NamespaceSystem-akka.actor.default-dispatcher-10] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for nfticket-f0356-default-rtdb
-15:26:45.283 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
+17:40:21.492 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+17:40:21.693 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+17:40:24.420 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 139ms, init: 0ms
+17:40:24.535 [NamespaceSystem-blocking-namespace-operation-dispatcher-6] INFO com.firebase.core.namespace.StateManager - Namespace nfticket-f0356-default-rtdb status Active to Active
