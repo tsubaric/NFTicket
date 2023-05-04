@@ -9,6 +9,7 @@ import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer.jsx";
 import Events from "./pages/Events.jsx";
 import MyEvents from "./pages/MyEvents";
+import OwnedEvent from "./pages/OwnedEvent";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/tickets" exact component={MyTicketsPage} />
           <Route path="/event/:eventId" exact component={Event} />
           <Route path="/owned-events" exact component={MyEvents} />
+          <Route path="/owned-event/:eventId" exact component={OwnedEvent} />
         </Switch>
       </div>
       <Footer/>

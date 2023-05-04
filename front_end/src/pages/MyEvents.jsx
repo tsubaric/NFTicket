@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import EventCard from "../components/EventCard";
+import OwnedEventCard from "../components/OwnedEventCard";
 import "../styles/Events.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { getEventImageUrl } from "../interfaces/firebase_interface";
+import { getEventImageUrl, getEventInfo } from "../interfaces/firebase_interface";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -16,9 +16,23 @@ const MyEvents = () => {
 
   useEffect(() => {
     async function getOwnedEvents() {
-      let eventData = await getAllOwnedEvents();
-      console.log("events: ", eventData);
-      setEvents(eventData);
+
+      // get owned event ids
+      const ownedEvents = await getAllOwnedEvents();
+
+      let ownedEventData = [];
+      for (let i = 0; i < ownedEvents.length; i++) {
+        //const eventInfo = await getEventInfo(ownedEvents[i]);
+        const eventId = Number(ownedEvents[i]);
+        let eventInfo = await getEventInfo(eventId);
+        const eventImageUrl = await getEventImageUrl(eventId);
+        eventInfo["eventImageUrl"] = eventImageUrl;
+        console.log(eventInfo);
+        ownedEventData.push(eventInfo);
+      }
+
+
+      setEvents(ownedEventData);
       setIsLoading(false);
     }
     getOwnedEvents();
@@ -61,7 +75,7 @@ const MyEvents = () => {
                       }}
                       key={event.eventId}
                     >
-                      <EventCard
+                      <OwnedEventCard
                         key={event.eventId}
                         eventId={event.eventId}
                         name={event.eventName}
