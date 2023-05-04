@@ -31,6 +31,7 @@ export default function RedeemTicketScanner(props) {
             onResult={(result, error) => {
               if (!!result) {
                 setData(result?.text);
+                  // TODO: redirect to redeem page
               }
 
               if (!!error) {

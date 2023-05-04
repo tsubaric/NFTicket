@@ -140,7 +140,7 @@ export default function TicketCard(props) {
             <Box sx={style}>
                 Scan Code to Redeem Ticket
                 <div data-test="redeem-qr-display" style={{ background: 'white', padding: '16px'}}>
-                  <QRCode value={props.ticketId} />
+                  <QRCode value={`${props.ticketId}`} />
                 </div>
             </Box>
         </Modal>

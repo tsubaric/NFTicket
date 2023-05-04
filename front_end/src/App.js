@@ -10,6 +10,7 @@ import Footer from "./components/Footer.jsx";
 import Events from "./pages/Events.jsx";
 import MyEvents from "./pages/MyEvents";
 import OwnedEvent from "./pages/OwnedEvent";
+import RedeemTicket from "./pages/RedeemTicket";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/event/:eventId" exact component={Event} />
           <Route path="/owned-events" exact component={MyEvents} />
           <Route path="/owned-event/:eventId" exact component={OwnedEvent} />
+          <Route path="/redeem/:ticketId" exact component={RedeemTicket} />
         </Switch>
       </div>
       <Footer/>
