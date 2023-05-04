@@ -4,21 +4,40 @@
 // You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
-const hre = require("hardhat");
+const hre = require("hardhat")
+const {
+    VERIFICATION_BLOCK_CONFIRMATIONS,
+    networkConfig,
+    developmentChains,
+} = require("../helper-hardhat-config")
 
 async function main() {
 
+    const network = hre.network.name;
+    const chainId = hre.network.config.chainId;
+
+    let priceFeedAddress;
+    if (developmentChains.includes(network)) {
+        const DECIMALS = "8"  // expecting 8 decimals for ETH price
+        const INITIAL_PRICE = "200000000000" // 2000 USD to 8 decimals
+
+        const mockV3AggregatorFactory = await ethers.getContractFactory("MockV3Aggregator")
+        const mockV3Aggregator = await mockV3AggregatorFactory.deploy(DECIMALS, INITIAL_PRICE)
+        console.log(`MockV3Aggregator contract deployed to ${network} ${mockV3Aggregator.address}`)
+
+        priceFeedAddress = mockV3Aggregator.address;
+    } else {
+        priceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
+    }
+
     // deploy Ticket contract
     const NFTicket = await hre.ethers.getContractFactory("NFTicket");
-    const nfticket = await NFTicket.deploy();
+    const nfticket = await NFTicket.deploy(priceFeedAddress);
     //console.log(nfticket)
     await nfticket.deployed();
-    console.log(
-    `NFTicket contract deployed to ${nfticket.address}`
+    console.log(`NFTicket contract deployed to ${network} ${nfticket.address}`
     );
 
-    const network = hre.network.name;
-    console.log(`network: ${network}`);
         // write contract address to front end
     const fs = require('fs');
     const contractInfo = {

@@ -6,7 +6,7 @@ import MyTicketsPage from "./pages/MyTicketsPage.jsx";
 import Event from "./pages/Event.jsx";
 import { createBrowserHistory as history } from "history";
 import Dashboard from "./components/Dashboard";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer.jsx";
 import Events from "./pages/Events.jsx";
 
 function App() {
