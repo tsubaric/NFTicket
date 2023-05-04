@@ -27,6 +27,12 @@ const Dashboard = (props) => {
         </Typography>
       </Button>
 
+      <Button variant="text" href="/owned-events">
+        <Typography variant="h6"  sx={{ flexGrow: 1, color: "white"}}>
+            My Events
+        </Typography>
+      </Button>
+
       <Button variant="text" href="/create">
         <Typography variant="h6"  sx={{ flexGrow: 1, color: "white"}}>
             Create

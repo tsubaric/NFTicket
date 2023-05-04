@@ -46,6 +46,11 @@ export const getAllOwnedTickets = async () => {
     return await contractRef.getAllOwnedTickets()
 }
 
+export const getAllOwnedEvents = async () => {
+    const contractRef = await getContractRef()
+    return await contractRef.getAllOwnedEvents()
+}
+
 export const getTicketInfo = async (ticketId) => {
     const contractRef = await getContractRef()
     const ticket = await contractRef.getTicketInfo(ticketId)

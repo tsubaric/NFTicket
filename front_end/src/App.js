@@ -8,6 +8,7 @@ import { createBrowserHistory as history } from "history";
 import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer.jsx";
 import Events from "./pages/Events.jsx";
+import MyEvents from "./pages/MyEvents";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/events" exact component={Events} />
           <Route path="/tickets" exact component={MyTicketsPage} />
           <Route path="/event/:eventId" exact component={Event} />
+          <Route path="/owned-events" exact component={MyEvents} />
         </Switch>
       </div>
       <Footer/>
