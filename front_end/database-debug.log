@@ -3,7 +3,7 @@ WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (fil
 WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-17:40:21.492 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-17:40:21.693 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
-17:40:24.420 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 139ms, init: 0ms
-17:40:24.535 [NamespaceSystem-blocking-namespace-operation-dispatcher-6] INFO com.firebase.core.namespace.StateManager - Namespace nfticket-f0356-default-rtdb status Active to Active
+12:15:33.494 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+12:15:33.694 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+12:15:36.727 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - nfticket-f0356-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 151ms, init: 0ms
+12:15:36.819 [NamespaceSystem-blocking-namespace-operation-dispatcher-6] INFO com.firebase.core.namespace.StateManager - Namespace nfticket-f0356-default-rtdb status Active to Active

@@ -7,11 +7,7 @@ import { getEventInfo } from "../interfaces/firebase_interface";
 import { Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import { getEventImageUrl } from "../interfaces/firebase_interface";
-import { mintTickets } from "../interfaces/NFTicket_interface";
-import { getRemAvailTickets } from "../interfaces/NFTicket_interface";
-
 import {
-    mintTickets,
     getRemAvailTickets,
     getTicketPriceETH,
     getTicketPriceUSD
@@ -69,16 +65,6 @@ export default function Event() {
     setIsLoading(false);
   };
 
-/*
-  const handleMintTickets = async (amount) => {
-    console.log("IN HANDLE MINT TICKETS");
-    const remainingAvailTickets = await mintTickets(eventId, amount);
-    setRemAvailTickets(remainingAvailTickets);
-
-    // Fetch the latest event information from Firebase and update the state
-    updateEventInfo();
-  };
-    */
 
 
   if (isLoading) {
