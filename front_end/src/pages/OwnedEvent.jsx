@@ -103,7 +103,7 @@ export default function OwnedEvent() {
                   {eventInfo.name}
                 </div>
               </Typography>
-              <RedeemTicketScanner />
+              <RedeemTicketScanner eventId={eventId}/>
             </div>
           </div>
         </div>

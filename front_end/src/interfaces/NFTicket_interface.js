@@ -93,3 +93,11 @@ export const getTicketPriceETH = async (eventId) => {
     //console.log(gweiPrice / 1000000000);
     return gweiPrice /// 1000000000;
 }
+
+export const redeemTicket = async (ticketId) => {
+    const contractRef = await getContractRef()
+    const transaction = await contractRef.redeemTicket(ticketId);
+    console.log("waiting for transaction to be confirmed...");
+    await transaction.wait();
+    console.log("transaction confirmed");
+}

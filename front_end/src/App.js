@@ -25,7 +25,7 @@ function App() {
           <Route path="/event/:eventId" exact component={Event} />
           <Route path="/owned-events" exact component={MyEvents} />
           <Route path="/owned-event/:eventId" exact component={OwnedEvent} />
-          <Route path="/redeem/:ticketId" exact component={RedeemTicket} />
+          <Route path="/redeem/:eventId/:ticketId" exact component={RedeemTicket} />
         </Switch>
       </div>
       <Footer/>
