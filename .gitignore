@@ -1,6 +1,8 @@
-node_modules/
+back_end/node_modules/
+front_end/node_modules/
 .env
-artifacts/
-cache/
+back_end/artifacts/
+back_end/cache/
 front_end/firebase-debug.log
+front_end/database-debug.log
 front_end/ui-debug.log
