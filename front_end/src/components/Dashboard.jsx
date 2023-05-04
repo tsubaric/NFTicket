@@ -2,6 +2,7 @@ import * as React from "react";
 import "../styles/dashboard.css";
 import ConnectWalletButton from "./ConnectWalletButton";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 const Dashboard = (props) => {
   return (
@@ -9,17 +10,27 @@ const Dashboard = (props) => {
       <p>NFTicket</p>
 
       <Button variant="text" href="/">
-        Home
-      </Button>
-      <Button variant="text" href="/events">
-        Events
-      </Button>
-      <Button variant="text" href="/tickets">
-        My Tickets
+        <Typography variant="h6"  sx={{ flexGrow: 1, color: "white"}}>
+            Home
+        </Typography>
       </Button>
 
-      <Button variant="text" className="button" href="/create">
-        Create
+      <Button variant="text" href="/events">
+        <Typography variant="h6"  sx={{ flexGrow: 1, color: "white"}}>
+            Events
+        </Typography>
+      </Button>
+
+      <Button variant="text" href="/tickets">
+        <Typography variant="h6"  sx={{ flexGrow: 1, color: "white"}}>
+            My Tickets
+        </Typography>
+      </Button>
+
+      <Button variant="text" href="/create">
+        <Typography variant="h6"  sx={{ flexGrow: 1, color: "white"}}>
+            Create
+        </Typography>
       </Button>
 
       <ConnectWalletButton />
