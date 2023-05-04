@@ -26,8 +26,6 @@ export default function Event(props) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [remAvailTickets, setRemAvailTickets] = React.useState(true);
   const [imageUrl, setImageUrl] = React.useState("");
-  const [ticketPriceUSD, setTicketPriceETH] = React.useState(0);
-  const [ticketPriceETH, setTicketPriceUSD] = React.useState(0);
 
   // load image url
   useEffect(() => {
@@ -43,22 +41,7 @@ export default function Event(props) {
     loadAvailableTickets().then(() => {
       updateEventInfo();
     })
-    setIsLoading(false)
   }, [remAvailTickets]);
-
-  // load ticket prices in ETH and USD
-  useEffect(() => {
-    function getTicketPrices() {
-        getTicketPriceUSD(eventId).then((price) => {
-            setTicketPriceUSD(price);
-        });
-        getTicketPriceETH(eventId).then((price) => {
-            setTicketPriceETH(price);
-        });
-    }
-    getTicketPrices();
-  }, [])
-
 
   // query contract for available tickets
   const loadAvailableTickets = async () => {
@@ -68,17 +51,19 @@ export default function Event(props) {
   }
 
   const updateEventInfo = async () => {
+    const _priceUSD = await getTicketPriceUSD(eventId);
+    const _priceETH = await getTicketPriceETH(eventId);
     getEventInfo(eventId).then((eventInfo) => {
       console.log("eventInfo: ", eventInfo);
       setEventInfo({
         name: eventInfo.eventName,
         description: eventInfo.eventDescription,
-        price: `Ticket Price: ${ticketPriceETH} ETH / ${ticketPriceUSD} USD`,
+        priceUSD: _priceUSD,
+        priceETH: _priceETH,
         availableTickets: remAvailTickets
       });
-
     });
-
+    setIsLoading(false);
   };
 
 
@@ -130,7 +115,7 @@ export default function Event(props) {
                 </div>
               </Typography>
               <Typography variant="body1" gutterBottom>
-                <div>{`Ticket Price: ${eventInfo.price} ETH`}</div>
+                <div>{`Ticket Price: $${eventInfo.priceUSD} / ${eventInfo.priceETH} ETH`}</div>
                 <div>{`Available Tickets: ${eventInfo.availableTickets}`}</div>
               </Typography>
               <Typography variant="h3" gutterBottom fontStyle="italic">
