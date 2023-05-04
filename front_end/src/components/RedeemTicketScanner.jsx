@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { QrReader } from 'react-qr-reader';
 import Button from "@mui/material/Button";
 
 export default function RedeemTicketScanner(props) {
   const [data, setData] = useState('No result');
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+      if (active == false) {
+        window.location.reload();
+      }
+  }, [active]);
 
   return (
     <>
