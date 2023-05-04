@@ -1,8 +1,6 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { ethers } from "ethers";
-import ContractData from "../NFTicket.json";
 import { mintTickets } from "../interfaces/NFTicket_interface";
 
 export default function MintButton(props) {
@@ -17,7 +15,9 @@ export default function MintButton(props) {
   };
 
   const handleMint = async () => {
-    const remainingAvailTicketsAfter = await mintTickets(eventId, amount);
+    console.log("ticket price: ", props.price)
+    console.log("minting", amount, "tickets for ", props.price * amount, "ETH");
+    const remainingAvailTicketsAfter = await mintTickets(eventId, amount, props.price * amount);
     setRemAvailTickets(remainingAvailTicketsAfter);
     console.log("newRemAvailTickets:", remainingAvailTicketsAfter);
     props.onSuccess(remainingAvailTicketsAfter);

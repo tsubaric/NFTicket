@@ -66,14 +66,16 @@ export default function Event(props) {
     setIsLoading(false);
   };
 
-
+/*
   const handleMintTickets = async (amount) => {
+    console.log("IN HANDLE MINT TICKETS");
     const remainingAvailTickets = await mintTickets(eventId, amount);
     setRemAvailTickets(remainingAvailTickets);
 
     // Fetch the latest event information from Firebase and update the state
     updateEventInfo();
   };
+    */
 
 
   if (isLoading) {
@@ -115,7 +117,7 @@ export default function Event(props) {
                 </div>
               </Typography>
               <Typography variant="body1" gutterBottom>
-                <div>{`Ticket Price: $${eventInfo.priceUSD} / ${eventInfo.priceETH} ETH`}</div>
+                <div>{`Ticket Price: $${eventInfo.priceUSD} / ${eventInfo.priceETH / 100000000} ETH`}</div>
                 <div>{`Available Tickets: ${eventInfo.availableTickets}`}</div>
               </Typography>
               <Typography variant="h3" gutterBottom fontStyle="italic">
@@ -128,9 +130,10 @@ export default function Event(props) {
               <br />
               <MintButton
                 eventId={eventId}
+                price={eventInfo.priceETH}
                 //setRemAvailTickets={setRemAvailTickets}
                 //remAvailTickets={remAvailTickets}
-                onSuccess={handleMintTickets}
+                onSuccess={loadAvailableTickets}
                 data-test="mint-component"
               />
             </div>

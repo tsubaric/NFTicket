@@ -32,9 +32,9 @@ export const getTicketBalance = async (address, eventId) => {
     return Number(balance)
 }
 
-export const mintTickets = async (eventId, amount) => {
+export const mintTickets = async (eventId, amount, priceETH) => {
     const contractRef = await getContractRef()
-    const transaction = await contractRef.mintTickets(eventId, amount);
+    const transaction = await contractRef.mintTickets(eventId, amount, {value: priceETH});
     console.log("waiting for transaction to be confirmed...");
     const receipt = await transaction.wait();
     console.log("transaction confirmed");
@@ -85,6 +85,6 @@ export const getTicketPriceUSD = async (eventId) => {
 export const getTicketPriceETH = async (eventId) => {
     const contractRef = await getContractRef()
     const gweiPrice = Number(await contractRef.getTicketPriceETH(eventId));
-    console.log(gweiPrice / 1000000000);
-    return gweiPrice / 1000000000;
+    //console.log(gweiPrice / 1000000000);
+    return gweiPrice /// 1000000000;
 }
