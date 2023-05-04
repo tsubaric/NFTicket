@@ -5,6 +5,13 @@ const Footer = () => {
     return (
         <div className="footer-container">
             <footer className="footer">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
                 <div className="footer-row">
                 <h3 className="footer-title">NFTicket University of Iowa ECE Spring 2023</h3>
                 </div>

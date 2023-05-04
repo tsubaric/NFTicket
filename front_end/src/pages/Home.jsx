@@ -7,7 +7,7 @@ const Home = () => {
       className="home"
       style={{
         backgroundImage:
-          "url(https://www.billboard.com/wp-content/uploads/2022/03/UMF2022_0327_190211-9411_ALIVECOVERAGE.jpg?w=1024)",
+          "url(https://www.billboard.com/wp-content/uploads/2022/03/UMF2022_0327_190211-9411_ALIVECOVERAGE.jpg?w=2048)",
       }}
     >
       <br />
@@ -27,6 +27,18 @@ const Home = () => {
           </p>
         </span>
       </div>
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
     </div>
   );
 };
