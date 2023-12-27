@@ -8,8 +8,6 @@ import { createBrowserHistory as history } from "history";
 import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer.jsx";
 import Events from "./pages/Events.jsx";
-import MyEvents from "./pages/MyEvents";
-import OwnedEvent from "./pages/OwnedEvent";
 import RedeemTicket from "./pages/RedeemTicket";
 
 function App() {
@@ -23,8 +21,6 @@ function App() {
           <Route path="/events" exact component={Events} />
           <Route path="/tickets" exact component={MyTicketsPage} />
           <Route path="/event/:eventId" exact component={Event} />
-          {/* <Route path="/owned-events" exact component={MyEvents} />
-          <Route path="/owned-event/:eventId" exact component={OwnedEvent} /> */}
           <Route path="/redeem/:eventId/:ticketId" exact component={RedeemTicket} />
         </Switch>
       </div>
