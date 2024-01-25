@@ -10,6 +10,10 @@ Once you have Metamask when on "Select a network" click on "Add network"
 *** If you run npm ... and it says "bash npm: command not found" you can navigate to 'https://nodejs.org/en' and download the right version of Node.js for your computer. 
 After successfully downloading npm (Node.js) you can run --> $ npm audit fix --force
 
+-- How to get Infura ID
+-- How to get DEV ID
+-- What to enter to get localhost as Metamask thing. 
+
 Step 1: Remove package-lock.json and node_modules in the front_end folder --> $ cd front_end
     1. $ rm -f package-lock.json
     2. $ rm -rf node_modules
