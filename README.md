@@ -34,6 +34,9 @@ Step 4 cd back_end --> npx hardhat test --network localhost
 Step 5 cd front_end --> firebase emulators:start 
 if the port is taken go into the front_end folder and find the /firebase.json folder and change the "hosting": "port" to 5001 or whatever is available 
 
+firebase command not found ? sudo npm install -g firebase-tools
+Make sure you have the correct version of Java installed JDK 11+
+
 "emulators": {
     "database": {
       "port": 9000
