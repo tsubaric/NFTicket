@@ -4,8 +4,18 @@ NFT Ticket platform for easy event creation, transfer, redemption, and ownership
 ### Test Report
 The test report can be found [here](docs/TestReport.md)
 
-https://metamask.io/download/ before getting started to this website and download METAMASK for your browser.
-Once you have Metamask when on "Select a network" click on "Add network"
+## Running this on your own Computer 
+## Setting up Metamask
+First go here --> https://metamask.io/download/ and download METAMASK for your browser.
+Once you have the Metamask extension:
+1) "Select a network"
+2) Click on "Add network" which navigate you to a METAMASK web tab.
+3) Networks > Add a network > Add a network manually
+   Enter the following:
+   + Network name: localhost
+   + New RPC URL: http://127.0.0.1:8545/
+   + Chain ID: 31337
+   + Currency symbol: ETH
 
 *** If you run npm ... and it says "bash npm: command not found" you can navigate to 'https://nodejs.org/en' and download the right version of Node.js for your computer. 
 After successfully downloading npm (Node.js) you can run --> $ npm audit fix --force
