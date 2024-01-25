@@ -1,11 +1,11 @@
 ## NFTicket 
-
 NFT Ticket platform for easy event creation, transfer, redemption, and ownership
 
-
 ### Test Report
-
 The test report can be found [here](docs/TestReport.md)
+
+https://metamask.io/download/ before getting started to this website and download METAMASK for your browser.
+Once you have Metamask when on "Select a network" click on "Add network"
 
 *** If you run npm ... and it says "bash npm: command not found" you can navigate to 'https://nodejs.org/en' and download the right version of Node.js for your computer. 
 After successfully downloading npm (Node.js) you can run --> $ npm audit fix --force
