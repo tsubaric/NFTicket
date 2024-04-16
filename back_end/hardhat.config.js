@@ -29,7 +29,7 @@ module.exports = {
         mumbai: {
             url: `https://polygon-mumbai.infura.io/v3/${process.env.INFURA_API_KEY}`,
             accounts: [process.env.DEV_PRIVATE_KEY],
-            chainId: 80001,
+            chainId: 80000,
         }
     }
 };

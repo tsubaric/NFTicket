@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cypress/webpack-preprocessor": "6.0.1",
     "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.11.0",
     "@mui/lab": "^5.0.0-alpha.120",
@@ -10,7 +11,8 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.22.0",
-    "firebase": "^9.17.1",
+    "babel-loader": "9.1.2",
+    "firebase": "^9.23.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-move-element": "^1.0.14",
@@ -19,7 +21,7 @@
     "react-qr-scanner": "^1.0.0-alpha.11",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^3.0.1",
     "styled-components": "^5.3.1",
     "web-vitals": "^2.1.4"
   },
@@ -52,7 +54,7 @@
     ]
   },
   "devDependencies": {
-    "@cypress/code-coverage": "^3.10.4",
+    "@cypress/code-coverage": "3.12.19",
     "@cypress/instrument-cra": "^1.4.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -69,5 +71,9 @@
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",
     "workbox-webpack-plugin": "^6.5.4"
-  }
+  },
+  "description": "Design: https://www.figma.com/file/yMi9uNyJY0QjUUdfmU9E2M/NFTicket?node-id=0%3A1&t=3XjBB43WUohUEFi1-0",
+  "main": "cypress.config.js",
+  "author": "",
+  "license": "ISC"
 }
